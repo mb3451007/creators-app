@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="main-footer__footerarea col-12">
+            <div class="main-footer__images">
+                <img src="assets/side-bar-icon/icons8-home.svg" alt="">
+            </div>
+            <div class="main-footer__images">
+                <img src="assets/hearder-icon/icons8-search.svg" alt="">
+            </div >
+            <div class="main-footer__images">
+                <img src="assets/side-bar-icon/notification-bell-svgrepo-com.svg" alt="">
+            </div>
+            <div class="main-footer__images">
+                <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
+            </div>
+            <div class="main-footer__muiAvatar">
+                <button class="toggle-btn" (click)="toggleSidebar()">NC</button>
+                <div class="overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+                <div class="sidebar" [class.open]="isSidebarOpen">
+                    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeSidebar()">&times;</a> -->
+                    <ul type="none">
+                        <!-- <li *ngFor="let item of items">{{ item }}</li> -->
+                        <hr class="main-footer__hr-line">
+                        <li>
+                            <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
+                            <span>Profile</span>
+                        </li>
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/currency-dollar-circle-svgrepo-com.svg" alt="">
+                            <span>Become a creator</span>
+                        </li>
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/price-tag-promotion-price-cost-svgrepo-com.svg" alt="">
+                            <span>Promotions</span>
+                        </li>
+    
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/users-people-team-svgrepo-com.svg" alt="">
+                            <span>Following</span>
+                        </li>
+                        <li>
+                            <img src="assets/side-bar-icon/setting-svgrepo-com.svg" alt="">
+                            <span>Settings</span>
+                        </li>
+                        <hr class="main-footer__hr-line">
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg" alt="">
+                            <span>Wallet & Payment methods</span>
+                            <button>
+                                 $0
+                            </button>
+                
+                        </li>
+                        <hr class="main-footer__hr-line">
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/question-mark-circled-svgrepo-com.svg" alt="">
+                            <span>Help and support</span>
+                        </li>
+                        <li>
+    
+                            <img src="assets/side-toggle-bar-icon/light-bulb-idea-svgrepo-com.svg" alt="">
+                            <span>Suggest a feature</span>
+                        </li>
+                        <li >
+                            <img src="assets/side-toggle-bar-icon/half-moon-moon-svgrepo-com.svg" alt="">
+                            <span>Dard mood - Off</span>
+                        </li>
+                        <hr class="main-footer__hr-line">
+                        <li>
+                            <img src="assets/side-toggle-bar-icon/logout-svgrepo-com.svg" alt="">
+                            <span>Log out</span>
+                        </li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>

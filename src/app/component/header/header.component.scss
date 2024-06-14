@@ -1,0 +1,45 @@
+
+.main-header{
+    &__nav-bar{
+        display: flex;
+       justify-content: start;
+        font-size: 21px;
+        font-weight: 600;
+        font-family: sans-serif;
+        padding: .5rem 0rem .5rem 0rem;
+    }
+    &__home-side{
+        padding-top: 8px;
+    }
+    &__wallet-blnc{
+        button{
+            background: white;
+            box-shadow: 0px 0px 15px -10px;
+            border: none;
+            outline: none;
+            border-radius: 17px;
+            padding: 4px 9px 4px 0px;
+        }
+        img{
+            width: 41px;
+            padding-left: 17px; 
+        }
+    }
+}
+
+
+@media (min-width: 576px) {
+    .container, .container-sm {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width:'768px') {
+    .main-header{
+        &__nav-bar{
+            display: flex;
+           justify-content: space-between;
+            
+        }
+    }
+}

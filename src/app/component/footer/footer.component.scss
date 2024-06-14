@@ -1,0 +1,207 @@
+.main-footer{
+    &__footerarea{
+        display: none;
+        justify-content: space-around;
+        padding-top: 5%;
+    border-top: 1px solid;
+    }
+}
+
+  
+
+  @media screen and (max-width: '768px') {
+
+    .main-footer{
+        &__footerarea{
+            display: flex;
+            justify-content: space-around;
+        }
+        &__images{
+            img {
+                width: 26px;
+                padding-bottom: 5px;
+              }
+        }
+        &__muiAvatar {
+            // position: relative;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.25rem;
+            line-height: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            user-select: none;
+            color: rgb(255, 255, 255);
+            background: linear-gradient(
+              95.92deg,
+              rgb(244, 138, 108) 0%,
+              rgb(253, 29, 93) 100%
+            );
+            width: 32px;
+            height: 32px;
+            // margin: 1.5rem 0rem 2rem 3rem;
+            button {
+              margin: 0;
+              font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+              font-weight: 400;
+              font-size: 1rem;
+              line-height: 1.5;
+              letter-spacing: 0.00938em;
+              font-family: var(--font-basier-circle);
+              font-size: 12px;
+              font-weight: bold;
+              background: linear-gradient(
+                95.92deg,
+                rgb(244, 138, 108) 0%,
+                rgb(253, 29, 93) 100%
+              );
+              border: none;
+              color: white;
+            }
+          }
+          &__hr-line {
+            margin: .5rem 0;
+            color: lightgray;
+            border: 0;
+            border-top: 1px solid;
+            opacity: 0.5;
+          }
+    }
+    
+    
+    /* Basic styles for the app container */
+    .app-container {
+        position: relative;
+        height: 100vh;
+        overflow-x: hidden;
+      }
+      
+      /* Style for the toggle button */
+      .toggle-btn {
+        font-size: 30px;
+        cursor: pointer;
+        background-color: #111;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        transition: 0.3s;
+      }
+      
+      .toggle-btn:hover {
+        background-color: #444;
+      }
+      
+      /* Styles for the sidebar */
+      .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        background-color: white;
+        color: black;
+        overflow-x: hidden;
+        transition: 0.3s;
+        // padding-top: 60px;
+      }
+      
+      .sidebar.open {
+        background-color: #f4f4f4;
+        width: 330px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 10px;
+        ul {
+          padding: 0rem;
+        }
+        ul li {
+          padding: 0.5rem 0rem 0.5rem 1rem;
+          // margin-bottom: 1.2rem;
+          font-family: sans-serif;
+          cursor: pointer;
+          img {
+            width: 26px;
+            padding-bottom: 5px;
+          }
+          span {
+            padding-left: 10px;
+          }
+          button {
+            color: black;
+          font-size: 19px;
+          font-weight: 400;
+            background: #ffffff;
+            box-shadow: 0px 0px 2px 0px;
+            border: none;
+            outline: none;
+            border-radius: 13px;
+            padding: 4px 9px 4px 12px;
+            margin-left: 2rem;
+          }
+        }
+        ul li:hover {
+          background: linear-gradient(
+            91.93deg,
+            rgba(244, 138, 108, 0.1) 0%,
+            rgba(253, 29, 93, 0.1) 100%
+          );
+          color: #f94f64;
+          img{
+           
+            filter: invert(47%) sepia(30%) saturate(5536%) hue-rotate(324deg) brightness(99%) contrast(97%);
+            
+          }
+        }
+        
+      }
+      
+      .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 25px;
+        color: black;
+        display: block;
+        transition: 0.3s;
+      }
+      
+      .sidebar a:hover {
+        background-color: #575757;
+      }
+      
+      .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+      
+      /* Styles for the overlay */
+      .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+      
+      /* Styles for the main content */
+      .content {
+        transition: margin-left 0.3s;
+        padding: 16px;
+      }
+      
+      .content h1,
+      .content p {
+        margin: 20px;
+      }
+}
