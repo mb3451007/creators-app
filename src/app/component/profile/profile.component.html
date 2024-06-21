@@ -1,1 +1,58 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="row">
+        <div class="main-profile__box-container col-10">
+            <div class="main-profile__fan-title row">
+                Fanvues <div class="main-profile__fan-dot"></div>   
+            </div>
+            <div class="main-profile__fan-logo row">
+                <button class="toggle-btn">NC</button>
+            </div>
+            <div class="row">
+                <div class="main-profile__fan-logo-title col-12">Normal Clam</div>
+                <div class="col-12" style="color:#9e9e9e;">@normal-clam-88</div>
+
+            </div>
+            <div class="main-profile__edit-btn row">
+                <button class="col-12">Edit profile</button>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+
+            <div class="main-profile__profile-btn col-10">
+                <div class="main-profile__liked col-6" (click)="likedHide()" 
+                [ngClass]="{ 'active': activeDiv === 1 }" (click)="setActiveDiv(1)"
+                >
+                    <div>Liked</div>
+                </div>
+            <div class="main-profile__purchased col-6" (click)="purchaseHide()"
+            [ngClass]="{ 'active': activeDiv === 2 }" (click)="setActiveDiv(2)">
+                <div>Purchased</div>
+            </div>
+        
+        </div>
+        <div class="main-profile__liked-content col-10" *ngIf="showHide">
+           
+                <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="">
+            
+            <div class="main-profile__liked-info">No Liked Post</div>
+            <div>Discover creator and start enjoying their content</div>
+            <div class="main-profile__discover-btn">
+                <button>Discover creators</button>
+            </div>
+        </div>
+        <div class="main-profile__purchased-content col-10" *ngIf="!showHide">
+            
+                
+            <img src="assets/profile-icon/wallet-money-payment-svgrepo-com.svg" alt="">
+        
+            <div class="main-profile__liked-info">No Purchased media</div>
+            <div>The content you Purchase will appear here</div>
+            <div class="main-profile__discover-btn">
+                <button>Discover creators</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

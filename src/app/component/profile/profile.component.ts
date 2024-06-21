@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
+  showHide: boolean = true;
 
+  activeDiv: number = 1; // By default, the first div is active
+
+  setActiveDiv(divNumber: number) {
+    this.activeDiv = divNumber;
+  }
+  likedHide() {
+    this.showHide = true;
+  }
+
+  purchaseHide() {
+    this.showHide = false;
+  }
 }
