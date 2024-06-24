@@ -11,6 +11,8 @@ export class EditProfileComponent {
   
   profileForm: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
+  bannerUrl: string | ArrayBuffer | null = null;
+
 
   constructor(private fb: FormBuilder) {
     this.profileForm = this.fb.group({
@@ -29,6 +31,22 @@ export class EditProfileComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onbannerSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.profileForm.patchValue({
+        profileImage: file
+      });
+      this.profileForm.get('profileImage')?.updateValueAndValidity();
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.bannerUrl = reader.result;
       };
       reader.readAsDataURL(file);
     }
