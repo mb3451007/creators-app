@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="main-profile__box-container col-10">
+        <div class="main-profile__box-container col-md-12 col-sm-12 col-lg-10">
             <div class="main-profile__fan-title row">
                 Fanvues <div class="main-profile__fan-dot"></div>   
             </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="row">
 
-            <div class="main-profile__profile-btn col-10">
+            <div class="main-profile__profile-btn col-md-12 col-sm-12 col-lg-10">
                 <div class="main-profile__liked col-6" (click)="likedHide()" 
                 [ngClass]="{ 'active': activeDiv === 1 }" (click)="setActiveDiv(1)"
                 >
@@ -31,7 +31,7 @@
             </div>
         
         </div>
-        <div class="main-profile__liked-content col-10" *ngIf="showHide">
+        <div class="main-profile__liked-content col-md-12 col-sm-12 col-lg-10" *ngIf="showHide">
            
                 <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="">
             
@@ -41,7 +41,7 @@
                 <button>Discover creators</button>
             </div>
         </div>
-        <div class="main-profile__purchased-content col-10" *ngIf="!showHide">
+        <div class="main-profile__purchased-content col-md-12 col-sm-12 col-lg-10" *ngIf="!showHide">
             
                 
             <img src="assets/profile-icon/wallet-money-payment-svgrepo-com.svg" alt="">
