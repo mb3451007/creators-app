@@ -1,6 +1,7 @@
 .main-editProfile {
   &__bannerImage {
     padding-top: 12%;
+    // position: relative;
 
   }
   &__box-container {
@@ -9,7 +10,6 @@
   }
   &__fan-title {
     position: relative;
-
     display: flex;
     justify-content: center;
     user-select: none;
@@ -142,4 +142,21 @@
   padding-bottom: 4rem;
 
   opacity: 24.5%;
+}
+.form-upload-bannerprofile{
+  position: absolute;
+  position: absolute;
+  font-size: 8px;
+  opacity: 0%;
+  left: 40%;
+  top: 40%;
+
+  // opacity: 50%;
+}
+.form-upload-bannerprofile:hover{
+  position: absolute;
+  font-size: 8px;
+  left: 40%;
+  top: 40%;
+  opacity: 60.5%;
 }
