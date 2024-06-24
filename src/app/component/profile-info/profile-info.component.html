@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="main-profile-info__container-main-info col-md-10 col-sm-12 col-lg-10">
+            <div class="main-profile-info__back-to-edit col-6">
+                <div class="col-2" [routerLink]="['/editprofile']">
+                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
+                </div>
+                <div class="col-10" [routerLink]="['/editprofile']">Profile Info</div>
+            </div>
+            <div class="main-profile-info__save-info-btn col-6">
+                <button type="submit">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label style="font-size: 10px; color: #9e9e9e;">Name</mat-label>
+                <input matInput placeholder="Normal Clam" style="height: 35px;">
+            </mat-form-field>
+        </div>
+        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label style="font-size: 10px; color: #9e9e9e;">Handle</mat-label>
+                <input matInput placeholder="Normal-Clam-88" style="height: 35px;">
+                <mat-hint style="font-size: 10px; color: #9e9e9e;">
+                    you can use letters, numbers, dashes, dots, and underscores. It should start with a letter.
+                </mat-hint>
+            </mat-form-field>
+        </div>
+        
+        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <textarea matInput placeholder="Bio"></textarea>
+               
+            </mat-form-field>
+        </div>
+        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label style="font-size: 10px; color: #9e9e9e;">Location</mat-label>
+                <input matInput style="height: 35px;">
+                <mat-hint style="font-size: 10px; color: #9e9e9e;">
+                  Enter your current location, this will be shown on your profile 
+                </mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

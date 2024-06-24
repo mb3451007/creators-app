@@ -1,0 +1,30 @@
+.main-profile-info {
+  &__container-main-info {
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  &__back-to-edit {
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+  }
+  &__save-info-btn {
+    display: flex;
+    justify-content: end;
+    button {
+      border: none;
+      outline: none;
+      background-color: white;
+      color: lightcoral;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      opacity: 40%;
+    }
+  }
+  &__input-fields{
+    padding-bottom: 1rem;
+  }
+}
