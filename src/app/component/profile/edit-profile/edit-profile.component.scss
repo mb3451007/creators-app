@@ -1,11 +1,9 @@
 .main-editProfile {
   &__bannerImage {
     padding-top: 12%;
-    // position: relative;
 
   }
   &__box-container {
-    // box-shadow: 0px -6px 8px -6px;
     background-color: rgb(189 185 185 / 11%);
   }
   &__fan-title {
@@ -38,9 +36,7 @@
     padding-bottom: 3%;
   }
   &__fan-logo {
-    // display: flex;
-    // -webkit-box-align: center;
-    // align-items: center;
+   
     position: relative;
     -webkit-box-pack: center;
     justify-content: center;
@@ -60,7 +56,6 @@
     width: 150px;
     height: 150px;
     cursor: pointer;
-    // margin: 0rem 0rem 0rem 0.5rem;
     button {
       margin: 0;
       font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -69,7 +64,7 @@
       line-height: 1.5;
       letter-spacing: 0.00938em;
       font-family: var(--font-basier-circle);
-      //   font-size: 12px;
+  
       font-weight: bold;
       background: linear-gradient(
         95.92deg,
@@ -112,7 +107,7 @@
   }
 }
 
-// testing
+
 
 .profile-image-uploader {
   display: flex;
@@ -121,7 +116,7 @@
 }
 
 .profile-image-uploader img {
-  // margin-top: 10px;
+
   border-radius: 50%;
   border: 2px solid #ccc;
 }
@@ -129,7 +124,7 @@
 
 .form-upload-profile{
   position: absolute;
-  /* left: 50%; */
+
   padding-top: 4rem;
   padding-bottom: 4rem;
 
@@ -137,8 +132,7 @@
 }
 .form-upload-profile:hover{
   position: absolute;
-  /* left: 50%; */
-  // background: black;
+
   padding-top: 4rem;
   padding-bottom: 4rem;
 
@@ -146,33 +140,27 @@
 }
 .form-upload-bannerprofile{
   position: absolute;
-  position: absolute;
+  padding-left: 11%;
   font-size: 8px;
   opacity: 0%;
   left: 33%;
-  // top: 40%;
-
-  // opacity: 50%;
 }
 .form-upload-bannerprofile:hover{
   position: absolute;
   font-size: 8px;
+  padding-left: 11%;
   left: 33%;
-  // top: 40%;
   opacity: 60.5%;
 }
 
 .upload-icon{
   display: flex;
   justify-content: center;
-  // position: absolute;
-  // top: 10px;
   padding-bottom: 5px;
   padding-top: 5px;
   background: lightgray;
-  width: 154px;
-  /* left: -23px; */
-  // padding-left: 9%;
+  width: 54px;
+  border-radius: 25px;
   img{
    width: 40px;
   }

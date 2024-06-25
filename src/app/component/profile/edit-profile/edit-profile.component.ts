@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 
@@ -14,7 +14,7 @@ export class EditProfileComponent {
   bannerUrl: string | ArrayBuffer | null = null;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.profileForm = this.fb.group({
       profileImage: [null]
     });
@@ -47,6 +47,7 @@ export class EditProfileComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.bannerUrl = reader.result;
+        this.cdr.detectChanges(); 
       };
       reader.readAsDataURL(file);
     }

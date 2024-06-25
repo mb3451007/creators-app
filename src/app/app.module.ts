@@ -6,16 +6,15 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { HomeComponent } from './component/home/home.component';
-import { ProfileComponent } from './component/profile/profile.component';
 import { MessagesComponent } from './component/messages/messages.component';
-import { EditProfileComponent } from './component/edit-profile/edit-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProfileInfoComponent } from './component/profile-info/profile-info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
+import { SettingsComponent } from './component/settings/settings.component';
+import { ProfileModuleModule } from './component/profile/profile-module.module';
 
 @NgModule({
   declarations: [
@@ -24,10 +23,8 @@ import {FormsModule} from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ProfileComponent,
     MessagesComponent,
-    EditProfileComponent,
-    ProfileInfoComponent,
+    SettingsComponent,
     
   ],
   imports: [
@@ -39,6 +36,7 @@ import {FormsModule} from '@angular/forms';
     MatInputModule, 
     MatIconModule,
     FormsModule,
+    ProfileModuleModule
     
   ],
   providers: [],

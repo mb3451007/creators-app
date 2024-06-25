@@ -38,3 +38,15 @@
     height: 35px !important;
   }
 }
+::ng-deep{
+  .textarea-field{
+    
+    .mat-mdc-form-field-flex {
+      display: inline-flex;
+      align-items: baseline;
+      box-sizing: border-box;
+      width: 100%;
+      padding-top: 1% !important;
+  }
+}
+}

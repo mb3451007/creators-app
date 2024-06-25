@@ -1,0 +1,58 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="main-editProfile__box-container col-10" [ngStyle]="{'background-image': 'url(' + bannerUrl + ')'}">
+            <div class="main-editProfile__bannerImage col-12">
+
+                <div class="main-editProfile__fan-title row">
+
+
+                    <form [formGroup]="profileForm" class="form-upload-bannerprofile">
+                        <label for="fileInput" class="upload-icon">
+                            <img src="assets/profile-icon/camera-rotate-svgrepo-com.svg" alt="Upload Icon">
+                        </label>
+                        <input type="file" id="fileInput" (change)="onbannerSelected($event)" hidden />
+                    </form>
+                    fanvue <span class="main-editProfile__fan-dot"></span>
+                </div>
+            </div>
+            <div class="main-editProfile__profileImage profile-image-uploader col-12">
+                <div class="main-editProfile__fan-logo row">
+                    <form [formGroup]="profileForm" class="form-upload-profile">
+                        <label for="profileInput" class="icon-label">
+                            <img src="assets/profile-icon/camera-rotate-svgrepo-com.svg" alt="Upload Icon"
+                                class="upload-profile">
+                        </label>
+                        <input type="file" id="profileInput" (change)="onFileSelected($event)" hidden />
+                    </form>
+                    <div *ngIf="previewUrl" style="padding: 0px;">
+                        <img [src]="previewUrl" alt="Profile Image" width="150" height="150" />
+                    </div>
+                    <!-- <span>NC</span> -->
+                    <button class="toggle-btn">NC</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="main-editProfile__profile-info col-10">
+            <div class="main-editProfile__page-icon">
+                <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
+            </div>
+            <div>
+                <div class="main-editProfile__info">Profile info</div>
+                <div class="main-editProfile__handle">Add or change your handle, display name, bio and location.</div>
+            </div>
+            <div class="main-editProfile__page-icon">
+                <button [routerLink]="['/profile/info']">
+                    <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
