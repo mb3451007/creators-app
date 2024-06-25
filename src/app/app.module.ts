@@ -13,8 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
-import { SettingsComponent } from './component/settings/settings.component';
 import { ProfileModuleModule } from './component/profile/profile-module.module';
+import { SettingModuleModule } from './component/settings/setting.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { ProfileModuleModule } from './component/profile/profile-module.module';
     FooterComponent,
     HomeComponent,
     MessagesComponent,
-    SettingsComponent,
     
   ],
   imports: [
@@ -36,7 +35,8 @@ import { ProfileModuleModule } from './component/profile/profile-module.module';
     MatInputModule, 
     MatIconModule,
     FormsModule,
-    ProfileModuleModule
+    ProfileModuleModule,
+    SettingModuleModule
     
   ],
   providers: [],

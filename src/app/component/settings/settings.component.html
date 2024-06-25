@@ -6,7 +6,7 @@
                     <div class="main-setting__message col-12">
                         <span>Settings</span>
                     </div>
-                    <div class="accout-active col-12" [routerLink]="'profile'" [routerLinkActive]="'active'">
+                    <div class="accout-active col-12" [routerLink]="['/setting/account']" [routerLinkActive]="'active'" (click)="selectDiv(1)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12">
+                    <div class="accout-active col-12" (click)="selectDiv(2)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-toggle-bar-icon/currency-dollar-circle-svgrepo-com.svg" alt="">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12">
+                    <div class="accout-active col-12" (click)="selectDiv(3)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg" alt="">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12">
+                    <div class="accout-active col-12" (click)="selectDiv(4)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-toggle-bar-icon/price-tag-promotion-price-cost-svgrepo-com.svg"
@@ -58,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12">
+                    <div class="accout-active col-12" (click)="selectDiv(5)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-toggle-bar-icon/users-people-team-svgrepo-com.svg" alt="">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12">
+                    <div class="accout-active col-12" (click)="selectDiv(6)"> 
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-toggle-bar-icon/question-mark-circled-svgrepo-com.svg" alt="">
@@ -88,20 +88,12 @@
         </div>
         <div class="col-8 col-md-7 col-sm-12 col-12">
             <div class="container" style="box-shadow:0px 2px 12px -8px; height: 100vh;">
-                <!-- <div class="main-messages__right-container row">
-                <div class="main-messages__chat-area col-12">
-                    <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
-                </div>
-                <div class="main-messages__chat-area not-yet col-12">
-                    <span>you don't have a chat Yet</span>
-                </div>
-                <div class="main-messages__chat-area discover-creator col-12">
-                    <span>Discover creators and start Messaging them!</span>
-                </div>
-                <div class="main-messages__chat-area creator col-12" >
-                    <span>Discover creators</span>
-                </div>
-            </div> -->
+               <app-account *ngIf="selectedDiv === 1"></app-account>
+               <app-creator *ngIf="selectedDiv === 2"></app-creator>
+               <app-payment *ngIf="selectedDiv === 3"></app-payment>
+               <app-notification *ngIf="selectedDiv === 4"></app-notification>
+               <app-privacy *ngIf="selectedDiv === 5"></app-privacy>
+               <app-support *ngIf="selectedDiv === 6"></app-support>
             </div>
         </div>
     </div>
