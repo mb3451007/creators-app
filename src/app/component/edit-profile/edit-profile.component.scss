@@ -138,6 +138,7 @@
 .form-upload-profile:hover{
   position: absolute;
   /* left: 50%; */
+  // background: black;
   padding-top: 4rem;
   padding-bottom: 4rem;
 
@@ -148,15 +149,40 @@
   position: absolute;
   font-size: 8px;
   opacity: 0%;
-  left: 40%;
-  top: 40%;
+  left: 33%;
+  // top: 40%;
 
   // opacity: 50%;
 }
 .form-upload-bannerprofile:hover{
   position: absolute;
   font-size: 8px;
-  left: 40%;
-  top: 40%;
+  left: 33%;
+  // top: 40%;
   opacity: 60.5%;
+}
+
+.upload-icon{
+  display: flex;
+  justify-content: center;
+  // position: absolute;
+  // top: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background: lightgray;
+  width: 154px;
+  /* left: -23px; */
+  // padding-left: 9%;
+  img{
+   width: 40px;
+  }
+
+}
+.icon-label{
+  display: flex;
+    justify-content: center;
+    
+}
+.upload-profile{
+  width: 35px;
 }
