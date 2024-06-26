@@ -1,1 +1,50 @@
-<p>account works!</p>
+<div class="row">
+        <div class="col-12">
+         
+                    <div class="main-account__message col-12">
+                        <span>Account Info</span>
+                    </div>
+                    <div class="main-account__account-description col-10"> 
+                        <span>See information about your account, change password, or learn about your account deactivation options.</span>
+                    </div>
+                    <div class="accout-active col-12" [routerLink]="['/setting/account']" [routerLinkActive]="'active'" >
+                        <div class="account col-10">
+                            <div>
+                                <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
+                            </div>
+                            <div>Account Info</div>
+                        </div>
+                        <div class="col-2">
+                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="accout-active col-12" >
+                        <div class="account col-10">
+                            <div>
+                                <img src="assets/settings/account/lock-keyhole-unlocked-svgrepo-com.svg" alt="">
+                            </div>
+                            <div>Password and security settings</div>
+                        </div>
+                        <div class="col-2">
+                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="accout-active col-12" >
+                        <div class="account col-10">
+                            <div>
+                                <img src="assets/settings/account/delete-svgrepo-com.svg" alt="">
+
+                            </div>
+                            <div>Delete my account </div>
+                        </div>
+                        <div class="col-2">
+                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
+                        </div>
+                    </div>
+
+             
+        </div>
+        
+    </div>

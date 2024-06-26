@@ -1,0 +1,93 @@
+.active{
+    background: linear-gradient(
+          91.93deg,
+          rgba(244, 138, 108, 0.1) 0%,
+          rgba(253, 29, 93, 0.1) 100%
+        );
+        border-radius: 0px;
+  }
+.main-account {
+  &__message {
+    font-size: 24px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  &__account-description{
+    color:#9e9e9e;
+    font-size: 10px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    padding-bottom: 1rem;
+    font-weight: 500;
+    padding-left: 1.5rem;
+  }
+}
+
+.accout-active{
+    display: flex;
+    align-items: baseline;
+    font-family: sans-serif;
+    cursor: pointer;
+    // width: 330px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 0px;
+    
+    padding: 1rem 0rem 1rem 1.5rem;
+
+    img {
+      width: 26px;
+      padding-bottom: 5px;
+    }
+    .account{
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        // padding-top: 5px;
+        // padding-left: 8px;
+        img{
+            width: 20px;
+            // padding-top: 5px;
+            margin-right: 7px;
+        }
+    }
+}
+.accout-active:hover{
+    display: flex;
+    align-items: baseline;
+    font-family: sans-serif;
+    cursor: pointer;
+    // width: 330px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 0px;
+    padding: 1rem 0rem 1rem 1.5rem;
+    background: linear-gradient(
+        91.93deg,
+        rgba(244, 138, 108, 0.1) 0%,
+        rgba(253, 29, 93, 0.1) 100%
+      );
+      color: #f94f64;
+    img {
+      width: 26px;
+      padding-bottom: 5px;
+      filter: invert(47%) sepia(30%) saturate(5536%) hue-rotate(324deg)
+      brightness(99%) contrast(97%);
+    }
+    .account{
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        // padding-top: 5px;
+        // padding-left: 8px;
+        img{
+            width: 20px;
+            // padding-top: 5px;
+            margin-right: 7px;
+        }
+    }
+}
