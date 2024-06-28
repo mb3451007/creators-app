@@ -9,6 +9,10 @@ import { PaymentComponent } from './payment/payment.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { SupportComponent } from './support/support.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -18,12 +22,16 @@ import { SupportComponent } from './support/support.component';
        PaymentComponent,
        NotificationComponent,
        PrivacyComponent,
-       SupportComponent
+       SupportComponent,
   ],
     imports: [
       CommonModule,
       SettingRoutingModule,
-      RouterModule
+      RouterModule,
+      MatFormFieldModule, 
+      MatInputModule, 
+      MatIconModule,
+      FormsModule,
     ]
     
   })

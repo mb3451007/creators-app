@@ -1,5 +1,6 @@
+
 <div class="row">
-        <div class="col-12">
+        <div class="col-12" *ngIf="activeDiv === 0">
          
                     <div class="main-account__message col-12">
                         <span>Account Info</span>
@@ -7,7 +8,7 @@
                     <div class="main-account__account-description col-10"> 
                         <span>See information about your account, change password, or learn about your account deactivation options.</span>
                     </div>
-                    <div class="accout-active col-12" [routerLink]="['/setting/account']" [routerLinkActive]="'active'" >
+                    <div class="accout-active col-12" [routerLink]="['/account/accountInfo']" [routerLinkActive]="'active'" (click)="showDiv(1)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
@@ -19,7 +20,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12" >
+                    <div class="accout-active col-12" (click)="showDiv(2)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/settings/account/lock-keyhole-unlocked-svgrepo-com.svg" alt="">
@@ -31,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="accout-active col-12" >
+                    <div class="accout-active col-12" (click)="showDiv(3)">
                         <div class="account col-10">
                             <div>
                                 <img src="assets/settings/account/delete-svgrepo-com.svg" alt="">
@@ -48,3 +49,84 @@
         </div>
         
     </div>
+
+      <!-- Accout info -->
+
+     <div class="row">
+        <div class="col-12" *ngIf="activeDiv === 1">
+            <div class=" main-account__info-btn col-12">
+                <div class="col-1" (click)="showDiv(0)">
+                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
+                </div>
+                <div class="profile col-11" (click)="showDiv(0)">Account info</div>
+            </div>
+          <div class="main-account__input-fields col-12">
+            <mat-form-field class="main-account__form-field" appearance="outline">
+                <mat-label class="main-account__form-label">Email</mat-label>
+                <input type="email" matInput placeholder="abc@gmial.com" class="main-account__form-input">
+            </mat-form-field>
+        </div>
+        <div class="main-account__input-fields col-12">
+            <mat-form-field class="main-account__form-field" appearance="outline">
+                <mat-label class="main-account__form-label">Joined</mat-label>
+                <input type="date" matInput placeholder="select joi" class="main-account__form-input">
+            </mat-form-field>
+        </div>
+          </div>
+     </div>
+      
+     <div class="row">
+        <div class="col-12" *ngIf="activeDiv === 2">
+            <div class=" main-account__info-btn col-12">
+                <div class="col-1" (click)="showDiv(0)">
+                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
+                </div>
+                <div class="profile col-11" (click)="showDiv(0)">Password and security settings</div>
+            </div>
+            <div class="main-account__input-fields col-12">
+                <div class="col-12" style="padding: 0.5rem;">Add a password</div>
+                <mat-form-field class="main-account__form-field" appearance="outline">
+                    <!-- <mat-label class="main-account__form-label"></mat-label> -->
+                    <input type="email" matInput placeholder="New Password*" class="main-account__form-input">
+                    <mat-hint class="main-account__form-label">
+                        Min 9 and max 30 characters, at least a number, an upper & lower case letter.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="main-account__input-fields col-12" style="padding: 2rem 1rem 0rem 1rem;">
+                <!-- <div class="col-12">Add a password</div> -->
+                <mat-form-field class="main-account__form-field" appearance="outline">
+                    <!-- <mat-label class="main-account__form-label"></mat-label> -->
+                    <input type="email" matInput placeholder="Confirm New Password*" class="main-account__form-input">
+                </mat-form-field>
+            </div>
+            <div class="main-account__password-btn col-12">
+                <button class=" ">Add Password</button>
+            </div>
+          </div>
+     </div>
+      
+     <div class="row">
+        <div class="main col-12" *ngIf="activeDiv === 3">
+            <div class=" main-account__info-btn col-12">
+                <div class="col-1" (click)="showDiv(0)">
+                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
+                </div>
+                <div class="profile col-11" (click)="showDiv(0)">Delete My account</div>
+            </div>
+            <div class="main-account__permenent-dlt col-12" style="padding: 0.5rem;">
+                <span >PERMANENTLY DELETE</span>your Fanvue account with all your data? All data associated with your Fanvue account will be permanently deleted.</div>
+
+                <div class="main-account__warning-msg col-12">
+                    <img src="assets/settings/account/status-warning-alert-caution-svgrepo-com.svg" alt="" style="width: 20px;">
+                   <span> Warning, this can't be undone!</span>
+                </div>
+            <div  class="main-account__edit-btn col-12" >
+                <button >Delete Account</button>
+            </div>
+          </div>
+     </div>
+      
+
+  
+    

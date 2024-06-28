@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent {
+  
 
+  activeDiv = 0;
+
+  showDiv(divNumber: number): void {
+    this.activeDiv = divNumber;
+  }
 }

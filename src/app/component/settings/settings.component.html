@@ -87,14 +87,20 @@
             </div>
         </div>
         <div class="col-8 col-md-7 col-sm-12 col-12">
+            
             <div class="" style="box-shadow:0px 2px 12px -8px; height: 100vh;">
-               <app-account *ngIf="selectedDiv === 1"></app-account>
+               
+                <app-account *ngIf="selectedDiv === 1" ></app-account>
                <app-creator *ngIf="selectedDiv === 2"></app-creator>
                <app-payment *ngIf="selectedDiv === 3"></app-payment>
                <app-notification *ngIf="selectedDiv === 4"></app-notification>
                <app-privacy *ngIf="selectedDiv === 5"></app-privacy>
                <app-support *ngIf="selectedDiv === 6"></app-support>
+               
+               
+               
             </div>
         </div>
     </div>
 </div>
+

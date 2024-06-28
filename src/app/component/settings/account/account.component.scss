@@ -23,8 +23,115 @@
     font-weight: 500;
     padding-left: 1.5rem;
   }
-}
+  &__info-btn{
+    display: flex;
+    font-size: 24px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+    
+  }
+  &__input-fields{
+    // cursor: pointer;
+    // margin-top: 2rem;
+    padding-bottom: 1rem;
+    padding: 0rem 1rem;
+  }
+  &__form-field{
+    // cursor: pointer;
 
+    width: 100%;
+  }
+  &__form-label{
+    // cursor: pointer;
+
+    font-size: 10px;
+     color: #9e9e9e;
+  }
+  &__form-input{
+    cursor: pointer;
+
+    height: 20px !important;
+  }
+  &__password-btn {
+    padding: 0rem 1rem;
+    // display: flex;
+    // justify-content: center;
+    button{
+      width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1;
+    border-radius: 30px;
+    overflow: hidden;
+    user-select: none;
+    border: none;
+    padding: 4% 18%;
+    // margin-top: 1.3rem;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(
+      95.92deg,
+      rgb(244, 138, 108) 0%,
+      rgb(253, 29, 93) 100%
+    );
+  }
+}
+&__permenent-dlt{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: inherit;
+    margin-bottom: 3rem;
+    span{
+      font-size: 18px;
+    font-weight: bold;
+    padding: 0rem .5rem 0rem 0rem;
+
+    }
+}
+&__edit-btn {
+  padding-top: 1.5rem;
+  button {
+    width: 100%;
+    border: 1px solid;
+  cursor: pointer;
+    border-radius: 30px;
+    padding: 0.5rem 0rem;
+    background: white;
+    border-color: rgb(249, 79, 100);
+    color: rgb(249, 79, 100);
+    font-weight: 600;
+  }
+  button:hover {
+    background: linear-gradient(
+      91.93deg,
+      rgba(244, 138, 108, 0.1) 0%,
+      rgba(253, 29, 93, 0.1) 100%
+    );
+  }
+}
+&__warning-msg{
+  border: 1px solid #dbaf35;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  background-color: #fcf7e8;
+  span{
+    padding-left: 7px;
+  }
+}
+}
+.profile{
+  cursor: pointer;
+}
+.main{
+  padding: 0rem 2rem;
+}
 .accout-active{
     display: flex;
     align-items: baseline;
@@ -90,4 +197,11 @@
             margin-right: 7px;
         }
     }
+
 }
+
+
+
+
+
+
