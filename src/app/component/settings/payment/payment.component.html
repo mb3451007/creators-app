@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-12" *ngIf="activeDiv === 0">
      
                 <div class="main-account__message col-12">
                     <span>Payments and subscriptions</span>
@@ -7,7 +7,7 @@
                 <div class="main-account__account-description col-10"> 
                     <span>Add or remove payment card, manage your subscriptions or see the history of your transactions.</span>
                 </div>
-                <div class="accout-active col-12" [routerLink]="['#']" [routerLinkActive]="'active'" >
+                <div class="accout-active col-12" [routerLink]="['#']" [routerLinkActive]="'active'" (click)="showDiv(1)">
                     <div class="account col-10">
                         <div>
                             <img src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg" alt="">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <div class="accout-active col-12" >
+                <div class="accout-active col-12" (click)="showDiv(2)">
                     <div class="account col-10">
                         <div>
                             <img src="assets/settings/payment/manage-svgrepo-com.svg" alt="">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="accout-active col-12" >
+                <div class="accout-active col-12" (click)="showDiv(3)">
                     <div class="account col-10">
                         <div>
                             <img src="assets/settings/payment/clock-two-svgrepo-com.svg" alt="">
@@ -48,3 +48,39 @@
     </div>
     
 </div>
+
+
+
+<!-- payment method -->
+
+<div class="row">
+    <div class="col-12" *ngIf="activeDiv === 1">
+        <div class=" main-account__info-btn col-12">
+            <div class="col-1" (click)="showDiv(0)">
+                <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="profile col-11" (click)="showDiv(0)">Wallet & Payment methods</div>
+        </div>
+      
+        <div class="container">
+            <div class="main-account__payment-info  col-12">
+                <div class="wellat col-12">Wallet credits</div>
+                <div class="count-payment col-12">$0.00</div>
+                <div class="main-account__password-btn col-12">
+                    <button class=" ">Top up</button>
+                </div>
+    
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-account__method-heading col-12">My payment method </div>
+            <div class="main-account__add-crad col-12">
+                <div>
+                    <img src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg" alt="" >
+    
+                </div>
+                <div>Add Card</div>
+            </div>
+        </div>
+      </div>
+ </div>
