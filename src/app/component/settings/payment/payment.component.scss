@@ -105,7 +105,15 @@
     margin-right: .5rem;
     width: 20px;
   }
+  
 }
+}
+.card{
+  display: flex;
+  align-items: center;
+  padding-top: .1rem;
+  border: none;
+  outline: none;
 }
 
 .accout-active{
