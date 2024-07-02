@@ -1,0 +1,167 @@
+<div class="container">
+    <div class="main-suggested__sides row">
+        <!-- <div class="main-home__sides col-12"> -->
+        <div class="col-lg-8 col-md-8 col-12">
+            <div class="row">
+                <div class="main-suggested__leftSide col-12">
+                    <div class="main-suggested__user-profile col-12">
+                        <div class="main-suggested__user-profile-name col-12">
+                            <div class="main-suggested__userName col-6">
+                                <div class="user">user 1 <div class="main-suggested__fan-dot">
+                                    <img src="assets/tick-outline-svgrepo-com.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-suggested__user-profile-menu col-6" ><img src="assets/menu-vertical-svgrepo-com.svg" alt=""></div>
+                        </div>
+                        <div class="main-suggested__about-user-profile col-12">
+                            <div class="about">
+                                <img src="assets/camera-svgrepo-com.svg" alt=""> <span>3</span>
+                            </div>
+                            <div class="about">
+                                <img src="assets/video-recorder-svgrepo-com.svg" alt=""> <span>93</span>
+                            </div>
+                            <div class="about">
+                                <img src="assets/heart-svgrepo-com (1).svg" alt=""> <span>2.3k</span>
+                            </div>
+                        </div>
+                        <div class="main-suggested__user-profileImg">
+                            <img src="assets/home-icon/avatarImg.png" alt="">
+                        </div>
+                    </div>
+                    <div class="main-suggested__user-unfollow col-12">
+                        <div class="unfollow">
+                            <img src="assets/home-icon/dollar-svgrepo-com.svg" alt="">
+                        </div>
+                        <div class="unfollow">
+                            <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
+                        </div>
+                        <div class="userfollow">unfollow</div>
+                    </div>
+
+                    <div class="main-suggested__user-title col-12">
+                        <div class="main-suggested__userName">
+                            <div class="user">user 1 <div class="main-suggested__fan-dot">
+                                <img src="assets/tick-outline-svgrepo-com.svg" alt="">
+                            </div>
+                        </div>
+                            <div>@user_1</div>
+                        </div>
+                    </div>
+                    <div class="main-suggested__follow-me-title col-12">Hello, follow me</div>
+                    <div class="main-suggested__subscribe row">
+
+                        <div class="main-suggested__subscribe-btn">
+                            <div class="subscribe-btn col-6">Subscribe</div>
+                            <div class="ammount col-6">$9.90/month</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="row">
+
+                <div class="main-suggested__profile-btn col-md-12 col-sm-12 col-lg-10">
+                    <div class="main-suggested__liked col-6" (click)="postHide()"
+                        [ngClass]="{ 'active': activeDiv === 1 }" (click)="setActiveDiv(1)">
+                        <div>Post</div>
+                    </div>
+                    <div class="main-suggested__purchased col-6" (click)="mediaHide()"
+                        [ngClass]="{ 'active': activeDiv === 2 }" (click)="setActiveDiv(2)">
+                        <div>Media</div>
+                    </div>
+
+                </div>
+                <div class="main-suggested__post-content col-md-12 col-sm-12 col-lg-10" *ngIf="showHide">
+
+                    <div class="all">All 95</div>
+                    <div class="pay-view">pay to view 21</div>
+
+
+                </div>
+                <div class="main-suggested__media-content col-md-12 col-sm-12 col-lg-10" *ngIf="!showHide">
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="main-suggested__rightSide col-lg-4 col-md-4 col-12">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="main-suggested__suggestCreator col-12">Suggested Creator</div>
+                    <div class="main-suggested__rightProfile col-12">
+                        <div class="col-6">
+
+                            <div class="main-suggested__rightUserDetails">
+
+                                <div class="main-suggested__profileImg">
+                                    <img src="assets/home-icon/avatarImg.png" alt="" style="width: 70px;">
+                                </div>
+                                <div class="main-suggested__userName">
+                                    <div class="user">user 1</div>
+                                    <div>@user_1</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="main-suggested__rightSideFollow-btn col-6">
+
+                            <div class="main-suggested__right-btn col-12">
+                                <button>follow</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="main-suggested__right-follow-btn col-12">
+                        <button>follow</button>
+                    </div>
+                    <!-- <div class="col-12"> -->
+                    <div class="pagination col-12">
+                        <div class="left col-1">
+                            <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 10px;">
+                            <!-- <a id="" href="#">&laquo;</a> -->
+                        </div>
+
+                        <div class="page-paginate col-10">
+                            <a href="#">.</a>
+                            <a href="#" class="active">.</a>
+                            <a href="#">.</a>
+                            <a href="#">.</a>
+                            <a href="#">.</a>
+                            <a href="#">.</a>
+                        </div>
+                        <div class="right col-1">
+                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="" style="width: 19px;">
+
+                            <!-- style="width: 10px;" -->
+                            <!-- <a id="" href="#">&raquo;</a> -->
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>

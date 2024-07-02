@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { ProfileModuleModule } from './component/profile/profile-module.module';
 import { SettingModuleModule } from './component/settings/setting.module';
+import { SuggestedCreatorComponent } from './component/suggested-creator/suggested-creator.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SettingModuleModule } from './component/settings/setting.module';
     FooterComponent,
     HomeComponent,
     MessagesComponent,
+    SuggestedCreatorComponent,
     
   ],
   imports: [
