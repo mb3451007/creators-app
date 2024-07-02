@@ -135,5 +135,46 @@
     
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+  }
+  
+  .pagination a {
+    color: black;
+    // float: left;
+    padding: 8px 6px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+//   .left{
+//     float: left;
+//   }
+//   .right{
+//     float: right;
+//   }
+  .page-paginate{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+  
+
+@media screen and (max-width: 768px) {
+    .main-home{
+        &__sides{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
+}
+
 
 
