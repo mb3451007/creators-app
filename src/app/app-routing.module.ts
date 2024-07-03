@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { MessagesComponent } from './component/messages/messages.component';
 import { SuggestedCreatorComponent } from './component/suggested-creator/suggested-creator.component';
+import { DiscoverComponent } from './component/discover/discover.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'setting',
     loadChildren: () => import('./component/settings/setting.module').then(m => m.SettingModuleModule)
   },
+  {path:'discover',component:DiscoverComponent},
   {path:'suggested',component:SuggestedCreatorComponent}
 
 ];

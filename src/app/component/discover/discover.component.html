@@ -1,0 +1,109 @@
+
+<div class="container">
+    <div class="main-discover__sides row">
+        <!-- <div class="main-home__sides col-12"> -->
+        <div class="main-discover__leftSide col-lg-8 col-md-8 col-12">
+            <div class="main-discover__srch-dicsover col-12">
+                <div class="discover" (click)="postHide()"
+                [ngClass]="{ 'active': activeDiv === 1 }" (click)="setActiveDiv(1)">Discover</div>
+                <div class="division">|</div>
+                <div class="srch" (click)="mediaHide()"
+                [ngClass]="{ 'active': activeDiv === 2 }" (click)="setActiveDiv(2)">Search</div>
+            </div>
+            <div class="main-discover__user-profile col-12" *ngIf="showHide">
+                <div class="main-discover__user-profile-name col-12">
+                    
+                    <div class="main-discover__prifle-content col-10">
+                        <div class="main-discover__user-profileImg ">
+                            <img src="assets/home-icon/avatarImg.png" alt="">
+                        </div>
+                        <div class="main-discover__userName">
+                            <div class="user">user 1 
+                            </div>
+                            <div class="main-discover__about-user-profile">
+                                <div class="about">
+                                    <img src="assets/camera-svgrepo-com.svg" alt=""> <span>3</span>
+                                </div>
+                                <div class="about">
+                                    <img src="assets/video-recorder-svgrepo-com.svg" alt=""> <span>93</span>
+                                </div>
+                                <div class="about">
+                                    <img src="assets/heart-svgrepo-com (1).svg" alt=""> <span>2.3k</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="main-discover__user-profile-menu col-2" >
+                    <div><img src="assets/profile-plus-1354-svgrepo-com.svg" alt=""></div>
+                    <div><img src="assets/menu-dots-svgrepo-com.svg" alt=""></div>
+                </div>
+                </div>
+              
+                
+            </div>
+            <div class="col-12" *ngIf="!showHide">
+                search-area
+            </div>
+        </div>
+
+
+<div class="main-discover__rightSide col-lg-4 col-md-4 col-12">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="main-discover__suggestCreator col-12">Suggested Creator</div>
+            <div class="main-discover__rightProfile col-12">
+                <div class="col-6">
+
+                    <div class="main-discover__rightUserDetails">
+
+                        <div class="main-discover__profileImg">
+                            <img src="assets/home-icon/avatarImg.png" alt="" style="width: 70px;">
+                        </div>
+                        <div class="main-discover__userName">
+                            <div class="user">user 1</div>
+                            <div>@user_1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-discover__rightSideFollow-btn col-6">
+
+                    <div class="main-discover__right-btn col-12">
+                        <button>follow</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="main-discover__right-follow-btn col-12">
+                <button>follow</button>
+            </div>
+            <!-- <div class="col-12"> -->
+            <div class="pagination col-12">
+                <div class="left col-1">
+                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 10px;">
+                    <!-- <a id="" href="#">&laquo;</a> -->
+                </div>
+
+                <div class="page-paginate col-10">
+                    <a href="#">.</a>
+                    <a href="#" class="active">.</a>
+                    <a href="#">.</a>
+                    <a href="#">.</a>
+                    <a href="#">.</a>
+                    <a href="#">.</a>
+                </div>
+                <div class="right col-1">
+                    <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="" style="width: 19px;">
+
+                    <!-- style="width: 10px;" -->
+                    <!-- <a id="" href="#">&raquo;</a> -->
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>

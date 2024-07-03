@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import { ProfileModuleModule } from './component/profile/profile-module.module';
 import { SettingModuleModule } from './component/settings/setting.module';
 import { SuggestedCreatorComponent } from './component/suggested-creator/suggested-creator.component';
+import { DiscoverComponent } from './component/discover/discover.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SuggestedCreatorComponent } from './component/suggested-creator/suggest
     HomeComponent,
     MessagesComponent,
     SuggestedCreatorComponent,
+    DiscoverComponent,
     
   ],
   imports: [

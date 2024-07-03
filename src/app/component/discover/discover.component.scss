@@ -1,0 +1,194 @@
+.main-discover {
+  &__leftSide {
+    box-shadow: 0px 2px 12px -8px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    padding: 0px;
+    border-radius: 20px;
+    margin-top: 4rem;
+  }
+  &__srch-dicsover {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    .discover {
+      padding-right: 1rem;
+    
+    }
+    .division {
+        color: #9e9e9e;
+
+    }
+    .srch {
+      padding-left: 1rem;
+   
+    }
+  }
+  &__user-profile {
+    background-image: url("/assets/home-icon/islamabad.jpg");
+    min-height: 200px;
+    padding-top: 1rem;
+  }
+  &__user-profile-name {
+    padding-top: 10rem;
+    display: flex;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  &__user-profile-menu {
+    padding-left: 3rem;
+    img {
+      width: 25px;
+      filter: invert(100%) sepia(64%) saturate(0%) hue-rotate(203deg)
+        brightness(112%) contrast(101%);
+      padding-bottom: 0.5rem;
+    }
+  }
+  &__about-user-profile {
+    display: flex;
+    .about {
+      display: flex;
+      align-items: self-end;
+    }
+    img {
+      width: 25px;
+      filter: invert(100%) sepia(64%) saturate(0%) hue-rotate(203deg)
+        brightness(112%) contrast(101%);
+      padding-right: 0.3rem;
+    }
+    span {
+      color: white;
+      padding-right: 0.5rem;
+    }
+  }
+
+  &__user-profileImg {
+   
+    img {
+      width: 70px;
+      border-radius: 60px;
+    }
+  }
+  &__prifle-content {
+    display: flex;
+  }
+  &__userName {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    color: #9e9e9e;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    .user {
+      font-weight: bold;
+      display: flex;
+      padding-bottom: 0.3rem;
+      color: black;
+    }
+  }
+  //right
+
+  &__rightSide {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    padding: 1rem 0rem 0rem 1rem;
+
+  }
+
+  &__suggestCreator {
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 2rem;
+  }
+  &__rightProfile {
+    background-image: url("/assets/home-icon/islamabad.jpg");
+    display: flex;
+    min-height: 100px;
+    padding: 1rem 0rem 1rem 1rem;
+  }
+  &__rightUserDetails {
+    display: flex;
+  }
+  &__rightSideFollow-btn {
+    position: relative;
+  }
+  &__right-follow-btn {
+    display: flex;
+    justify-content: end;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+    button {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      border-radius: 30px;
+      overflow: hidden;
+      border: none;
+      padding: 4% 18%;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
+    }
+  }
+  &__right-btn {
+    position: absolute;
+    right: -30%;
+    top: 0px;
+    button {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      border-radius: 30px;
+      overflow: hidden;
+      border: none;
+      padding: 4% 18%;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
+    }
+  }
+}
+.active {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  font-family: var(--font-poppins);
+  font-size: 15px;
+      font-weight: 500;
+      color: black;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.page-paginate {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+@media screen and (max-width: 768px) {
+  .main-suggested {
+    &__sides {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
