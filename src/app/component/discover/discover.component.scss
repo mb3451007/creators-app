@@ -10,18 +10,17 @@
     display: flex;
     justify-content: center;
     padding-top: 1rem;
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
     .discover {
       padding-right: 1rem;
-    
+      cursor: pointer;
     }
     .division {
-        color: #9e9e9e;
-
+      color: #9e9e9e;
     }
     .srch {
       padding-left: 1rem;
-   
+      cursor: pointer;
     }
   }
   &__user-profile {
@@ -63,7 +62,6 @@
   }
 
   &__user-profileImg {
-   
     img {
       width: 70px;
       border-radius: 60px;
@@ -89,7 +87,13 @@
   &__rightSide {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     padding: 1rem 0rem 0rem 1rem;
+  }
+  &__profileImg{
 
+    img{
+      width: 70px;
+      border-radius: 50px;
+    }
   }
 
   &__suggestCreator {
@@ -153,8 +157,8 @@
   justify-content: center;
   font-family: var(--font-poppins);
   font-size: 15px;
-      font-weight: 500;
-      color: black;
+  font-weight: 500;
+  color: black;
 }
 
 .pagination {
