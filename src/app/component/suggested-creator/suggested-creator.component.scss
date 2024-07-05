@@ -1,7 +1,7 @@
 .main-suggested {
   &__leftSide {
     box-shadow: 0px 2px 12px -8px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     padding: 0px;
     // padding-top: 1rem;
     border-radius: 20px;
@@ -88,7 +88,7 @@
   &__follow-me-title {
     font-size: 12px;
     font-weight: 300;
-    font-family: Roboto;
+    //: Roboto;
     color: black;
     padding-left: 1rem;
   }
@@ -130,7 +130,7 @@
   &__media-player {
     display: flex;
     justify-content: center;
-    font-family: var(--font-poppins);
+    //: var(--font-poppins);
     font-size: 21px;
     font-weight: 500;
     color: #9e9e9e;
@@ -140,7 +140,7 @@
   &__posted {
     display: flex;
     justify-content: center;
-    font-family: var(--font-poppins);
+    //: var(--font-poppins);
     font-size: 21px;
     font-weight: 500;
     color: #9e9e9e;
@@ -152,7 +152,7 @@
     margin-top: 1rem;
     justify-content: flex-start;
     color: #9e9e9e;
-    font-family: var(--font-poppins);
+    //: var(--font-poppins);
     img {
       width: 200px;
       filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg)
@@ -176,7 +176,7 @@
     display: flex;
     justify-content: flex-start;
     color: #9e9e9e;
-    font-family: var(--font-poppins);
+    //: var(--font-poppins);
     img {
       width: 200px;
       filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg)
@@ -196,7 +196,7 @@
     }
   }
   &__userName {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     color: #9e9e9e;
     .user {
       font-weight: bold;
@@ -210,7 +210,7 @@
   //right
 
   &__rightSide {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     padding: 1rem 0rem 0rem 1rem;
   }
 
@@ -237,7 +237,7 @@
     padding-right: 0.5rem;
     padding-top: 1rem;
     button {
-      font-family: Roboto, Helvetica, Arial, sans-serif;
+      //: Roboto, Helvetica, Arial, sans-serif;
       border-radius: 30px;
       overflow: hidden;
       border: none;
@@ -255,7 +255,7 @@
     right: -30%;
     top: 0px;
     button {
-      font-family: Roboto, Helvetica, Arial, sans-serif;
+      //: Roboto, Helvetica, Arial, sans-serif;
       border-radius: 30px;
       overflow: hidden;
       border: none;
@@ -272,7 +272,7 @@
 .active {
   display: flex;
   justify-content: center;
-  font-family: var(--font-poppins);
+  //: var(--font-poppins);
   font-size: 21px;
   font-weight: 500;
   color: rgb(249, 79, 100);

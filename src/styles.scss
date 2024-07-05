@@ -1,7 +1,47 @@
+@import "/src/app/core/common-style.scss";
+
+h1{
+    font-family: $secondary-font;
+}
+h2{
+    font-family: $secondary-font;
+
+}
+h3{
+    font-family: $secondary-font;
+
+}
+h4{
+    font-family: $secondary-font;
+
+}
+p{
+    font-family: $secondary-font;
+
+}
+span{
+    font-family: $secondary-font;
+
+}
+button{
+    font-family: $secondary-font;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    border-color: $border-color;
+
+}
+button:hover {
+    font-family: $secondary-font;
+    
+}
+
 
 /* You can add global styles to this file, and also import other style files */
 div {
     // border: 1px solid red;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: $secondary-font !important }
+

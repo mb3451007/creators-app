@@ -2,6 +2,7 @@
   &__box-container{
     box-shadow: 0px 2px 12px -8px; 
     border-radius: 12px;
+    
   }
   &__fan-title {
     display: flex;
@@ -32,7 +33,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     flex-shrink: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    // //: Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 50%;
@@ -49,12 +50,12 @@
     margin: 0rem 0rem 0rem 0.5rem;
     button {
       margin: 0;
-      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      // //: "Roboto", "Helvetica", "Arial", sans-serif;
       font-weight: 400;
       font-size: 5rem;
       line-height: 1.5;
       letter-spacing: 0.00938em;
-      font-family: var(--font-basier-circle);
+      // //: var(--font-basier-circle);
       //   font-size: 12px;
       font-weight: bold;
       background: linear-gradient(
@@ -78,7 +79,7 @@
       border-radius: 30px;
       padding: 0.5rem 0rem;
       background: white;
-      border-color: rgb(249, 79, 100);
+      border-color: #f94f64;
       color: rgb(249, 79, 100);
     }
     button:hover {
@@ -96,7 +97,7 @@
   &__purchased{
     display: flex;
     justify-content: center;
-    font-family: var(--font-poppins);
+    // //: var(--font-poppins);
     font-size: 21px;
     font-weight: 500;
     color:#9e9e9e;
@@ -107,7 +108,7 @@
   &__liked{
     display: flex;
     justify-content: center;
-    font-family: var(--font-poppins);
+    // //: var(--font-poppins);
     font-size: 21px;
     font-weight: 500;
     color:#9e9e9e;
@@ -120,7 +121,7 @@
     flex-direction: column;
     align-items: center;
     color:#9e9e9e;
-    font-family: var(--font-poppins);
+    // //: var(--font-poppins);
     img{
       width: 200px;
       filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(74%) contrast(85%);
@@ -131,7 +132,7 @@
     flex-direction: column;
     align-items: center;
     color:#9e9e9e;
-    font-family: var(--font-poppins);
+    // //: var(--font-poppins);
     img{
       width: 200px;
       filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(74%) contrast(85%);
@@ -149,7 +150,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     flex-shrink: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    // //: Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 30px;
@@ -175,7 +176,8 @@
 .active{
   display: flex;
   justify-content: center;
-  font-family: var(--font-poppins);
+  // //: var(--font-poppins);
+  
   font-size: 21px;
   font-weight: 500;
   // color:#9e9e9e;

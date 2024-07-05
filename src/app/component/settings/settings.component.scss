@@ -10,7 +10,7 @@
 .main-setting {
   &__message {
     font-size: 24px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding-top: 2rem;
     padding-bottom: 1rem;
@@ -21,7 +21,7 @@
 .accout-active{
     display: flex;
     align-items: baseline;
-    font-family: sans-serif;
+    //: sans-serif;
     cursor: pointer;
     // width: 330px;
     font-size: 14px;
@@ -51,7 +51,7 @@
 .accout-active:hover{
     display: flex;
     align-items: baseline;
-    font-family: sans-serif;
+    //: sans-serif;
     cursor: pointer;
     // width: 330px;
     font-size: 14px;

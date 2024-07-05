@@ -1,7 +1,9 @@
+@import "/src/app/core/common-style.scss";
+
 .main-home{
     &__leftSide{
         box-shadow: 0px 2px 12px -8px;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: $secondary-font;
         padding: 0px;
         padding-top: 1rem;
         border-radius: 20px;
@@ -26,7 +28,7 @@
         }
     }
     &__userName{
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: $secondary-font;
         color:#9e9e9e;
         .user{
             font-weight: bold;
@@ -37,7 +39,7 @@
     &__right{
         display: flex;
         justify-content: end;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: Roboto, Helvetica, Arial, sans-serif;
         color:#9e9e9e;
         img{
             width: 22px;
@@ -46,7 +48,7 @@
         }
     }
     &__subscriber{
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: Roboto, Helvetica, Arial, sans-serif;
         letter-spacing: inherit;
         padding: 1rem 2rem;
     }
@@ -64,7 +66,7 @@
     &__reviewCount{
         display: flex;
         padding: 1rem 2rem 2rem;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: Roboto, Helvetica, Arial, sans-serif;
         color:#9e9e9e;
     }
     &__likes{
@@ -84,7 +86,7 @@
     //right
 
     &__rightSide{
-        font-family: Roboto, Helvetica, Arial, sans-serif;
+        // //: Roboto, Helvetica, Arial, sans-serif;
         padding: 1rem 0rem 0rem 1rem ;
 
         
@@ -117,7 +119,7 @@
         right: -30%;
         top: 0px;
         button{
-           font-family: Roboto, Helvetica, Arial, sans-serif;
+        //    //: $secondary-font;
             border-radius: 30px;
             overflow: hidden;
             // user-select: none;
@@ -148,12 +150,7 @@
     text-decoration: none;
     transition: background-color .3s;
   }
-//   .left{
-//     float: left;
-//   }
-//   .right{
-//     float: right;
-//   }
+
   .page-paginate{
     display: flex;
     justify-content: center;

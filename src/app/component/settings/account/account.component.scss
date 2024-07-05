@@ -9,7 +9,7 @@
 .main-account {
   &__message {
     font-size: 24px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding-top: 2rem;
     padding-bottom: 1rem;
@@ -18,7 +18,7 @@
   &__account-description{
     color:#9e9e9e;
     font-size: 10px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     padding-bottom: 1rem;
     font-weight: 500;
     padding-left: 1.5rem;
@@ -26,7 +26,7 @@
   &__info-btn{
     display: flex;
     font-size: 24px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -71,7 +71,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     flex-shrink: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 30px;
@@ -89,7 +89,7 @@
   }
 }
 &__permenent-dlt{
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    //: Roboto, Helvetica, Arial, sans-serif;
     letter-spacing: inherit;
     margin-bottom: 3rem;
     span{
@@ -139,7 +139,7 @@
 .accout-active{
     display: flex;
     align-items: baseline;
-    font-family: sans-serif;
+    //: sans-serif;
     cursor: pointer;
     // width: 330px;
     font-size: 14px;
@@ -169,7 +169,7 @@
 .accout-active:hover{
     display: flex;
     align-items: baseline;
-    font-family: sans-serif;
+    //: sans-serif;
     cursor: pointer;
     // width: 330px;
     font-size: 14px;
