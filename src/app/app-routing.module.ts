@@ -4,8 +4,10 @@ import { HomeComponent } from './component/home/home.component';
 import { MessagesComponent } from './component/messages/messages.component';
 import { SuggestedCreatorComponent } from './component/suggested-creator/suggested-creator.component';
 import { DiscoverComponent } from './component/discover/discover.component';
+import { FanvueLoginComponent } from './component/fanvue-login/fanvue-login.component';
 
 const routes: Routes = [
+  {path:'',component:FanvueLoginComponent},
   {path:'home',component:HomeComponent},
   {
     path: 'profile',

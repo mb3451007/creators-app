@@ -1,0 +1,82 @@
+@import "/src/app/core/common-style.scss";
+
+.main-login {
+  &__login-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4rem;
+    div {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0rem;
+      padding: 0.5rem 0.5rem;
+      span {
+        border: 1px solid lightgrey;
+        padding: 0.5rem;
+        border-radius: 15px;
+        width: 21rem;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0px 2px 12px -8px;
+        img {
+          width: 20px;
+          float: left;
+          margin-right: 4rem;
+          margin-left: 0.5rem;
+        }
+      }
+      
+      input {
+        width: 21rem;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+        padding: 0.3rem 0.5rem;
+      }
+      input::placeholder {
+        color: $primary-color;
+      }
+      
+      button {
+        width: 21rem;
+        background: $backgroung;
+        border-radius: 15px;
+        padding: 0.4rem;
+        color: white;
+        font-weight: 600;
+      }
+    }
+    .password{
+        position: relative;
+        .eyeimg{
+            position: absolute;
+            right: 5px;
+            padding-top: 6px;
+            width: 20px;
+          }
+    }
+    
+    .forget {
+      color: $secondary-color;
+      font-weight: 600;
+    }
+    .newToFanvue {
+      color: $primary-color;
+      font-weight: 600;
+      p {
+        color: $secondary-color;
+        font-weight: 600;
+      }
+    }
+    .fanvue{
+        font-size: 28px;
+        font-weight: 600;
+        i{
+            margin-top: 1rem;
+            border-radius: 50%;
+            height: 5px;
+            width: 5px;
+            background-color: $secondary-color;
+        }
+      }
+  }
+}
