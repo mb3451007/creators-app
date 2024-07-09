@@ -1,6 +1,6 @@
 @import "/src/app/core/common-style.scss";
-.left-side-users{
-    padding-bottom: 2rem;
+.left-side-users {
+  padding-bottom: 2rem;
 }
 .main-home {
   &__leftSide {
@@ -163,12 +163,16 @@
 
 // image upload apart
 
-.create-post{
+.create-post {
   background-color: #f1f1f1;
   height: 50px;
   border-bottom: 1px solid #dfdede;
   border-radius: 11px 11px 0px 0px;
-    margin-bottom: 12px;
+  color: black;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem;
 }
 .create-post-container {
   // width: 500px;
@@ -197,7 +201,7 @@
 .post-input {
   flex: 1;
   border: none;
-    outline: none;
+  outline: none;
   // border: 1px solid #ddd;
   // border-radius: 20px;
   padding: 10px 15px;
@@ -212,8 +216,8 @@
 }
 
 .action-button {
-  margin-right: .5rem;
-  img{
+  margin-right: 0.5rem;
+  img {
     width: 20px;
   }
   // background: none;
@@ -230,7 +234,6 @@
   // text-decoration: underline;
 }
 
-
 @media screen and (max-width: 768px) {
   .main-home {
     &__sides {
@@ -239,4 +242,3 @@
     }
   }
 }
-

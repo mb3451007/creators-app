@@ -1,5 +1,5 @@
 @import "/src/app/core/common-style.scss";
-.profile-user{
+.profile-user {
   padding-bottom: 1rem;
 }
 .main-discover {
@@ -100,9 +100,8 @@
     //: $secondary-font;
     padding: 1rem 0rem 0rem 1rem;
   }
-  &__profileImg{
-
-    img{
+  &__profileImg {
+    img {
       width: 70px;
       border-radius: 50px;
     }
@@ -121,7 +120,6 @@
     min-height: 100px;
     padding: 2rem 0rem 0.5rem 1rem;
     margin-bottom: 1rem;
-
   }
   &__rightUserDetails {
     display: flex;
@@ -149,7 +147,6 @@
     }
   }
   &__right-btn {
-   
     button {
       position: absolute;
       right: 5%;
@@ -206,12 +203,16 @@
 
 // image upload apart
 
-.create-post{
+.create-post {
   background-color: #f1f1f1;
   height: 50px;
   border-bottom: 1px solid #dfdede;
   border-radius: 11px 11px 0px 0px;
-    margin-bottom: 12px;
+  color: black;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem;
 }
 .create-post-container {
   // width: 500px;
@@ -240,7 +241,7 @@
 .post-input {
   flex: 1;
   border: none;
-    outline: none;
+  outline: none;
   // border: 1px solid #ddd;
   // border-radius: 20px;
   padding: 10px 15px;
@@ -255,8 +256,8 @@
 }
 
 .action-button {
-  margin-right: .5rem;
-  img{
+  margin-right: 0.5rem;
+  img {
     width: 20px;
   }
   // background: none;
@@ -272,7 +273,6 @@
 .action-button:hover {
   // text-decoration: underline;
 }
-
 
 @media screen and (max-width: 768px) {
   .main-discover {
