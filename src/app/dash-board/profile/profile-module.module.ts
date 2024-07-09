@@ -5,7 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
-// import { RouterModule } from '@angular/router';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileComponent } from './profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
