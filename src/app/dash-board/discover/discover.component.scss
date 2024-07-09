@@ -260,19 +260,43 @@
   img {
     width: 20px;
   }
-  // background: none;
-  // border: none;
-  // color: #1877f2;
-  // cursor: pointer;
-  // font-size: 14px;
-  // display: flex;
-  // align-items: center;
-  // text-decoration: none;
+
 }
 
-.action-button:hover {
-  // text-decoration: underline;
+
+// .container {
+//   margin: 20px;
+// }
+
+.selected-files {
+  margin-top: 20px;
+  display: flex;
+  overflow: auto;
+  scrollbar-width: none;
 }
+
+.file-item {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.file-item img,
+.file-item video {
+  max-width: 100px;
+  max-height: 100px;
+  // display: flex;
+}
+
+.file-item button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  img{
+    width: 12px;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .main-discover {

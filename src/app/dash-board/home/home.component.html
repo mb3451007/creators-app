@@ -8,14 +8,26 @@
                     <div class="create-post-header">
                       <img class="profile-pic" src="assets/profilePic.jpeg" alt="Profile Picture">
                       <input class="post-input" type="text" placeholder="What's on your mind ?">
+                      <div class="selected-files">
+                        <div *ngFor="let file of selectedFiles; let i = index" class="file-item">
+                          <img *ngIf="file.type.startsWith('image')" [src]="file.url" alt="Selected Image" />
+                          <!-- <video *ngIf="file.type.startsWith('video')" controls>
+                            <source [src]="file.url" type="{{file.type}}">
+                            Your browser does not support the video tag.
+                          </video> -->
+                          
+                          <button (click)="removeFile(i)"><img src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg" alt=""></button>
+                        </div>
+                      </div>
                     </div>
                     <div class="create-post-actions">
                       <button class="action-button">
-                        <img src="assets/home-icon/video-recorder-svgrepo-com.svg" alt="">
+                        <img src="assets/home-icon/adv-screen-recorder-svgrepo-com.svg" alt="">
                          Create Room</button>
-                      <button class="action-button">
-                        <img src="assets/home-icon/gallery-svgrepo-com.svg" alt="">
+                      <button class="action-button" (click)="fileInput.click()">
+                        <img src="assets/home-icon/gallery-round-svgrepo-com.svg" alt="">
                         Photo/Video</button>
+                        <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" accept="image/*,video/*" />
                       
                       <!-- <button class="action-button">Tag Friends</button>
                       <button class="action-button">...</button> -->
