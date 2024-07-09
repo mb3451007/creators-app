@@ -1,4 +1,7 @@
 @import "/src/app/core/common-style.scss";
+.profile-user{
+  padding-bottom: 1rem;
+}
 .main-discover {
   &__leftSide {
     box-shadow: 0px 2px 12px -8px;
@@ -26,17 +29,25 @@
   }
   &__user-profile {
     background-image: url("/assets/home-icon/islamabad.jpg");
-    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 410px;
+    // min-height: 200px;
     padding-top: 1rem;
+    margin-bottom: 1rem;
   }
   &__user-profile-name {
-    padding-top: 10rem;
+    position: absolute;
+    top: 334px;
+    // padding-top: 10rem;
     display: flex;
     padding-left: 1rem;
     padding-bottom: 0.5rem;
   }
   &__user-profile-menu {
     padding-left: 3rem;
+    padding-top: 11px;
     img {
       width: 25px;
       filter: invert(100%) sepia(64%) saturate(0%) hue-rotate(203deg)
@@ -80,7 +91,7 @@
       font-weight: bold;
       display: flex;
       padding-bottom: 0.3rem;
-      color: black;
+      color: white;
     }
   }
   //right
@@ -104,9 +115,13 @@
   }
   &__rightProfile {
     background-image: url("/assets/home-icon/islamabad.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     min-height: 100px;
-    padding: 1rem 0rem 1rem 1rem;
+    padding: 2rem 0rem 0.5rem 1rem;
+    margin-bottom: 1rem;
+
   }
   &__rightUserDetails {
     display: flex;
@@ -134,10 +149,10 @@
     }
   }
   &__right-btn {
-    position: absolute;
-    right: -30%;
-    top: 0px;
+   
     button {
+      position: absolute;
+      right: 5%;
       //:$secondary-font;
       border-radius: 30px;
       overflow: hidden;
@@ -165,7 +180,7 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  padding-top: 1rem;
 }
 
 .pagination a {
@@ -189,8 +204,78 @@
   background-color: #ddd;
 }
 
+// image upload apart
+
+.create-post{
+  background-color: #f1f1f1;
+  height: 50px;
+  border-bottom: 1px solid #dfdede;
+  border-radius: 11px 11px 0px 0px;
+    margin-bottom: 12px;
+}
+.create-post-container {
+  // width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  // padding: 10px;
+  background-color: #fff;
+}
+
+.create-post-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dfdede;
+  margin-left: 11px;
+  margin-right: 11px;
+  padding: 8px 0px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-input {
+  flex: 1;
+  border: none;
+    outline: none;
+  // border: 1px solid #ddd;
+  // border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  // background-color: #f0f2f5;
+}
+
+.create-post-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 5px;
+}
+
+.action-button {
+  margin-right: .5rem;
+  img{
+    width: 20px;
+  }
+  // background: none;
+  // border: none;
+  // color: #1877f2;
+  // cursor: pointer;
+  // font-size: 14px;
+  // display: flex;
+  // align-items: center;
+  // text-decoration: none;
+}
+
+.action-button:hover {
+  // text-decoration: underline;
+}
+
+
 @media screen and (max-width: 768px) {
-  .main-suggested {
+  .main-discover {
     &__sides {
       display: flex;
       flex-direction: column-reverse;

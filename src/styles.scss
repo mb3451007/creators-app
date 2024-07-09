@@ -29,6 +29,7 @@ button{
     border: none;
     outline: none;
     border-radius: 30px;
+    padding: 3px 10px;
     border-color: $border-color;
 
 }
@@ -36,6 +37,7 @@ button:hover {
     font-family: $secondary-font;
     
 }
+
 
 
 /* You can add global styles to this file, and also import other style files */

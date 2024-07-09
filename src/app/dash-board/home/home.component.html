@@ -1,53 +1,79 @@
 <div class="container">
     <div class="main-home__sides row">
         <!-- <div class="main-home__sides col-12"> -->
-            <div class="main-home__leftSide col-lg-8 col-md-8 col-12">
-                <div class="row">
-                  <div class="main-home__left-profile col-12">
-                      <div class="main-home__leftUserDetails col-6">
-                          <div class="main-home__profileImg">
-                              <img src="assets/home-icon/avatarImg.png" alt="">
-                          </div>
-                          <div class="main-home__userName">
-                                  <div class="user">user 1</div>
-                                  <div>@user_1</div>
-                          </div>
-                      </div>
-                      <div class="main-home__right col-6">
-                          <div>{{timePeriod}}</div>
-                          <div>
-                              <img src="assets/side-bar-icon/more-horizontal-svgrepo-com.svg" alt="">
-                          </div>
-                      </div>
+            <!-- image upload apart -->
+            <div class="col-lg-8 col-md-8 col-12">
+                <div class="create-post-container  col-12">
+                    <div class="create-post col-12"></div>
+                    <div class="create-post-header">
+                      <img class="profile-pic" src="assets/profilePic.jpeg" alt="Profile Picture">
+                      <input class="post-input" type="text" placeholder="What's on your mind ?">
+                    </div>
+                    <div class="create-post-actions">
+                      <button class="action-button">
+                        <img src="assets/home-icon/video-recorder-svgrepo-com.svg" alt="">
+                         Create Room</button>
+                      <button class="action-button">
+                        <img src="assets/home-icon/gallery-svgrepo-com.svg" alt="">
+                        Photo/Video</button>
+                      
+                      <!-- <button class="action-button">Tag Friends</button>
+                      <button class="action-button">...</button> -->
+                    </div>
                   </div>
-      
-                  <div class="main-home__subscriber col-12">
-                      Be my subscriber and come to my wonderful word
-                  </div>
-                  <div class="col-12">
-                      <img src="/assets/home-icon/islamabad.jpg" alt="" style="width: 100%;">
-                  </div>
-                  <div class="main-home__review col-12">
-                      <div>
-                          <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="">
+                  <!-- end -->
+                <div class="main-home__leftSide col-12">
+                    <div class="row">
+                      
+                        <div class="left-side-users col-12" *ngFor="let user of userprofile">
+                            <div class="main-home__left-profile col-12">
+                                <div class="main-home__leftUserDetails col-6">
+                                    <div class="main-home__profileImg">
+                                        <img src="assets/home-icon/avatarImg.png" alt="">
+                                    </div>
+                                    <div class="main-home__userName">
+                                            <div class="user">user 1</div>
+                                            <div>@user_1</div>
+                                    </div>
+                                </div>
+                                <div class="main-home__right col-6">
+                                    <div>{{timePeriod}}</div>
+                                    <div>
+                                        <img src="assets/side-bar-icon/more-horizontal-svgrepo-com.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="main-home__subscriber col-12">
+                                Be my subscriber and come to my wonderful word
+                            </div>
+                            <div class="col-12">
+                                <img src="/assets/home-icon/islamabad.jpg" alt="" style="width: 100%;">
+                            </div>
+                            <div class="main-home__review col-12">
+                                <div>
+                                    <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="">
+                                </div>
+                                <div>
+                                    <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
+                                </div>
+                                <div>
+                                    <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="">
+                                </div>
+                            </div>
+                
+                            <div class="main-home__reviewCount col-12">
+                                <div class="main-home__likes col-6">
+                                    <div class="main-home__like">likes</div>
+                                    <div>comments</div>
+                                </div>
+                                <div class="main-home__showComment col-6">show comment</div>
+                            </div>
+                        
                       </div>
-                      <div>
-                          <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
                       </div>
-                      <div>
-                          <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="">
-                      </div>
-                  </div>
-      
-                  <div class="main-home__reviewCount col-12">
-                      <div class="main-home__likes col-6">
-                          <div class="main-home__like">likes</div>
-                          <div>comments</div>
-                      </div>
-                      <div class="main-home__showComment col-6">show comment</div>
-                  </div>
-              </div>
-                </div>
+                    </div>
+            </div>
       
       
        <div class="main-home__rightSide col-lg-4 col-md-4 col-12"> 
@@ -55,28 +81,30 @@
                   <div class="col-12">
                       
                       <div class="main-home__suggestCreator col-12">Suggested Creator</div>
-                      <div class="main-home__rightProfile col-12">
-                          <div class="col-6">
-      
-                              <div class="main-home__rightUserDetails">
-          
-                                  <div class="main-home__profileImg">
-                                      <img src="assets/home-icon/avatarImg.png" alt="" style="width: 70px;">
-                                  </div>
-                                  <div class="main-home__userName">
-                                          <div class="user">user 1</div>
-                                          <div>@user_1</div>
-                                  </div>
-                              </div>
-                          </div>
-      
-                          <div class="main-home__rightSideFollow-btn col-6">
-      
-                             <div class="main-home__right-btn col-12">
-                                 <button>follow</button>
-                             </div>
-                         </div>
-                          
+                      <div class="col-12">
+                        <div class="main-home__rightProfile col-12" *ngFor="let user of suggestedprofile">
+                            <div class="col-6">
+        
+                                <div class="main-home__rightUserDetails">
+            
+                                    <div class="main-home__profileImg">
+                                        <img src="assets/home-icon/avatarImg.png" alt="" style="width: 70px;">
+                                    </div>
+                                    <div class="main-home__userName">
+                                            <div class="user">user 1</div>
+                                            <div>@user_1</div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="main-home__rightSideFollow-btn col-6">
+        
+                               <div class="main-home__right-btn col-12">
+                                   <button>follow</button>
+                               </div>
+                           </div>
+                            
+                        </div>
                       </div>
                       <!-- <div class="col-12"> -->
                         <div class="pagination col-12">

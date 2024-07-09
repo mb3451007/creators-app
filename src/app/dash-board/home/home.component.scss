@@ -1,177 +1,242 @@
 @import "/src/app/core/common-style.scss";
+.left-side-users{
+    padding-bottom: 2rem;
+}
+.main-home {
+  &__leftSide {
+    box-shadow: 0px 2px 12px -8px;
+    // //: $secondary-font;
+    padding: 0px;
+    padding-top: 1rem;
+    border-radius: 20px;
+    margin-top: 4rem;
+  }
+  &__left-profile {
+    display: flex;
+    padding-bottom: 2rem;
+    padding: 0rem 2rem 1rem;
+  }
+  &__leftUserDetails {
+    display: flex;
+  }
+  &__profileImg {
+    display: flex;
+    padding-right: 0.5rem;
+    img {
+      width: 50px;
+      border-radius: 42px;
+    }
+  }
+  &__userName {
+    // //: $secondary-font;
+    color: #9e9e9e;
+    .user {
+      font-weight: bold;
+      padding-bottom: 0.3rem;
+      color: black;
+    }
+  }
+  &__right {
+    display: flex;
+    justify-content: end;
+    // //: Roboto, Helvetica, Arial, sans-serif;
+    color: #9e9e9e;
+    img {
+      width: 22px;
+      // filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(74%) contrast(85%);
+    }
+  }
+  &__subscriber {
+    // //: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: inherit;
+    padding: 1rem 2rem;
+  }
+  &__review {
+    display: flex;
+    justify-content: flex-start;
+    // padding-top: 1rem;
+    padding: 1rem 2rem;
+    img {
+      width: 40px;
 
-.main-home{
-    &__leftSide{
-        box-shadow: 0px 2px 12px -8px;
-        // //: $secondary-font;
-        padding: 0px;
-        padding-top: 1rem;
-        border-radius: 20px;
-        margin-top: 4rem;
+      padding-right: 0.5rem;
     }
-    &__left-profile{
-        display: flex;
-        padding-bottom: 2rem;
-        padding: 0rem 2rem 1rem;
+  }
+  &__reviewCount {
+    display: flex;
+    padding: 1rem 2rem 2rem;
+    // //: Roboto, Helvetica, Arial, sans-serif;
+    color: #9e9e9e;
+  }
+  &__likes {
+    display: flex;
+  }
+  &__like {
+    padding-right: 1rem;
+  }
+  &__showComment {
+    display: flex;
+    justify-content: end;
+  }
 
-    }
-    &__leftUserDetails{
-        display: flex;
-    }
-    &__profileImg{
-        display: flex;
-        padding-right: .5rem;
-        img{
-            width: 50px;
-            border-radius: 42px;
+  //right
 
-        }
-    }
-    &__userName{
-        // //: $secondary-font;
-        color:#9e9e9e;
-        .user{
-            font-weight: bold;
-            padding-bottom: .3rem;
-            color: black;
-        }
-    }
-    &__right{
-        display: flex;
-        justify-content: end;
-        // //: Roboto, Helvetica, Arial, sans-serif;
-        color:#9e9e9e;
-        img{
-            width: 22px;
-            // filter: invert(86%) sepia(1%) saturate(0%) hue-rotate(160deg) brightness(74%) contrast(85%);
-            
-        }
-    }
-    &__subscriber{
-        // //: Roboto, Helvetica, Arial, sans-serif;
-        letter-spacing: inherit;
-        padding: 1rem 2rem;
-    }
-    &__review{
-        display: flex;
-        justify-content: flex-start;
-        // padding-top: 1rem;
-        padding: 1rem 2rem;
-        img{
-            width: 40px;
+  &__rightSide {
+    // //: Roboto, Helvetica, Arial, sans-serif;
+    padding: 1rem 0rem 0rem 1rem;
 
-            padding-right: .5rem;
-        }
-    }
-    &__reviewCount{
-        display: flex;
-        padding: 1rem 2rem 2rem;
-        // //: Roboto, Helvetica, Arial, sans-serif;
-        color:#9e9e9e;
-    }
-    &__likes{
-        display: flex;
-    }
-    &__like{
-        padding-right: 1rem;
-    }
-    &__showComment{
-        display: flex;
-        justify-content: end;
-    }
+    // padding-top: 1rem;
+  }
 
-
-
-
-    //right
-
-    &__rightSide{
-        // //: Roboto, Helvetica, Arial, sans-serif;
-        padding: 1rem 0rem 0rem 1rem ;
-
-        
-        // padding-top: 1rem;
+  &__suggestCreator {
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 2rem;
+  }
+  &__rightProfile {
+    background-image: url("/assets/home-icon/islamabad.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    min-height: 100px;
+    padding: 2rem 0rem 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  &__rightUserDetails {
+    display: flex;
+  }
+  &__rightSideFollow-btn {
+    position: relative;
+  }
+  &__right-btn {
+    // position: absolute;
+    // right: -30%;
+    // top: 0px;
+    button {
+      position: absolute;
+      right: 5%;
+      //    //: $secondary-font;
+      border-radius: 30px;
+      overflow: hidden;
+      // user-select: none;
+      border: none;
+      padding: 4% 18%;
+      // margin-top: 1.3rem;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
     }
-  
-    &__suggestCreator{
-        font-size: 24px;
-        font-weight: 600;
-        padding-bottom: 2rem;
-    }
-    &__rightProfile{
-        
-
-        background-image: url('/assets/home-icon/islamabad.jpg');
-        display: flex;
-        min-height: 100px;
-    padding: 1rem 0rem 1rem 1rem;
-
-    }
-    &__rightUserDetails{
-        display: flex;
-
-    }
-    &__rightSideFollow-btn{
-        position: relative;
-    }
-    &__right-btn{
-        position: absolute;
-        right: -30%;
-        top: 0px;
-        button{
-        //    //: $secondary-font;
-            border-radius: 30px;
-            overflow: hidden;
-            // user-select: none;
-            border: none;
-            padding: 4% 18%;
-            // margin-top: 1.3rem;
-            color: rgb(255, 255, 255);
-            background: linear-gradient(
-              95.92deg,
-              rgb(244, 138, 108) 0%,
-              rgb(253, 29, 93) 100%
-            );
-          }
-    }
-    
+  }
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 10rem;
-  }
-  
-  .pagination a {
-    color: black;
-    // float: left;
-    padding: 8px 6px;
-    text-decoration: none;
-    transition: background-color .3s;
-  }
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  margin-bottom: 3rem;
+}
 
-  .page-paginate{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .pagination a:hover:not(.active) {background-color: #ddd;}
-  
+.pagination a {
+  color: black;
+  // float: left;
+  padding: 8px 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
 
-@media screen and (max-width: 768px) {
-    .main-home{
-        &__sides{
-            display: flex;
-            flex-direction: column-reverse;
-        }
-    }
+.page-paginate {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+// image upload apart
+
+.create-post{
+  background-color: #f1f1f1;
+  height: 50px;
+  border-bottom: 1px solid #dfdede;
+  border-radius: 11px 11px 0px 0px;
+    margin-bottom: 12px;
+}
+.create-post-container {
+  // width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  // padding: 10px;
+  background-color: #fff;
+}
+
+.create-post-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dfdede;
+  margin-left: 11px;
+  margin-right: 11px;
+  padding: 8px 0px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-input {
+  flex: 1;
+  border: none;
+    outline: none;
+  // border: 1px solid #ddd;
+  // border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  // background-color: #f0f2f5;
+}
+
+.create-post-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 5px;
+}
+
+.action-button {
+  margin-right: .5rem;
+  img{
+    width: 20px;
+  }
+  // background: none;
+  // border: none;
+  // color: #1877f2;
+  // cursor: pointer;
+  // font-size: 14px;
+  // display: flex;
+  // align-items: center;
+  // text-decoration: none;
+}
+
+.action-button:hover {
+  // text-decoration: underline;
 }
 
 
+@media screen and (max-width: 768px) {
+  .main-home {
+    &__sides {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
 

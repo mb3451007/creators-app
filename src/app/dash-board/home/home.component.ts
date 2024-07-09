@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   timePeriod :string= '1 month ago';
+  userprofile:any[]=Array(6);
+  suggestedprofile:any[]=Array(3);
 }

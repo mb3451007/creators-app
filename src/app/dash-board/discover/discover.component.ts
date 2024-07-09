@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./discover.component.scss']
 })
 export class DiscoverComponent {
+  userprofile:any[]=Array(6);
+  suggestedprofile:any[]=Array(3);
+
   showHide: boolean = true;
 
   activeDiv: number = 1; // By default, the first div is active
