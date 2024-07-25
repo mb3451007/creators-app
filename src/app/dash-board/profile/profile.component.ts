@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { projecTitle } from 'src/app/constants';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
   showHide: boolean = true;
+  titleName = projecTitle;
 
   activeDiv: number = 1; // By default, the first div is active
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { projecTitle } from 'src/app/constants';
 
 @Component({
   selector: 'app-profile-info',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-info.component.scss']
 })
 export class ProfileInfoComponent {
-
+  titleName = projecTitle;
 }

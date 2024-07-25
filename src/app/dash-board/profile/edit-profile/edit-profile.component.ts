@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { projecTitle } from 'src/app/constants';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent {
-  
+  titleName = projecTitle;
   profileForm: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
   bannerUrl: string | ArrayBuffer | null = null;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { projecTitle } from 'src/app/constants';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   selectedFiles: any[] = [];
-
+  titleName = projecTitle;
   timePeriod :string= '1 month ago';
   userprofile:any[]=Array(6);
   suggestedprofile:any[]=Array(3);

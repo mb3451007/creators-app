@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { projecTitle } from 'src/app/constants';
+
+
 
 @Component({
   selector: 'app-discover',
@@ -10,7 +13,7 @@ export class DiscoverComponent {
   userprofile:any[]=Array(6);
   suggestedprofile:any[]=Array(3);
   showHide: boolean = true;
-
+  titleName = projecTitle;
   activeDiv: number = 1; // By default, the first div is active
 
   setActiveDiv(divNumber: number) {

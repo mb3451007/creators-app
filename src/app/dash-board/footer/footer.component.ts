@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { projecTitle } from 'src/app/constants';
 
 @Component({
   selector: 'app-footer',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   isSidebarOpen = false;
+  titleName = projecTitle;
   
   // items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
