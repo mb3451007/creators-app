@@ -1,0 +1,16 @@
+.custom-alert {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  width: 21rem;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-alert {
+    position: absolute;
+    bottom: 0px;
+    left: 20%;
+    width: 60%;
+    height: 10%;
+  }
+}

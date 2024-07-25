@@ -1,49 +1,78 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="main-profile-info__container-main-info col-md-10 col-sm-12 col-lg-10">
-            <div class="main-profile-info__back-to-edit col-6">
-                <div class="col-2" [routerLink]="['/dashboard/profile/edit']">
-                    <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 20px;">
-                </div>
-                <div class="col-10" [routerLink]="['/dashboard/profile/edit']">Profile Info</div>
-            </div>
-            <div class="main-profile-info__save-info-btn col-6">
-                <button type="submit">Save</button>
-            </div>
+  <div class="row">
+    <div
+      class="main-profile-info__container-main-info col-md-10 col-sm-12 col-lg-10"
+    >
+      <div class="main-profile-info__back-to-edit col-6">
+        <div class="col-2" [routerLink]="['/dashboard/profile/edit']">
+          <img
+            src="assets/profile-icon/left-arrow-next-svgrepo-com.svg"
+            alt=""
+            style="width: 20px"
+          />
         </div>
+        <div class="col-10" [routerLink]="['/dashboard/profile/edit']">
+          Profile Info
+        </div>
+      </div>
+      <div class="main-profile-info__save-info-btn col-6">
+        <button type="submit">Save</button>
+      </div>
     </div>
-    <div class="row">
-        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
-            <mat-form-field class="main-profile-info__form-field" appearance="outline">
-                <mat-label class="main-profile-info__form-label">Name</mat-label>
-                <input matInput placeholder="Normal Clam" class="main-profile-info__form-input">
-            </mat-form-field>
-        </div>
-        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
-            <mat-form-field class="main-profile-info__form-field" appearance="outline">
-                <mat-label class="main-profile-info__form-label">Handle</mat-label>
-                <input matInput placeholder="Normal-Clam-88" class="main-profile-info__form-input">
-                <mat-hint class="main-profile-info__form-label">
-                    you can use letters, numbers, dashes, dots, and underscores. It should start with a letter.
-                </mat-hint>
-            </mat-form-field>
-        </div>
+  </div>
+  <div class="row">
+    <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+      <mat-form-field
+        class="main-profile-info__form-field"
+        appearance="outline"
+      >
+        <mat-label class="main-profile-info__form-label">Name</mat-label>
+        <input
+          matInput
+          placeholder="Normal Clam"
+          class="main-profile-info__form-input"
+        />
+      </mat-form-field>
+    </div>
+    <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+      <mat-form-field
+        class="main-profile-info__form-field"
+        appearance="outline"
+      >
+        <mat-label class="main-profile-info__form-label">Handle</mat-label>
+        <input
+          matInput
+          placeholder="Normal-Clam-88"
+          class="main-profile-info__form-input"
+        />
+        <mat-hint class="main-profile-info__form-label">
+          you can use letters, numbers, dashes, dots, and underscores. It should
+          start with a letter.
+        </mat-hint>
+      </mat-form-field>
+    </div>
 
-        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
-            <div class="textarea-field">
-                <mat-form-field class="main-profile-info__form-field" appearance="outline">
-                    <textarea matInput placeholder="Bio"></textarea>
-               </mat-form-field>
-            </div>
-        </div>
-        <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
-            <mat-form-field class="main-profile-info__form-field" appearance="outline">
-                <mat-label class="main-profile-info__form-label">Location</mat-label>
-                <input matInput class="main-profile-info__form-input">
-                <mat-hint class="main-profile-info__form-label">
-                    Enter your current location, this will be shown on your profile
-                </mat-hint>
-            </mat-form-field>
-        </div>
+    <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+      <div class="textarea-field">
+        <mat-form-field
+          class="main-profile-info__form-field"
+          appearance="outline"
+        >
+          <textarea matInput placeholder="Bio"></textarea>
+        </mat-form-field>
+      </div>
     </div>
+    <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
+      <mat-form-field
+        class="main-profile-info__form-field"
+        appearance="outline"
+      >
+        <mat-label class="main-profile-info__form-label">Location</mat-label>
+        <input matInput class="main-profile-info__form-input" />
+        <mat-hint class="main-profile-info__form-label">
+          Enter your current location, this will be shown on your profile
+        </mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
 </div>

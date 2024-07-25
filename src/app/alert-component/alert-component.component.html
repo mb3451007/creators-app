@@ -1,0 +1,15 @@
+<div
+  *ngIf="showAlert"
+  class="custom-alert alert alert-{{ alertType }} alert-dismissible fade show"
+  role="alert"
+>
+  <div *ngIf="alertType === 'success'; else elseBlock">{{ alertType }}</div>
+  <ng-template #elseBlock><strong>Error</strong><br /></ng-template>
+  {{ alertMessage }}
+  <button
+    type="button"
+    class="btn-close"
+    (click)="closeAlert()"
+    aria-label="Close"
+  ></button>
+</div>

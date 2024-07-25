@@ -18,11 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-
+import { TimeAgoPipe } from '../pipes/timeago.pipe';
 
 @NgModule({
   declarations: [
-    
     SideBarComponent,
     HeaderComponent,
     FooterComponent,
@@ -30,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     MessagesComponent,
     SuggestedCreatorComponent,
     DiscoverComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    TimeAgoPipe,
   ],
   imports: [
     CommonModule,
@@ -40,11 +40,11 @@ import { MatIconModule } from '@angular/material/icon';
     SettingModuleModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule, 
-    MatInputModule, 
+    MatFormFieldModule,
+    MatInputModule,
     MatIconModule,
     FormsModule,
   ],
-  bootstrap: [DashBoardComponent]
+  bootstrap: [DashBoardComponent],
 })
-export class DashBoardModule { }
+export class DashBoardModule {}

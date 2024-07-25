@@ -1,151 +1,269 @@
 <div class="container">
-    <div class="main-home__sides row">
-        <!-- <div class="main-home__sides col-12"> -->
-            <!-- image upload apart -->
-            <div class="col-lg-8 col-md-8 col-12">
-                <div class="create-post-container  col-12">
-                    <div class="create-post col-12">Create Post</div>
-                    <div class="create-post-header">
-                      <img class="profile-pic" src="assets/profilePic.jpeg" alt="Profile Picture">
-                      <input class="post-input" type="text" placeholder="What's on your mind ?">
-                      <div class="selected-files">
-                        <div *ngFor="let file of selectedFiles; let i = index" class="file-item">
-                          <img *ngIf="file.type.startsWith('image')" [src]="file.url" alt="Selected Image" />
-                          <!-- <video *ngIf="file.type.startsWith('video')" controls>
-                            <source [src]="file.url" type="{{file.type}}">
-                            Your browser does not support the video tag.
-                          </video> -->
-                          
-                          <button (click)="removeFile(i)"><img src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg" alt=""></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="create-post-actions">
-                      <button class="action-button">
-                        <img src="assets/home-icon/videocamera-record-svgrepo-com.svg" alt="">
-                         Create Room</button>
-                      <button class="action-button" (click)="fileInput.click()">
-                        <img src="assets/home-icon/gallery-round-svgrepo-com.svg" alt="">
-                        Photo/Video</button>
-                        <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" accept="image/*,video/*" />
-                      
-                      <!-- <button class="action-button">Tag Friends</button>
-                      <button class="action-button">...</button> -->
-                    </div>
-                  </div>
-                  <!-- end -->
-                <div class="main-home__leftSide col-12">
-                    <div class="row">
-                      
-                        <div class="left-side-users col-12" *ngFor="let user of userprofile">
-                            <div class="main-home__left-profile col-12">
-                                <div class="main-home__leftUserDetails col-6">
-                                    <div class="main-home__profileImg">
-                                        <img src="assets/home-icon/avatarImg.png" alt="">
-                                    </div>
-                                    <div class="main-home__userName">
-                                            <div class="user">user 1</div>
-                                            <div>@user_1</div>
-                                    </div>
-                                </div>
-                                <div class="main-home__right col-6">
-                                    <div>{{timePeriod}}</div>
-                                    <div>
-                                        <img src="assets/side-bar-icon/more-horizontal-svgrepo-com.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="main-home__subscriber col-12">
-                                Be my subscriber and come to my wonderful word
-                            </div>
-                            <div class="col-12">
-                                <img src="/assets/home-icon/islamabad.jpg" alt="" style="width: 100%;">
-                            </div>
-                            <div class="main-home__review col-12">
-                                <div>
-                                    <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="">
-                                </div>
-                                <div>
-                                    <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
-                                </div>
-                                <div>
-                                    <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="">
-                                </div>
-                            </div>
-                
-                            <div class="main-home__reviewCount col-12">
-                                <div class="main-home__likes col-6">
-                                    <div class="main-home__like">likes</div>
-                                    <div>comments</div>
-                                </div>
-                                <div class="main-home__showComment col-6">show comment</div>
-                            </div>
-                        
-                      </div>
-                      </div>
-                    </div>
+  <div class="main-home__sides row">
+    <!-- <div class="main-home__sides col-12"> -->
+    <!-- image upload apart -->
+    <div class="col-lg-8 col-md-8 col-12">
+      <div class="create-post-container col-12">
+        <div class="create-post col-12">Create Post</div>
+        <form #postForm="ngForm">
+          <div class="create-post-header">
+            <img
+              class="profile-pic"
+              src="assets/profilePic.jpeg"
+              alt="Profile Picture"
+            />
+            <input
+              class="post-input"
+              type="text"
+              placeholder="What's on your mind ?"
+              [(ngModel)]="postDescription"
+              name="description"
+              required
+            />
+            <div class="selected-files">
+              <div
+                *ngFor="let file of selectedFiles; let i = index"
+                class="file-item"
+              >
+                <img
+                  *ngIf="file.type.startsWith('image')"
+                  [src]="file.url"
+                  alt="Selected Image"
+                />
+                <button (click)="removeFile(i)">
+                  <img
+                    src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
+                    alt=""
+                  />
+                </button>
+              </div>
             </div>
-      
-      
-       <div class="main-home__rightSide col-lg-4 col-md-4 col-12"> 
-                  <div class="row">
-                  <div class="col-12">
-                      
-                      <div class="main-home__suggestCreator col-12">Suggested Creator</div>
-                      <div class="col-12">
-                        <div class="main-home__rightProfile col-12" *ngFor="let user of suggestedprofile">
-                            <div class="col-6">
-        
-                                <div class="main-home__rightUserDetails">
-            
-                                    <div class="main-home__profileImg">
-                                        <img src="assets/home-icon/avatarImg.png" alt="" style="width: 70px;">
-                                    </div>
-                                    <div class="main-home__userName">
-                                            <div class="user">user 1</div>
-                                            <div>@user_1</div>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <div class="main-home__rightSideFollow-btn col-6">
-        
-                               <div class="main-home__right-btn col-12">
-                                   <button>follow</button>
-                               </div>
-                           </div>
-                            
-                        </div>
-                      </div>
-                      <!-- <div class="col-12"> -->
-                        <div class="pagination col-12">
-                            <div class="left col-1">
-                                <img src="assets/profile-icon/left-arrow-next-svgrepo-com.svg" alt="" style="width: 10px;">
-                                <!-- <a id="" href="#">&laquo;</a> -->
-                            </div>
-                        
-                              <div class="page-paginate col-10">
-                                <a href="#">.</a>
-                                <a href="#" class="active">.</a>
-                                <a href="#">.</a>
-                                <a href="#">.</a>
-                                <a href="#">.</a>
-                                <a href="#">.</a>
-                              </div>
-                            <div class="right col-1">
-                                <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt=""  style="width: 19px;"> 
-                                
-                                <!-- style="width: 10px;" -->
-                            <!-- <a id="" href="#">&raquo;</a> -->
-                            </div>
-                          </div>
-                      <!-- </div> -->
+          </div>
+          <div class="create-post-actions">
+            <button class="action-button">
+              <img
+                src="assets/home-icon/videocamera-record-svgrepo-com.svg"
+                alt=""
+              />
+              Create Room
+            </button>
+            <button class="action-button" (click)="fileInput.click()">
+              <img
+                src="assets/home-icon/gallery-round-svgrepo-com.svg"
+                alt=""
+              />
+              Photo/Video
+            </button>
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              multiple
+              style="display: none"
+              accept="image/*,video/*"
+            />
+            <button
+              class="btn-secondary"
+              (click)="onSubmit()"
+              type="submit"
+              [disabled]="!postForm.valid"
+            >
+              Post
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- end -->
+      <div class="main-home__leftSide col-12">
+        <div class="row">
+          <div
+            class="left-side-users col-12"
+            *ngFor="let post of posts; let i = index"
+          >
+            <div class="main-home__left-profile col-12">
+              <div class="main-home__leftUserDetails col-6">
+                <div class="main-home__profileImg">
+                  <img src="assets/home-icon/avatarImg.png" alt="" />
+                </div>
+                <div class="main-home__userName">
+                  <div class="user">{{ post.user.name }}</div>
+                  <div>{{ post.user.username }}</div>
+                </div>
+              </div>
+              <div class="main-home__right col-6">
+                <div>{{ post.createdAt | TimeAgo }}</div>
+                <div>
+                  <img
+                    src="assets/side-bar-icon/more-horizontal-svgrepo-com.svg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="main-home__subscriber col-12">
+              {{ post.description }}
+            </div>
+            <div class="col-12" *ngFor="let media of post.media">
+              <img
+                [src]="getMediaUrl(media)"
+                alt="Post media"
+                style="width: 100%"
+              />
+            </div>
+            <div class="main-home__review col-12">
+              <div
+                *ngIf="!post.hasLiked"
+                class="cursor-pointer"
+                (click)="addLike(post._id)"
+              >
+                <img src="assets/profile-icon/heart-svgrepo-com.svg" alt="" />
+              </div>
+              <div
+                *ngIf="post.hasLiked"
+                class="cursor-pointer"
+                (click)="deleteLike(post._id)"
+              >
+                <img
+                  src="assets/profile-icon/red-heart-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+
+              <div>
+                <img
+                  src="assets/side-bar-icon/messages-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="" />
+              </div>
+            </div>
+
+            <div class="main-home__reviewCount col-12">
+              <div class="main-home__likes col-6">
+                <p class="text-info fw-bold me-1 fs-5">{{ post.totalLikes }}</p>
+                <div class="main-home__like">likes</div>
+
+                <div>comments</div>
+              </div>
+
+              <div
+                class="main-home__showComment col-6"
+                (click)="getPostComments(post._id)"
+              >
+                show comment
+              </div>
+            </div>
+            <div
+              *ngIf="commentsMap[post._id]"
+              class="d-flex flex-column align-items-center justify-content-center"
+            >
+              <ul class="list-unstyled">
+                <li *ngFor="let comment of commentsMap[post._id]">
+                  <div
+                    class="w-100 d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <p class="m-0">{{ comment.comment }}</p>
+                    <img
+                      (click)="deleteComment(comment._id, post._id)"
+                      width="20px"
+                      src="/assets/profile-icon/delete-svgrepo-com.svg"
+                    />
                   </div>
-              </div>
-              </div>
-        <!-- </div> -->
+                </li>
+              </ul>
+            </div>
+
+            <form
+              (ngSubmit)="postComment(post._id)"
+              [formGroup]="commentForm"
+              class="d-flex flex-row align-items-center justify-content-center"
+            >
+              <input
+                class="w-75 px-2 rounded"
+                type="text"
+                formControlName="comment"
+              />
+              <a (click)="postComment(post._id)"
+                ><img
+                  class="cursor-pointer"
+                  width="35px"
+                  src="/assets/profile-icon/send-alt-1-svgrepo-com.svg"
+              /></a>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="main-home__rightSide col-lg-4 col-md-4 col-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="main-home__suggestCreator col-12">Suggested Creator</div>
+          <div class="col-12">
+            <div
+              class="main-home__rightProfile col-12"
+              *ngFor="let user of suggestedprofile"
+            >
+              <div class="col-6">
+                <div class="main-home__rightUserDetails">
+                  <div class="main-home__profileImg">
+                    <img
+                      src="assets/home-icon/avatarImg.png"
+                      alt=""
+                      style="width: 70px"
+                    />
+                  </div>
+                  <div class="main-home__userName">
+                    <div class="user">user 1</div>
+                    <div>@user_1</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="main-home__rightSideFollow-btn col-6">
+                <div class="main-home__right-btn col-12">
+                  <button>follow</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-12"> -->
+          <div class="pagination col-12">
+            <div class="left col-1">
+              <img
+                src="assets/profile-icon/left-arrow-next-svgrepo-com.svg"
+                alt=""
+                style="width: 10px"
+              />
+              <!-- <a id="" href="#">&laquo;</a> -->
+            </div>
+
+            <div class="page-paginate col-10">
+              <a href="#">.</a>
+              <a href="#" class="active">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a>
+            </div>
+            <div class="right col-1">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+                style="width: 19px"
+              />
+
+              <!-- style="width: 10px;" -->
+              <!-- <a id="" href="#">&raquo;</a> -->
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
 </div>
-
-

@@ -1,38 +1,92 @@
-<div class="container">
-    <div class="row">
-        <div class="main-login__login-container col-12">
-            <div class="fanvue">fanvue <i></i></div>
-            <div class="main-login__login-google">
-                <span>
-                    <img src="assets/login-icon/google-color-svgrepo-com.svg" alt=""> 
-                    Continue with Google
-                </span>
-            </div>
-            <div class="main-login__login-facebook">
-                <span>
-                    <img src="assets/login-icon/facebook-svgrepo-com.svg" alt="">
-                    Continue with Facebook
-                </span>
-            </div>
-            <div class="main-login__login-X">
-                <span>
-                    <img src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg" alt="">
-                    Continue with X
-                </span>
-            </div>
-            <div><input type="email" placeholder="Email *" required></div>
-            <div >
-                
-                   <label class="password">
-                    <input type="password" name="" id="" placeholder="Password *" required>
-                    <img class="eyeimg" src="assets/login-icon/eye-close-solid-svgrepo-com.svg" alt="">
-                   </label>
-            </div>
-            <div><button [routerLink]="['/dashboard']">Sign In</button></div>
-            <div class="forget">
-                Forget password?
-            </div>
-            <div class="newToFanvue">New to fanvue? <p>Sign-in</p></div>
+<div class="container position-relative">
+  <div class="row">
+    <div class="main-login__login-container col-12">
+      <div class="fanvue">fanvue <i></i></div>
+      <div
+        class="main-login__login-google cursor-pointer"
+        (click)="loginWithGoogle()"
+      >
+        <span>
+          <img src="assets/login-icon/google-color-svgrepo-com.svg" alt="" />
+          Continue with Google
+        </span>
+      </div>
+      <div
+        class="main-login__login-facebook cursor-pointer"
+        (click)="loginWithFacebook()"
+      >
+        <span>
+          <img src="assets/login-icon/facebook-svgrepo-com.svg" alt="" />
+          Continue with Facebook
+        </span>
+      </div>
+      <!-- <div class="main-login__login-X">
+        <span>
+          <img
+            src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
+            alt=""
+          />
+          Continue with X
+        </span>
+      </div> -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="m-0">
+          <input
+            type="email"
+            placeholder="Email *"
+            required
+            formControlName="email"
+          />
         </div>
+        <div class="p-0 m-0" *ngIf="loginForm.get('email')?.touched">
+          <app-form-validation
+            [control]="email"
+            fieldName="Email"
+          ></app-form-validation>
+        </div>
+
+        <div class="m-0">
+          <label class="password">
+            <input
+              type="{{ passwordVisibility }}"
+              name=""
+              id=""
+              placeholder="Password *"
+              required
+              formControlName="password"
+            />
+            <img
+              (click)="togglePasswordVisibility()"
+              class="eyeimg cursor-pointer"
+              src="assets/login-icon/eye-close-solid-svgrepo-com.svg"
+              alt=""
+            />
+          </label>
+        </div>
+        <div class="p-0 m-0" *ngIf="loginForm.get('password')?.touched">
+          <app-form-validation
+            [control]="password"
+            fieldName="Password"
+          ></app-form-validation>
+        </div>
+        <div><button>Sign In</button></div>
+        <div>
+          <a class="text-decoration-none forget" routerLink="/forget"
+            >Forget password?</a
+          >
+        </div>
+        <div class="newToFanvue">
+          New to fanvue?
+          <a class="text-decoration-none text-danger" routerLink="/signup"
+            >Sign-up</a
+          >
+        </div>
+      </form>
     </div>
+  </div>
 </div>
+<app-alert-component
+  [alertMessage]="alertMessage"
+  [alertType]="alertType"
+  [showAlert]="showAlert"
+></app-alert-component>

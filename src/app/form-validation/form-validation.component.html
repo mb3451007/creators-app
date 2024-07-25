@@ -1,0 +1,23 @@
+<div
+  class="m-0 p-0"
+  *ngIf="control.invalid && (control.dirty || control.touched)"
+>
+  <small class="text-danger" *ngIf="control.errors?.['required']"
+    >{{ fieldName }} is required</small
+  >
+  <small class="text-danger" *ngIf="control.errors?.['email']"
+    >Email is not valid</small
+  >
+  <small class="text-danger" *ngIf="control.errors?.['passwordMismatch']"
+    >Password donot match <br />
+  </small>
+  <small class="text-danger" *ngIf="control.errors?.['passwordMinLength']"
+    >Password should be atleast 8 characters long</small
+  >
+  <small class="text-danger" *ngIf=" control.errors?.['min']"
+    >Age must be at least {{ min }}
+  </small>
+  <small class="text-danger" *ngIf=" control.errors?.['max']"
+    >Age must be at most {{ max }}
+  </small>
+</div>

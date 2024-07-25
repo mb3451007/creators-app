@@ -1,0 +1,168 @@
+<div class="container position-relative">
+  <div class="row">
+    <div class="main-login__login-container m-0 p-0 col-12">
+      <div class="fanvue">fanvue <i></i></div>
+      <div class="main-login__login-google">
+        <span>
+          <img src="assets/login-icon/google-color-svgrepo-com.svg" alt="" />
+          Continue with Google
+        </span>
+      </div>
+      <div
+        class="main-login__login-facebook cursor-pointer"
+        (click)="loginWithFacebook()"
+      >
+        <span>
+          <img src="assets/login-icon/facebook-svgrepo-com.svg" alt="" />
+          Continue with Facebook
+        </span>
+      </div>
+      <!-- <div class="main-login__login-X">
+        <span>
+          <img
+            src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
+            alt=""
+          />
+          Continue with X
+        </span>
+      </div> -->
+      <form [formGroup]="signUpForm" (ngSubmit)="signUpNow()">
+        <div>
+          <input
+            type="email"
+            placeholder="Email *"
+            required
+            formControlName="email"
+          />
+        </div>
+        <div class="p-0 m-0" *ngIf="signUpForm.get('email')?.touched">
+          <app-form-validation
+            [control]="email"
+            fieldName="Email"
+          ></app-form-validation>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Username *"
+            required
+            formControlName="username"
+          />
+        </div>
+        <div class="p-0 m-0" *ngIf="signUpForm.get('username')?.touched">
+          <app-form-validation
+            [control]="username"
+            fieldName="Username"
+          ></app-form-validation>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Name *"
+            required
+            formControlName="name"
+          />
+        </div>
+        <div class="p-0 m-0" *ngIf="signUpForm.get('name')?.touched">
+          <app-form-validation
+            [control]="name"
+            fieldName="Name"
+          ></app-form-validation>
+        </div>
+
+        <div>
+          <input
+            type="number"
+            placeholder="Age *"
+            required
+            formControlName="age"
+          />
+        </div>
+        <div class="p-0 m-0" *ngIf="signUpForm.get('age')?.touched">
+          <app-form-validation
+            [control]="age"
+            fieldName="Age"
+            [min]="18"
+            [max]="90"
+          ></app-form-validation>
+        </div>
+
+        <div>
+          <label class="password">
+            <input
+              type="{{ passwordVisibility }}"
+              name=""
+              id="password"
+              placeholder="Password *"
+              required
+              formControlName="password"
+            />
+            <img
+              (click)="togglePasswordVisibility()"
+              class="eyeimg cursor-pointer"
+              src="assets/login-icon/eye-close-solid-svgrepo-com.svg"
+              alt=""
+            />
+          </label>
+        </div>
+
+        <div>
+          <label class="password">
+            <input
+              type="{{ passwordVisibility }}"
+              name=""
+              id="c-password"
+              placeholder="Confim Password *"
+              required
+              formControlName="cpassword"
+            />
+            <img
+              (click)="togglePasswordVisibility()"
+              class="eyeimg cursor-pointer"
+              src="assets/login-icon/eye-close-solid-svgrepo-com.svg"
+              alt=""
+            />
+          </label>
+        </div>
+
+        <div
+          class="p-0 m-0"
+          *ngIf="
+            signUpForm.get('password')?.touched &&
+            signUpForm.get('cpassword')?.touched
+          "
+        >
+          <app-form-validation
+            [control]="signUpForm"
+            fieldName="Password"
+          ></app-form-validation>
+        </div>
+
+        <div class="m-0 p-0">
+          <div class="genderDiv m-0 p-0">
+            <label id="genderLabel">Gender:</label>
+
+            <input type="radio" formControlName="gender" value="male" /><label>
+              Male</label
+            >
+
+            <input type="radio" formControlName="gender" value="female" />
+            <label>Female </label>
+          </div>
+        </div>
+
+        <div><button>Sign Up</button></div>
+
+        <div class="newToFanvue">
+          New to fanvue?
+          <a class="text-decoration-none text-danger" routerLink="/">Sign-in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-alert-component
+  [alertMessage]="alertMessage"
+  [alertType]="alertType"
+  [showAlert]="showAlert"
+></app-alert-component>

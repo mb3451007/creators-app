@@ -1,0 +1,34 @@
+<div class="container vh-100">
+  <div class="row h-100">
+    <div
+      *ngIf="message"
+      class="col-12 h-100 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div class="d-flex flex-row align-items-center justify-content-center">
+        <img
+          [ngClass]="alertType === 'success' ? 'imgSuccess' : 'imgError'"
+          src="assets/tick-box-svgrepo-com.svg"
+          alt=""
+        />
+        <p class="text-{{ alertType }} m-0" id="verification-msg">
+          {{ message }}
+        </p>
+      </div>
+
+      <button
+        *ngIf="alertType === 'success'"
+        class="btn btn-success mt-1"
+        routerLink="/login"
+      >
+        Go to Login
+      </button>
+      <button
+        *ngIf="message === 'Token has expired' || alertType === 'danger'"
+        class="btn btn-success mt-1"
+        routerLink="/login"
+      >
+        Resend Verification Email
+      </button>
+    </div>
+  </div>
+</div>
