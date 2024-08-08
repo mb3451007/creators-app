@@ -1,174 +1,397 @@
 <div class="container">
-    <div class="row">
-        <div class=" col-4 col-md-5 col-sm-12 col-12">
-            <div class="container left-side" style="">
-                <div class="row">
-                    <div class="main-messages__message col-12">
-                        <span>Messages</span>
-                    </div>
-                    <div class="col-12">
-                        <div class="main-messages__searchbar">
-                            <img src="assets/hearder-icon/icons8-search.svg" alt="">
-                            <input class="main-messages__input-field" type="search">
-                        </div>
-                    </div>
-                    <div class="main-messages__input-btn col-12">
-                        <button id="all">All </button>
-                        <button>Unread <span>3</span></button>
-                        <button>Online <span>2</span></button>
-                    </div>
-                 
+  <div class="row">
+    <div class="col-4 col-md-5 col-sm-12 col-12">
+      <div class="container left-side">
+        <div class="row">
+          <div class="main-messages__message col-12">
+            <span>Messages</span>
+          </div>
+          <div class="col-12">
+            <div class="main-messages__searchbar">
+              <img src="assets/hearder-icon/icons8-search.svg" alt="" />
+              <input class="main-messages__input-field" type="search" />
+            </div>
+          </div>
+          <div class="main-messages__input-btn col-12">
+            <button id="all">All</button>
+            <button>Unread <span>3</span></button>
+            <button>Online <span>2</span></button>
+          </div>
 
-                    <div class="main-messages__userID-mobile-view col-12 ">
-                        <div class="accout-active col-12" (click)="selectDiv(4)">
-                            <div class="main-messages__avatar-profile col-3"><img src="assets/home-icon/avatarImg.png"
-                                    alt=""></div>
-                            <div class="col-9">
-                                <div class="main-messages__user-time">
-                                    <div class="main-messages__users">user 4</div>
-                                    <div class="time">10:34</div>
-                                </div>
-                                <div class="main-messages__users-chat">you are just one click away...</div>
-                            </div>
-                        </div>
-                        <div class="accout-active col-12" (click)="selectDiv(1)">
-                            <div class="main-messages__avatar-profile col-3"><img src="assets/home-icon/avatarImg.png"
-                                    alt=""></div>
-                            <div class="col-9">
-                                <div class="main-messages__user-time">
-                                    <div class="main-messages__users">user 1</div>
-                                    <div class="time">10:33</div>
-                                </div>
-                                <div class="main-messages__users-chat">Hey, i would love you t...<span>1</span></div>
-                            </div>
-                        </div>
-                        <div class="accout-active col-12" (click)="selectDiv(2)">
-                            <div class="main-messages__avatar-profile col-3"><img src="assets/home-icon/avatarImg.png"
-                                    alt=""></div>
-                            <div class="col-9">
-                                <div class="main-messages__user-time">
-                                    <div class="main-messages__users">user 2</div>
-                                    <div class="time">10:30</div>
-                                </div>
-                                <div class="main-messages__users-chat">become fan is free and...<span>1</span></div>
-                            </div>
-                        </div>
-                        <div class="accout-active col-12" (click)="selectDiv(3)">
-                            <div class="main-messages__avatar-profile col-3"><img src="assets/home-icon/avatarImg.png"
-                                    alt=""></div>
-                            <div class="col-9">
-                                <div class="main-messages__user-time">
-                                    <div class="main-messages__users">user 3</div>
-                                    <div class="time">10:33</div>
-                                </div>
-                                <div class="main-messages__users-chat">hey bb thx for the follo... <span>1</span></div>
-                            </div>
-                        </div>
-                    </div>
+          <!-- <div class="main-messages__userID-mobile-view col-12">
+            <div class="accout-active col-12" (click)="selectDiv(4)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 4</div>
+                  <div class="time">10:34</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  you are just one click away...
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(1)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 1</div>
+                  <div class="time">10:33</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  Hey, i would love you t...<span>1</span>
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(2)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 2</div>
+                  <div class="time">10:30</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  become fan is free and...<span>1</span>
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(3)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 3</div>
+                  <div class="time">10:33</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  hey bb thx for the follo... <span>1</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
 
-                    <!-- <div class="main-messages__result col-12">
+          <div
+            *ngFor="let conversation of conversations"
+            class="main-messages__userID-mobile-view col-12"
+          >
+            <div
+              class="accout-active col-12"
+              (click)="fetchMessages(conversation._id)"
+            >
+              <div class="main-messages__avatar-profile col-3">
+                <img
+                  [src]="
+                    getMediaUrl(
+                      conversation.members[
+                        getOtherMemberIndexInConversations(conversation)
+                      ].profile
+                    )
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">
+                    {{
+                      conversation.members[
+                        getOtherMemberIndexInConversations(conversation)
+                      ].name
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="main-messages__result col-12">
                         No results
                     </div>
                     <div class="main-messages__discover-btn col-12">
                         <button class=" ">Discover creator</button>
                     </div> -->
-                </div>
-            </div>
         </div>
-        <div class=" col-8 col-md-7 col-sm-12 col-12">
-            <div class="container right" style="box-shadow:0px 2px 12px -8px; min-height: 100vh;">
-                <div class="main-messages__right-container row" *ngIf="selectedDiv === 0">
-                    <div class="main-messages__chat-area col-12">
-                        <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="">
-                    </div>
-                    <div class="main-messages__chat-area not-yet col-12">
-                        <span>you don't have a chat Yet</span>
-                    </div>
-                    <div class="main-messages__chat-area discover-creator col-12">
-                        <span>Discover creators and start Messaging them!</span>
-                    </div>
-                    <div class="main-messages__chat-area creator col-12">
-                        <span>Discover creators</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12" *ngIf="selectedDiv === 4">
-                        <div class="main-messages__user-profileByName col-12">
-                            <div class="main-messages__user-profileById col-9">
-                                <div class="main-messages__avatar-profile"><img src="assets/home-icon/avatarImg.png"
-                                        alt=""></div>
-                                <div>
-                                    <div class="userById">user 4</div>
-                                    <div class="user-no">@user_4</div>
-                                </div>
-
-                            </div>
-                            <div class="menu-btn col-3">
-                                <img src="/assets/menu-vertical-svgrepo-com.svg" alt="" style="width: 25px;">
-                            </div>
-                        </div>
-
-                        <div class="main-messages__profile-btn col-12">
-                            <div class="main-messages__chats col-6" (click)="chatHide()"
-                                [ngClass]="{ 'active': activeDiv === 1 }" (click)="setActiveDiv(1)">
-                                <div>Chat</div>
-                            </div>
-                            <div class="main-messages__media col-6" (click)="mediaHide()"
-                                [ngClass]="{ 'active': activeDiv === 2 }" (click)="setActiveDiv(2)">
-                                <div>Media</div>
-                            </div>
-
-                        </div>
-                        <div class="col-12" *ngIf="showHide">
-                            <div class="scroll-view-chat col-12">
-                                <div class="main-messages__chat-date col-12"> 04 Jul, 2024</div>
-
-                                <div class="main-messages__chat-user col-12">
-                                    <div class="main-messages__chat-profile">
-                                        <img src="assets/home-icon/avatarImg.png" alt="">
-                                    </div>
-                                    <div class="chat-box">
-                                        <div id="one-msg">Hi. where are you?</div>
-                                        <div id="two-msg">I have an urgent tast to do</div>
-                                        <div class="chat-time">10:34</div>
-
-                                    </div>
-                                </div>
-                                <div class="main-messages__chat-tips col-12">
-                                    <div class="tips col-12">As a follower, you can message @user_4 only if you add a
-                                        tip. </div>
-                                    <div class="tips col-12">@user_4 is running a limited time offer , <span>Check it
-                                            out!</span></div>
-                                </div>
-                            </div>
-                            <div class="main-messages__chatWithUser col-12">
-                                <div class="input-text">
-                                    <img src="assets/messages.icon/smiling-face-svgrepo-com.svg" alt="">
-                                    <input type="text" placeholder="type a message">
-                                </div>
-                                <div class="messages-featured">
-                                    <div>
-                                        <img src="assets/messages.icon/upload-svgrepo-com.svg" alt="">
-                                        <img src="assets/messages.icon/dollar-minimalistic-svgrepo-com.svg" alt="">
-                                    </div>
-                                    <div id="send-chat">
-                                        <img src="assets/messages.icon/send-alt-1-svgrepo-com.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" *ngIf="!showHide">media</div>
-                    </div>
-
-
-
-                    <div class="col-12" *ngIf="selectedDiv === 1">user 1
-                        <button>user1</button>
-                    </div>
-                    <div class="col-12" *ngIf="selectedDiv === 2">user 2</div>
-                    <div class="col-12" *ngIf="selectedDiv === 3">user 3</div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-8 col-md-7 col-sm-12 col-12">
+      <div
+        class="container right"
+        style="box-shadow: 0px 2px 12px -8px; min-height: 100vh"
+      >
+        <div
+          class="main-messages__right-container row"
+          *ngIf="conversations.length === 0"
+        >
+          <div class="main-messages__chat-area col-12">
+            <img src="assets/side-bar-icon/messages-svgrepo-com.svg" alt="" />
+          </div>
+          <div class="main-messages__chat-area not-yet col-12">
+            <span>you don't have a chat Yet</span>
+          </div>
+          <div class="main-messages__chat-area discover-creator col-12">
+            <span>Discover creators and start Messaging them!</span>
+          </div>
+          <div class="main-messages__chat-area creator col-12">
+            <span>Discover creators</span>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-12" *ngIf="selectedDiv === 4">
+            <div class="main-messages__user-profileByName col-12">
+              <div class="main-messages__user-profileById col-9">
+                <div class="main-messages__avatar-profile">
+                  <img src="assets/home-icon/avatarImg.png" alt="" />
+                </div>
+                <div>
+                  <div class="userById">user 4</div>
+                  <div class="user-no">@user_4</div>
+                </div>
+              </div>
+              <div class="menu-btn col-3">
+                <img
+                  src="/assets/menu-vertical-svgrepo-com.svg"
+                  alt=""
+                  style="width: 25px"
+                />
+              </div>
+            </div>
+
+            <div class="main-messages__profile-btn col-12">
+              <div
+                class="main-messages__chats col-6"
+                (click)="chatHide()"
+                [ngClass]="{ active: activeDiv === 1 }"
+                (click)="setActiveDiv(1)"
+              >
+                <div>Chat</div>
+              </div>
+              <div
+                class="main-messages__media col-6"
+                (click)="mediaHide()"
+                [ngClass]="{ active: activeDiv === 2 }"
+                (click)="setActiveDiv(2)"
+              >
+                <div>Media</div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="showHide">
+              <div class="scroll-view-chat col-12">
+                <div class="main-messages__chat-date col-12">04 Jul, 2024</div>
+
+                <div class="main-messages__chat-user col-12">
+                  <div class="main-messages__chat-profile">
+                    <img src="assets/home-icon/avatarImg.png" alt="" />
+                  </div>
+                  <div class="chat-box">
+                    <div id="one-msg">Hi. where are you?</div>
+                    <div id="two-msg">I have an urgent tast to do</div>
+                    <div class="chat-time">10:34</div>
+                  </div>
+                </div>
+                <div class="main-messages__chat-tips col-12">
+                  <div class="tips col-12">
+                    As a follower, you can message @user_4 only if you add a
+                    tip.
+                  </div>
+                  <div class="tips col-12">
+                    @user_4 is running a limited time offer ,
+                    <span>Check it out!</span>
+                  </div>
+                </div>
+              </div>
+              <div class="main-messages__chatWithUser col-12">
+                <div class="input-text">
+                  <img
+                    src="assets/messages.icon/smiling-face-svgrepo-com.svg"
+                    alt=""
+                  />
+                  <input type="text" placeholder="type a message" />
+                </div>
+                <div class="messages-featured">
+                  <div>
+                    <img
+                      src="assets/messages.icon/upload-svgrepo-com.svg"
+                      alt=""
+                    />
+                    <img
+                      src="assets/messages.icon/dollar-minimalistic-svgrepo-com.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div id="send-chat">
+                    <img
+                      src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="!showHide">media</div>
+          </div>
+
+          <div class="col-12" *ngIf="selectedDiv === 1">
+            user 1
+            <button>user1</button>
+          </div>
+          <div class="col-12" *ngIf="selectedDiv === 2">user 2</div>
+          <div class="col-12" *ngIf="selectedDiv === 3">user 3</div>
+        </div> -->
+        <div class="row" *ngIf="currentMessageConversation">
+          <div class="col-12">
+            <div class="main-messages__user-profileByName col-12">
+              <div class="main-messages__user-profileById col-9">
+                <div class="main-messages__avatar-profile">
+                  <img
+                    [src]="
+                      getMediaUrl(
+                        currentMessageConversation.members[receiverID].profile
+                      )
+                    "
+                  />
+                </div>
+                <div>
+                  <div class="userById">
+                    {{ currentMessageConversation.members[receiverID].name }}
+                  </div>
+                  <div class="user-no">
+                    {{
+                      currentMessageConversation.members[receiverID].username
+                    }}
+                  </div>
+                </div>
+              </div>
+              <div class="menu-btn col-3">
+                <img
+                  src="/assets/menu-vertical-svgrepo-com.svg"
+                  alt=""
+                  style="width: 25px"
+                />
+              </div>
+            </div>
+
+            <div class="main-messages__profile-btn col-12">
+              <div
+                class="main-messages__chats col-6"
+                (click)="chatHide()"
+                [ngClass]="{ active: activeDiv === 1 }"
+                (click)="setActiveDiv(1)"
+              >
+                <div>Chat</div>
+              </div>
+              <div
+                class="main-messages__media col-6"
+                (click)="mediaHide()"
+                [ngClass]="{ active: activeDiv === 2 }"
+                (click)="setActiveDiv(2)"
+              >
+                <div>Media</div>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="showHide">
+              <div class="scroll-view-chat col-12">
+                <!-- <div class="main-messages__chat-date col-12">04 Jul, 2024</div> -->
+
+                <div class="main-messages__chat-user col-12">
+                  <div class="main-messages__chat-profile">
+                    <img
+                      [src]="
+                        getMediaUrl(
+                          currentMessageConversation.members[receiverID].profile
+                        )
+                      "
+                      alt=""
+                    />
+                  </div>
+                  <div class="chat-box" *ngFor="let message of messages">
+                    <div *ngIf="message.sender === currentUser._id">
+                      <div style="background-color: red" id="one-msg">
+                        <!-- **RED** bg is message send by current user--- **Blue** is the message received by current user -->
+                        {{ message.message }}
+                      </div>
+
+                      <div class="chat-time">
+                        {{ message.createdAt | TimeAgo }}
+                      </div>
+                    </div>
+                    <div *ngIf="message.sender !== currentUser._id">
+                      <div style="background-color: aquamarine">
+                        {{ message.message }}
+                      </div>
+
+                      <div class="chat-time">
+                        {{ message.createdAt | TimeAgo }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="main-messages__chat-tips col-12">
+                  <div class="tips col-12">
+                    As a follower, you can message @user_4 only if you add a
+                    tip.
+                  </div>
+                  <div class="tips col-12">
+                    @user_4 is running a limited time offer ,
+                    <span>Check it out!</span>
+                  </div>
+                </div>
+              </div>
+              <form
+                [formGroup]="messageForm"
+                class="main-messages__chatWithUser col-12"
+              >
+                <div class="input-text">
+                  <img
+                    src="assets/messages.icon/smiling-face-svgrepo-com.svg"
+                    alt=""
+                  />
+                  <input
+                    formControlName="message"
+                    type="text"
+                    placeholder="type a message"
+                  />
+                </div>
+                <div class="messages-featured">
+                  <div>
+                    <img
+                      src="assets/messages.icon/upload-svgrepo-com.svg"
+                      alt=""
+                    />
+                    <img
+                      src="assets/messages.icon/dollar-minimalistic-svgrepo-com.svg"
+                      alt=""
+                    />
+                  </div>
+                  <a
+                    (click)="
+                      sendMessage(
+                        currentMessageConversation._id,
+
+                        'mohsin',
+                        currentMessageConversation.members[receiverID]._id
+                      )
+                    "
+                    id="send-chat"
+                  >
+                    <img
+                      src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
+                      alt=""
+                    />
+                  </a>
+                </div>
+              </form>
+            </div>
+            <div class="col-12" *ngIf="!showHide">media</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

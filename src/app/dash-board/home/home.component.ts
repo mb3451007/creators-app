@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   postDescription: string = '';
   selectedFiles: any[] = [];
   isLiked: boolean = false;
-  // userprofile: any[] = Array(6);
+  recommendadProfiles: any[] = [];
   commentsMap: { [key: string]: any[] } = {};
   suggestedprofile: any[] = Array(3);
   posts: any[] = [];
@@ -22,13 +23,16 @@ export class HomeComponent implements OnInit {
     comment: new FormControl('', Validators.required),
   });
 
-  constructor(private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private authservice: AuthService
+  ) {}
   fetchPosts() {
     this.postService.getUserPost().subscribe({
       next: (response) => {
         this.posts = response;
+        console.log(response);
         this.checkIfUserHasLikedPost();
-        console.log(this.posts);
       },
       error: (error) => {
         console.log(error.error.message);
@@ -37,14 +41,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.authservice.getUserData;
+
+    this.getRecommendedUsers();
     this.fetchPosts();
-    this.currentUser = this.postService.getUserId;
   }
 
   checkIfUserHasLikedPost() {
     this.posts.forEach((posts) => {
       posts.hasLiked = posts.likes.some(
-        (like: any) => this.currentUser === like.userId
+        (like: any) => this.currentUser._id === like.userId
       );
     });
   }
@@ -101,9 +107,6 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-  getMediaUrl(media: string): string {
-    return `http://localhost:3000${media}`;
-  }
 
   deleteLike(postId: any) {
     this.postService.deleteLike(postId).subscribe({
@@ -156,5 +159,33 @@ export class HomeComponent implements OnInit {
         console.log(error.error.message);
       },
     });
+  }
+
+  getRecommendedUsers() {
+    this.postService.getUsers().subscribe({
+      next: (response) => {
+        this.recommendadProfiles = response;
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
+  }
+
+  followUser(userId: any, followIsTrue: boolean) {
+    console.log(userId, followIsTrue);
+    this.postService.followUser(userId, followIsTrue).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.getRecommendedUsers();
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
+  }
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 }

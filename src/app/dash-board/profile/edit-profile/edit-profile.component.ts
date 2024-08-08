@@ -1,55 +1,74 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent {
-  
+export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
   previewUrl: string | ArrayBuffer | null = null;
   bannerUrl: string | ArrayBuffer | null = null;
+  selectedFiles: { profile?: File; cover_image?: File } = {};
+  currentUser: any = {};
+  constructor(
+    private fb: FormBuilder,
 
-
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
+    private authService: AuthService,
+    private postService: PostService
+  ) {
     this.profileForm = this.fb.group({
-      profileImage: [null]
+      profileImage: [null],
+      coverImage: [null],
+    });
+
+    this.currentUser = this.authService.getUserData;
+    console.log(this.currentUser);
+  }
+
+  ngOnInit(): void {
+    this.updatebanner();
+  }
+  updatebanner() {
+    this.bannerUrl = this.currentUser.cover_image
+      ? this.getMediaUrl(this.currentUser.cover_image)
+      : null;
+  }
+  updateUserProfile() {
+    this.authService.updateUserProfileImages(this.selectedFiles).subscribe({
+      next: (response) => {
+        this.currentUser = {
+          ...this.currentUser,
+          profile: response.profile || this.currentUser.profile,
+          cover_image: response.cover_image || this.currentUser.cover_image,
+        };
+
+        this.authService.setUserData(this.currentUser);
+
+        console.log(this.currentUser);
+        this.updatebanner();
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.profileForm.patchValue({
-        profileImage: file
-      });
-      this.profileForm.get('profileImage')?.updateValueAndValidity();
+  onFileSelect(event: Event, type: 'profile' | 'cover_image') {
+    const input = event.target as HTMLInputElement;
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.selectedFiles[type] = file;
+
+      this.updateUserProfile();
     }
   }
 
-  onbannerSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.profileForm.patchValue({
-        profileImage: file
-      });
-      this.profileForm.get('profileImage')?.updateValueAndValidity();
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.bannerUrl = reader.result;
-        this.cdr.detectChanges(); 
-      };
-      reader.readAsDataURL(file);
-    }
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 }

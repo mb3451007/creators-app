@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SideBarComponent {
   isSidebarOpen = false;
   constructor(private authservice: AuthService, private router: Router) {}
-  // items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -23,14 +22,12 @@ export class SideBarComponent {
   logout() {
     this.authservice.logout().subscribe({
       next: (response) => {
-        console.log(response);
-        localStorage.removeItem('user');
         this.authservice.setUserData(null);
+        localStorage.removeItem('user');
         this.router.navigate(['/']);
       },
       error: (error) => {
-        console.log('error is: ' + error.message);
-        console.log(error);
+        console.log(error.error.message);
       },
     });
   }

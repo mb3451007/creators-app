@@ -16,11 +16,11 @@
         </div>
       </div>
       <div class="main-profile-info__save-info-btn col-6">
-        <button type="submit">Save</button>
+        <button (click)="onUpdateUserFormSubmit()" type="submit">Save</button>
       </div>
     </div>
   </div>
-  <div class="row">
+  <form [formGroup]="updateUserForm" class="row">
     <div class="main-profile-info__input-fields col-md-10 col-sm-12 col-lg-10">
       <mat-form-field
         class="main-profile-info__form-field"
@@ -29,7 +29,8 @@
         <mat-label class="main-profile-info__form-label">Name</mat-label>
         <input
           matInput
-          placeholder="Normal Clam"
+          formControlName="name"
+          placeholder="{{ currentUser.name }}"
           class="main-profile-info__form-input"
         />
       </mat-form-field>
@@ -39,10 +40,12 @@
         class="main-profile-info__form-field"
         appearance="outline"
       >
-        <mat-label class="main-profile-info__form-label">Handle</mat-label>
+        <mat-label class="main-profile-info__form-label">Username</mat-label>
         <input
           matInput
-          placeholder="Normal-Clam-88"
+          readonly
+          value="{{ currentUser.username }}"
+          placeholder="Enter Username"
           class="main-profile-info__form-input"
         />
         <mat-hint class="main-profile-info__form-label">
@@ -58,7 +61,11 @@
           class="main-profile-info__form-field"
           appearance="outline"
         >
-          <textarea matInput placeholder="Bio"></textarea>
+          <textarea
+            formControlName="bio"
+            matInput
+            placeholder="{{ currentUser.bio }}"
+          ></textarea>
         </mat-form-field>
       </div>
     </div>
@@ -68,11 +75,16 @@
         appearance="outline"
       >
         <mat-label class="main-profile-info__form-label">Location</mat-label>
-        <input matInput class="main-profile-info__form-input" />
+        <input
+          formControlName="location"
+          matInput
+          class="main-profile-info__form-input"
+          placeholder="{{ currentUser.location }}"
+        />
         <mat-hint class="main-profile-info__form-label">
           Enter your current location, this will be shown on your profile
         </mat-hint>
       </mat-form-field>
     </div>
-  </div>
+  </form>
 </div>

@@ -1,27 +1,23 @@
 @import "/src/app/core/common-style.scss";
 
-.left-side{
+.left-side {
   overflow: scroll;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   height: 100vh;
   box-shadow: 0px 2px 12px -8px;
   // padding: 0px;
 }
-.scroll-view-chat{
+.scroll-view-chat {
   overflow: scroll;
   scrollbar-width: none;
   height: 55vh;
   padding-bottom: 1rem;
 }
 
-
-
-
 .main-messages {
-  &__userID-mobile-view{
+  &__userID-mobile-view {
     // display: flex;
     padding: 0;
-    
   }
   &__message {
     font-size: 24px;
@@ -65,7 +61,11 @@
       position: absolute;
       right: -9px;
       top: -12px;
-      background: linear-gradient(95.92deg, rgb(244, 138, 108) 0%, rgb(253, 29, 93) 100%);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
       border-radius: 54px;
       padding: 0px 6px;
     }
@@ -175,6 +175,7 @@
   }
   &__chat-user {
     display: flex;
+    flex-direction: column;
     .chat-box {
       color: black;
       background-color: #e8e7e7;
@@ -248,9 +249,9 @@
       justify-content: space-between;
       padding: 1rem 1rem 1rem 0rem;
       // margin-right: .5rem;
-      img{
+      img {
         width: 25px;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
       #send-chat {
         img {
@@ -260,7 +261,6 @@
     }
   }
 
- 
   &__chat-area {
     display: flex;
     justify-content: center;
@@ -326,16 +326,16 @@
   // color: #f94f64;
 }
 
-@media screen and (max-width:768px) {
-  .left-side{
+@media screen and (max-width: 768px) {
+  .left-side {
     overflow: none;
-    // scrollbar-width: none; 
+    // scrollbar-width: none;
     height: auto;
     box-shadow: 0px 2px 12px -8px;
     // padding: 0px;
   }
-  
-  .scroll-view-chat{
+
+  .scroll-view-chat {
     overflow: scroll;
     scrollbar-width: none;
     height: 40vh;
@@ -345,16 +345,17 @@
     &__chat-date {
       display: flex;
       justify-content: center;
+
       color: #9e9e9e;
       margin-top: 4rem;
     }
-    &__userID-mobile-view{
+    &__userID-mobile-view {
       display: flex;
       flex-direction: row;
       /* width: fit-content; */
       overflow: scroll;
-    scrollbar-width: none;
+      scrollbar-width: none;
       width: 100%;
     }
-  }  
+  }
 }

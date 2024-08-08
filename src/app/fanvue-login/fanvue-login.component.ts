@@ -8,6 +8,7 @@ import {
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { env } from '../environments/env.development';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-fanvue-login',
@@ -18,8 +19,9 @@ export class FanvueLoginComponent implements OnInit {
   showAlert: boolean;
   alertMessage: string;
   alertType: string;
-  passwordVisibility: string;
+  passwordVisibility: string = 'password';
   userId: any;
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -28,7 +30,8 @@ export class FanvueLoginComponent implements OnInit {
   constructor(
     private authservice: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private socketService: SocketService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +43,7 @@ export class FanvueLoginComponent implements OnInit {
         this.authservice.loginWithUid(this.userId).subscribe({
           next: (response) => {
             this.authservice.setUserData(response);
+
             this.router.navigate(['/dashboard']);
           },
           error: (error) => {
@@ -63,6 +67,7 @@ export class FanvueLoginComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.authservice.setUserData(response);
+
             this.router.navigate(['/dashboard']);
           },
           error: (error) => {

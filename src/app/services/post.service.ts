@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { env } from '../environments/env.development';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -10,15 +12,23 @@ import { Observable } from 'rxjs';
 export class PostService {
   token: string | null = null;
   userId: string | null = null;
+  user: User | null = null;
 
-  constructor(private router: Router, private http: HttpClient) {
-    const user = localStorage.getItem('user');
-    if (user) {
-      const userParsed = JSON.parse(user);
-      this.token = userParsed.token;
-      this.userId = userParsed._id;
-    }
-    console.log(this.token);
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.token = user.token;
+        this.user = user;
+        this.userId = user._id;
+      } else {
+        this.token = null;
+        this.user = null;
+      }
+    });
   }
 
   get getUserId() {
@@ -29,7 +39,7 @@ export class PostService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.token}`,
     });
-    console.log(headers);
+
     return this.http.post(`${env.baseURL}/posts/create`, formdata, {
       headers,
     });
@@ -39,11 +49,11 @@ export class PostService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.token}`,
     });
-    return this.http.post(`${env.baseURL}/posts/`, this.userId, { headers });
+
+    return this.http.get(`${env.baseURL}/posts/`, { headers });
   }
 
   addLike(postId: string): Observable<any> {
-    console.log(postId);
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.token}`,
     });
@@ -90,5 +100,27 @@ export class PostService {
     return this.http.delete(`${env.baseURL}/comment/delete/${commentId}`, {
       headers,
     });
+  }
+  getUsers(): Observable<any> {
+    const headers = new HttpHeaders({
+      authorization: `Bearer ${this.token}`,
+    });
+    return this.http.get(`${env.baseURL}/user/`, { headers });
+  }
+
+  followUser(userIdToFollow: any, followIsTrue: boolean): Observable<any> {
+    const headers = new HttpHeaders({
+      authorization: `Bearer ${this.token}`,
+    });
+
+    return this.http.patch(
+      `${env.baseURL}/follow/`,
+      { userIdToFollow, followIsTrue },
+      { headers }
+    );
+  }
+
+  getMediaUrl(media: string): string {
+    return `${env.baseURL}${media}`;
   }
 }

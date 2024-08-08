@@ -10,11 +10,29 @@ import { Router } from '@angular/router';
 export class AuthService {
   private userDataSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userDataSubject.asObservable();
+
   constructor(private http: HttpClient, private router: Router) {
-    this.userDataSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem('user')!)
-    );
-    this.user$ = this.userDataSubject.asObservable();
+    const user = JSON.parse(localStorage.getItem('user')!);
+    if (user) {
+      this.userDataSubject.next(user);
+      this.user$ = this.userDataSubject.asObservable();
+    }
+  }
+  setUserData(data: any | null) {
+    if (data === null) {
+      localStorage.removeItem('user');
+    } else {
+      localStorage.setItem('user', JSON.stringify(data));
+    }
+    this.userDataSubject.next(data);
+  }
+
+  get getUserData() {
+    return this.userDataSubject.value;
+  }
+
+  get UserToken() {
+    return this.userDataSubject.value.token;
   }
 
   loginNow(email: any, password: any): Observable<any> {
@@ -72,12 +90,57 @@ export class AuthService {
     return this.http.post(`${env.baseURL}/login`, { userId });
   }
 
-  setUserData(data: any | null) {
-    localStorage.setItem('user', JSON.stringify(data));
-    this.userDataSubject.next(data);
+  deleteUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      authorization: `Bearer ${this.UserToken}`,
+    });
+
+    return this.http.delete(`${env.baseURL}/user/delete`, {
+      headers,
+    });
   }
 
-  get getUserData() {
-    return this.userDataSubject.value;
+  updateUserProfileImages(files?: {
+    profile?: File;
+    cover_image?: File;
+  }): Observable<any> {
+    const formData = new FormData();
+    if (files.profile) {
+      formData.append('profile', files.profile);
+    }
+
+    if (files.cover_image) {
+      formData.append('cover_image', files.cover_image);
+    }
+
+    const headers = new HttpHeaders({
+      authorization: `Bearer ${this.UserToken}`,
+    });
+
+    return this.http.patch(`${env.baseURL}/user/update`, formData, { headers });
+  }
+  updateUserProfileInfo(
+    name?: string,
+    location?: string,
+    bio?: string
+  ): Observable<any> {
+    const formData = new FormData();
+    if (name) {
+      formData.append('name', name);
+    }
+
+    if (location) {
+      formData.append('location', location);
+    }
+
+    if (bio) {
+      formData.append('bio', bio);
+    }
+
+    const headers = new HttpHeaders({
+      authorization: `Bearer ${this.UserToken}`,
+    });
+
+    return this.http.patch(`${env.baseURL}/user/update`, formData, { headers });
   }
 }

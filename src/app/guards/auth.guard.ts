@@ -15,7 +15,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     '/dashboard/setting',
   ];
   const unprotectedRoutes: string[] = ['/', '/login'];
-  console.log('userData is: ' + authservice.getUserData);
+
   if (authservice.getUserData === null && protectedRoutes.includes(state.url)) {
     router.navigate(['']);
 
