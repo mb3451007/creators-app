@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { DashBoardModule } from './dash-board/dash-board.module';
 import { FanvueLoginComponent } from './fanvue-login/fanvue-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FanvueSignupComponent } from './fanvue-signup/fanvue-signup.component';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
@@ -16,6 +16,7 @@ import { AlertComponentComponent } from './alert-component/alert-component.compo
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FacebookRedirectComponent } from './facebook-redirect/facebook-redirect.component';
+import { AuthinterceptorInterceptor } from './interceptors/authinterceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,13 @@ import { FacebookRedirectComponent } from './facebook-redirect/facebook-redirect
     DashBoardModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthinterceptorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

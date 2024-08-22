@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { env } from '../environments/env.development';
@@ -24,6 +24,7 @@ export class AuthService {
     } else {
       localStorage.setItem('user', JSON.stringify(data));
     }
+    console.log(data);
     this.userDataSubject.next(data);
   }
 
@@ -91,13 +92,7 @@ export class AuthService {
   }
 
   deleteUser(): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.UserToken}`,
-    });
-
-    return this.http.delete(`${env.baseURL}/user/delete`, {
-      headers,
-    });
+    return this.http.delete(`${env.baseURL}/user/delete`);
   }
 
   updateUserProfileImages(files?: {
@@ -113,11 +108,7 @@ export class AuthService {
       formData.append('cover_image', files.cover_image);
     }
 
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.UserToken}`,
-    });
-
-    return this.http.patch(`${env.baseURL}/user/update`, formData, { headers });
+    return this.http.patch(`${env.baseURL}/user/update`, formData);
   }
   updateUserProfileInfo(
     name?: string,
@@ -137,10 +128,6 @@ export class AuthService {
       formData.append('bio', bio);
     }
 
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.UserToken}`,
-    });
-
-    return this.http.patch(`${env.baseURL}/user/update`, formData, { headers });
+    return this.http.patch(`${env.baseURL}/user/update`, formData);
   }
 }

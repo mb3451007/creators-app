@@ -21,44 +21,20 @@ export class ConversationService {
   }
 
   getAllConversations(): Observable<Conversation[]> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`,
-    });
-
     return this.http
-      .get<{ conversations: Conversation[] }>(
-        `${env.baseURL}/conversation/all`,
-        {
-          headers,
-        }
-      )
+      .get<{ conversations: Conversation[] }>(`${env.baseURL}/conversation/all`)
       .pipe(map((response) => response.conversations));
   }
 
   getParticularConversation(receiverId: string): Observable<Conversation[]> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
     return this.http
       .get<{ conversations: Conversation[] }>(
-        `${env.baseURL}/conversation/${receiverId}`,
-        {
-          headers,
-        }
+        `${env.baseURL}/conversation/${receiverId}`
       )
       .pipe(map((response) => response.conversations));
   }
 
   createOrAccessConversation(receiverId: String) {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.post(
-      `${env.baseURL}/conversation/`,
-      { receiverId },
-      { headers }
-    );
+    return this.http.post(`${env.baseURL}/conversation/`, { receiverId });
   }
 }

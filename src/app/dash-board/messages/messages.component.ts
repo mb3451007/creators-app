@@ -83,11 +83,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.currentMessageConversation = this.conversations.find(
           (conversation) => conversation._id === conversationId
         );
-        console.log(this.currentMessageConversation);
+
         this.receiverID = this.getOtherMemberIndexInConversations(
           this.currentMessageConversation
         );
-        console.log(this.receiverID);
       },
       error: (error) => {
         console.log(error.error.message);
@@ -121,19 +120,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   handleIncomingMessages(data: any) {
     this.messages.push(data);
-    console.log(this.messages);
   }
 
   sendMessage(conversationId: string, username: string, receiverId: string) {
-    console.log(
-      'conversationId: ',
-      conversationId,
-
-      'username: ',
-      username,
-      'receiverId: ',
-      receiverId
-    );
     if (this.messageForm.valid) {
       this.messageService
         .sendMessage(this.messageForm.value?.message, conversationId)
@@ -142,7 +131,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
             const currentDate = new Date();
             let data = {
               conversationId: conversationId,
-              userId: this.conversationService.userId,
+              sender: this.currentUserId,
               username: username,
               createdAt: currentDate.toISOString(),
               receiverId: receiverId,
@@ -150,7 +139,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
             };
 
             this.socketService.emit('sendMessage', data);
-            console.log('Sending msg-------------------------');
+
             this.handleIncomingMessages(data);
             this.messageForm.reset();
           },

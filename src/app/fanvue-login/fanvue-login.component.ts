@@ -66,6 +66,7 @@ export class FanvueLoginComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
+            console.log(response);
             this.authservice.setUserData(response);
 
             this.router.navigate(['/dashboard']);

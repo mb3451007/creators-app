@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { env } from 'src/app/environments/env.development';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -35,7 +36,7 @@ export class EditProfileComponent implements OnInit {
   updatebanner() {
     this.bannerUrl = this.currentUser.cover_image
       ? this.getMediaUrl(this.currentUser.cover_image)
-      : null;
+      : this.getMediaUrl(`${env.baseURL}/uploads/default_profile_picture.png`);
   }
   updateUserProfile() {
     this.authService.updateUserProfileImages(this.selectedFiles).subscribe({

@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     private postService: PostService,
     private authservice: AuthService
   ) {}
+
   fetchPosts() {
     this.postService.getUserPost().subscribe({
       next: (response) => {

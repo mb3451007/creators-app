@@ -23,28 +23,17 @@ export class MessageService {
   }
 
   getAllMessages(conversationId: string): Observable<Message[]> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
     return this.http
       .get<{ messages: Message[] }>(
-        `${env.baseURL}/message/get/${conversationId}`,
-        {
-          headers,
-        }
+        `${env.baseURL}/message/get/${conversationId}`
       )
       .pipe(map((response) => response.messages));
   }
 
   sendMessage(message: string, conversationId: string) {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
+    return this.http.post(`${env.baseURL}/message/send`, {
+      message,
+      conversationId,
     });
-
-    return this.http.post(
-      `${env.baseURL}/message/send`,
-      { message, conversationId },
-      { headers }
-    );
   }
 }

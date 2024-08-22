@@ -13,8 +13,6 @@ export class SocketService {
       withCredentials: true,
       forceNew: true,
     });
-
-    console.log('Socket: ', this.socket);
   }
 
   emit(event: string, data: any) {

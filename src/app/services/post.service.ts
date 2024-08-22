@@ -36,88 +36,39 @@ export class PostService {
   }
 
   uploadPost(formdata: FormData): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.post(`${env.baseURL}/posts/create`, formdata, {
-      headers,
-    });
+    return this.http.post(`${env.baseURL}/posts/create`, formdata);
   }
 
   getUserPost(): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.get(`${env.baseURL}/posts/`, { headers });
+    return this.http.get(`${env.baseURL}/posts/`);
   }
 
   addLike(postId: string): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-    return this.http.post(`${env.baseURL}/like/add`, { postId }, { headers });
+    return this.http.post(`${env.baseURL}/like/add`, { postId });
   }
 
   deleteLike(postId: string): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.post(
-      `${env.baseURL}/like/delete`,
-      { postId },
-      { headers }
-    );
+    return this.http.post(`${env.baseURL}/like/delete`, { postId });
   }
   addComment(postId: any, comment: string): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-    return this.http.post(
-      `${env.baseURL}/comment/add`,
-      { postId, comment },
-      { headers }
-    );
+    return this.http.post(`${env.baseURL}/comment/add`, { postId, comment });
   }
 
   getPostComments(postId: any): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-
-    return this.http.post(
-      `${env.baseURL}/comment/get`,
-      { postId },
-      { headers }
-    );
+    return this.http.post(`${env.baseURL}/comment/get`, { postId });
   }
   deleteComment(commentId: any): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-    return this.http.delete(`${env.baseURL}/comment/delete/${commentId}`, {
-      headers,
-    });
+    return this.http.delete(`${env.baseURL}/comment/delete/${commentId}`);
   }
   getUsers(): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
-    });
-    return this.http.get(`${env.baseURL}/user/`, { headers });
+    return this.http.get(`${env.baseURL}/user/`);
   }
 
   followUser(userIdToFollow: any, followIsTrue: boolean): Observable<any> {
-    const headers = new HttpHeaders({
-      authorization: `Bearer ${this.token}`,
+    return this.http.patch(`${env.baseURL}/follow/`, {
+      userIdToFollow,
+      followIsTrue,
     });
-
-    return this.http.patch(
-      `${env.baseURL}/follow/`,
-      { userIdToFollow, followIsTrue },
-      { headers }
-    );
   }
 
   getMediaUrl(media: string): string {

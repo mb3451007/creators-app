@@ -36,9 +36,9 @@ export class ProfileInfoComponent implements OnInit {
       return;
     }
 
-    const updatedName = this.updateUserForm.value.name.trim();
-    const updatedLocation = this.updateUserForm.value.location.trim();
-    const updatedBio = this.updateUserForm.value.bio.trim();
+    const updatedName = this.updateUserForm.value.name;
+    const updatedLocation = this.updateUserForm.value.location;
+    const updatedBio = this.updateUserForm.value.bio;
 
     this.authService
       .updateUserProfileInfo(updatedName, updatedLocation, updatedBio)

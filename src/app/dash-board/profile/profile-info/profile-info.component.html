@@ -64,7 +64,7 @@
           <textarea
             formControlName="bio"
             matInput
-            placeholder="{{ currentUser.bio }}"
+            [placeholder]="currentUser.bio ? currentUser.bio : 'Enter Bio'"
           ></textarea>
         </mat-form-field>
       </div>
@@ -79,7 +79,9 @@
           formControlName="location"
           matInput
           class="main-profile-info__form-input"
-          placeholder="{{ currentUser.location }}"
+          [placeholder]="
+            currentUser.location ? currentUser.location : 'Enter Location'
+          "
         />
         <mat-hint class="main-profile-info__form-label">
           Enter your current location, this will be shown on your profile

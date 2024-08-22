@@ -311,7 +311,7 @@
                     />
                   </div>
                   <div class="chat-box" *ngFor="let message of messages">
-                    <div *ngIf="message.sender === currentUser._id">
+                    <div *ngIf="message.sender === currentUserId">
                       <div style="background-color: red" id="one-msg">
                         <!-- **RED** bg is message send by current user--- **Blue** is the message received by current user -->
                         {{ message.message }}
@@ -321,7 +321,7 @@
                         {{ message.createdAt | TimeAgo }}
                       </div>
                     </div>
-                    <div *ngIf="message.sender !== currentUser._id">
+                    <div *ngIf="message.sender !== currentUserId">
                       <div style="background-color: aquamarine">
                         {{ message.message }}
                       </div>

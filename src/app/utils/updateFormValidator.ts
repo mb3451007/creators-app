@@ -14,13 +14,12 @@ export const updateFormValidator = (currentUser: any): ValidatorFn => {
         bio.value
     );
 
-    const isNameNotChanged = name.value.trim() === currentUser.name.trim();
-    const isBioNotChanged = bio.value.trim() === currentUser.bio.trim();
-    const isLocationNotChanged =
-      location.value.trim() === currentUser.location.trim();
+    const isNameNotChanged = name.value === currentUser.name;
+    const isBioNotChanged = bio.value === currentUser.bio;
+    const isLocationNotChanged = location.value === currentUser.location;
 
     const errors: ValidationErrors = {};
-    if (!name.value.trim() || !location.value.trim() || !bio.value.trim()) {
+    if (!name.value || !location.value || !bio.value) {
       errors['fieldsEmpty'] = true;
     }
 
