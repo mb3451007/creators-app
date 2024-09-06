@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   posts: any[] = [];
   comments: any[] = [];
   currentUser: any;
+  show: boolean = false;
 
   commentForm = new FormGroup({
     comment: new FormControl('', Validators.required),
@@ -39,6 +40,9 @@ export class HomeComponent implements OnInit {
         console.log(error.error.message);
       },
     });
+  }
+  toggleLiveStreamModal() {
+    this.show = !this.show;
   }
 
   ngOnInit(): void {

@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="create-post-actions">
-            <button class="action-button">
+            <button class="action-button" (click)="toggleLiveStreamModal()">
               <img
                 src="assets/home-icon/videocamera-record-svgrepo-com.svg"
                 alt=""
@@ -282,4 +282,8 @@
     </div>
     <!-- </div> -->
   </div>
+  <app-livestream
+    [show]="show"
+    (close)="toggleLiveStreamModal()"
+  ></app-livestream>
 </div>

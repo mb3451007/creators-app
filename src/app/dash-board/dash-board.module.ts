@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TimeAgoPipe } from '../pipes/timeago.pipe';
+import { LivestreamComponent } from './livestream/livestream.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TimeAgoPipe } from '../pipes/timeago.pipe';
     DiscoverComponent,
     DashBoardComponent,
     TimeAgoPipe,
+    LivestreamComponent,
   ],
   imports: [
     CommonModule,
