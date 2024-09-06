@@ -178,12 +178,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  followUser(userId: any, followIsTrue: boolean) {
+  followUser(userId: any, followIsTrue: boolean,index:number) {
     console.log(userId, followIsTrue);
     this.postService.followUser(userId, followIsTrue).subscribe({
       next: (response) => {
         console.log(response);
+        this.recommendadProfiles[index].isFollowing = true;
+      
         this.getRecommendedUsers();
+    
       },
       error: (error) => {
         console.log(error.error.message);

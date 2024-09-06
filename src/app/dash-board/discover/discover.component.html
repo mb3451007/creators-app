@@ -12,10 +12,7 @@
                   <div class="selected-files">
                     <div *ngFor="let file of selectedFiles; let i = index" class="file-item">
                       <img *ngIf="file.type.startsWith('image')" [src]="file.url" alt="Selected Image" />
-                      <!-- <video *ngIf="file.type.startsWith('video')" controls>
-                        <source [src]="file.url" type="{{file.type}}">
-                        Your browser does not support the video tag.
-                      </video> -->
+                 
                       
                       <button (click)="removeFile(i)"><img src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg" alt=""></button>
                     </div>
@@ -24,10 +21,10 @@
                 <div class="create-post-actions">
                   <button class="action-button">
                     <img src="assets/home-icon/videocamera-record-svgrepo-com.svg" alt="">
-                     Create Room</button>
+                    <span> Create Room</span></button>
                   <button class="action-button" (click)="fileInput.click()">
                     <img src="assets/home-icon/gallery-round-svgrepo-com.svg" alt="">
-                    Photo/Video</button>
+                    <span>Photo/Video</span></button>
                     <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" accept="image/*,video/*" />
                   
                   <!-- <button class="action-button">Tag Friends</button>
@@ -97,7 +94,7 @@
                             </div>
                             <div class="main-discover__userName">
                                 <div class="user">user 1</div>
-                                <div>@user_1</div>
+                                <div>user_1</div>
                             </div>
                         </div>
                     </div>

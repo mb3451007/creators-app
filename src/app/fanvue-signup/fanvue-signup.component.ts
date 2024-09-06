@@ -16,6 +16,7 @@ export class FanvueSignupComponent {
   alertMessage: string;
   alertType: string;
   passwordVisibility: string;
+  passwordCnfrmVisibility:string
 
   signUpForm = new FormGroup(
     {
@@ -54,7 +55,7 @@ export class FanvueSignupComponent {
             console.log(response);
           },
           error: (error) => {
-            this.showAlert = false;
+            this.showAlert = true;
             this.alertMessage = error.error.message;
             this.alertType = 'danger';
             console.log(error.error.message);
@@ -65,6 +66,10 @@ export class FanvueSignupComponent {
       this.alertMessage = 'Please fill complete form';
       this.alertType = 'danger';
     }
+    setTimeout(()=>{
+      this.showAlert=false;
+       
+    },2000)
   }
 
   get name() {
@@ -94,6 +99,10 @@ export class FanvueSignupComponent {
   togglePasswordVisibility() {
     this.passwordVisibility =
       this.passwordVisibility === 'password' ? 'text' : 'password';
+  }
+  toggleConfrmPasswordVisibility() {
+    this.passwordCnfrmVisibility =
+      this.passwordCnfrmVisibility === 'password' ? 'text' : 'password';
   }
   loginWithFacebook() {
     window.location.href = `${env.baseURL}/auth/facebook`;

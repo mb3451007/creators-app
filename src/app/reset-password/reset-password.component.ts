@@ -14,6 +14,8 @@ export class ResetPasswordComponent {
   alertMessage: string;
   alertType: string;
   token: string;
+  passwordVisibility: string;
+  passwordCnfrmVisibility:string
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -65,5 +67,14 @@ export class ResetPasswordComponent {
       this.alertMessage = 'Please provide your password';
       this.alertType = 'danger';
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisibility =
+      this.passwordVisibility === 'password' ? 'text' : 'password';
+  }
+  toggleConfrmPasswordVisibility() {
+    this.passwordCnfrmVisibility =
+      this.passwordCnfrmVisibility === 'password' ? 'text' : 'password';
   }
 }

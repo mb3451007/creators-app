@@ -109,7 +109,7 @@
         <div>
           <label class="password">
             <input
-              type="{{ passwordVisibility }}"
+              type="{{ passwordCnfrmVisibility }}"
               name=""
               id="c-password"
               placeholder="Confim Password *"
@@ -117,7 +117,7 @@
               formControlName="cpassword"
             />
             <img
-              (click)="togglePasswordVisibility()"
+              (click)="toggleConfrmPasswordVisibility()"
               class="eyeimg cursor-pointer"
               src="assets/login-icon/eye-close-solid-svgrepo-com.svg"
               alt=""

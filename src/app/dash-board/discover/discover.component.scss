@@ -1,6 +1,9 @@
 @import "/src/app/core/common-style.scss";
 .profile-user {
-  padding-bottom: 1rem;
+  box-shadow: 0px 2px 12px -8px;
+  margin-bottom: 1rem;
+  padding: 25px 15px;
+  border-radius: 12px;
 }
 .main-discover {
   &__leftSide {
@@ -120,6 +123,7 @@
     min-height: 100px;
     padding: 2rem 0rem 0.5rem 1rem;
     margin-bottom: 1rem;
+    border-radius: 18px;
   }
   &__rightUserDetails {
     display: flex;
@@ -257,16 +261,20 @@
 
 .action-button {
   margin-right: 0.5rem;
+  margin-left: .5rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
   img {
     width: 20px;
   }
-
+  span {
+    margin-left: 0.3rem;
+  }
 }
-
-
-// .container {
-//   margin: 20px;
-// }
+.action-button:hover {
+  transform: scale(1.1);
+}
 
 .selected-files {
   margin-top: 20px;
@@ -292,11 +300,10 @@
   top: 0;
   right: 0;
   background: none;
-  img{
+  img {
     width: 12px;
   }
 }
-
 
 @media screen and (max-width: 768px) {
   .main-discover {

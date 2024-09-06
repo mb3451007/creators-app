@@ -46,14 +46,14 @@
                 src="assets/home-icon/videocamera-record-svgrepo-com.svg"
                 alt=""
               />
-              Create Room
+              <span>Create Room</span>
             </button>
             <button class="action-button" (click)="fileInput.click()">
               <img
                 src="assets/home-icon/gallery-round-svgrepo-com.svg"
                 alt=""
               />
-              Photo/Video
+              <span> Photo/Video</span>
             </button>
             <input
               type="file"
@@ -67,7 +67,7 @@
               class="btn-secondary"
               (click)="onSubmit()"
               type="submit"
-              [disabled]="!postForm.valid"
+              [disabled]="!postForm.valid || selectedFiles.length === 0"
             >
               Post
             </button>
@@ -207,6 +207,9 @@
           </div>
         </div>
       </div>
+
+     
+
     </div>
 
     <div class="main-home__rightSide col-lg-4 col-md-4 col-12">
@@ -217,6 +220,7 @@
             <div
               class="main-home__rightProfile col-12"
               *ngFor="let user of recommendadProfiles; let i = index"
+              [ngClass]="{'followed': user.isFollowing}"
             >
               <div class="col-6">
                 <div class="main-home__rightUserDetails">
@@ -230,16 +234,16 @@
                   </div>
                   <div class="main-home__userName">
                     <div class="user">{{ recommendadProfiles[i].name }}</div>
-                    <div>{{ recommendadProfiles[i].username }}</div>
+                    <div class="userId">
+                      {{ recommendadProfiles[i].username }}
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="main-home__rightSideFollow-btn col-6">
                 <div class="main-home__right-btn col-12">
-                  <button
-                    (click)="followUser(recommendadProfiles[i]._id, true)"
-                  >
+                  <button (click)="followUser(recommendadProfiles[i]._id, true, i)">
                     follow
                   </button>
                 </div>
