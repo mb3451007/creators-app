@@ -176,6 +176,14 @@
                   <div
                     class="w-100 d-flex flex-row align-items-center justify-content-between"
                   >
+                    <img
+                      [src]="getMediaUrl(comment.userProfile.profile)"
+                      alt=""
+                      style="width: 25px"
+                    />
+                    <div>
+                      {{ comment.userProfile.name }} --- user-profile &nbsp;
+                    </div>
                     <p class="m-0">{{ comment.comment }}</p>
                     <img
                       (click)="deleteComment(comment._id, post._id)"
@@ -207,9 +215,6 @@
           </div>
         </div>
       </div>
-
-     
-
     </div>
 
     <div class="main-home__rightSide col-lg-4 col-md-4 col-12">
@@ -220,7 +225,7 @@
             <div
               class="main-home__rightProfile col-12"
               *ngFor="let user of recommendadProfiles; let i = index"
-              [ngClass]="{'followed': user.isFollowing}"
+              [ngClass]="{ followed: user.isFollowing }"
             >
               <div class="col-6">
                 <div class="main-home__rightUserDetails">
@@ -243,7 +248,9 @@
 
               <div class="main-home__rightSideFollow-btn col-6">
                 <div class="main-home__right-btn col-12">
-                  <button (click)="followUser(recommendadProfiles[i]._id, true, i)">
+                  <button
+                    (click)="followUser(recommendadProfiles[i]._id, true, i)"
+                  >
                     follow
                   </button>
                 </div>

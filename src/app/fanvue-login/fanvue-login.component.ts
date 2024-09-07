@@ -21,6 +21,7 @@ export class FanvueLoginComponent implements OnInit {
   alertType: string;
   passwordVisibility: string = 'password';
   userId: any;
+  isloading: boolean = false;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -58,6 +59,7 @@ export class FanvueLoginComponent implements OnInit {
   }
 
   login() {
+    this.isloading = true;
     if (this.loginForm.valid) {
       this.authservice
         .loginNow(
@@ -66,12 +68,14 @@ export class FanvueLoginComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
+            this.isloading = false;
             console.log(response);
             this.authservice.setUserData(response);
 
             this.router.navigate(['/dashboard']);
           },
           error: (error) => {
+            this.isloading = false;
             this.alertType = 'danger';
             this.alertMessage = error.error.message;
             this.showAlert = true;
@@ -79,10 +83,14 @@ export class FanvueLoginComponent implements OnInit {
           },
         });
     } else {
+      this.isloading = false;
       this.alertType = 'danger';
       this.alertMessage = 'Please provide your credentials';
       this.showAlert = true;
     }
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2000);
   }
   get email() {
     return this.loginForm.get('email');

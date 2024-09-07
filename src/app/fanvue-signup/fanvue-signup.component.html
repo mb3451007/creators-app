@@ -151,7 +151,8 @@
           </div>
         </div>
 
-        <div><button>Sign Up</button></div>
+        <div *ngIf="!isloading"><button>Sign Up</button></div>
+        <div *ngIf="isloading"><app-loader></app-loader></div>
 
         <div class="newToFanvue">
           New to fanvue?

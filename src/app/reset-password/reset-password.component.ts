@@ -15,7 +15,8 @@ export class ResetPasswordComponent {
   alertType: string;
   token: string;
   passwordVisibility: string;
-  passwordCnfrmVisibility:string
+  passwordCnfrmVisibility: string;
+  isloading: boolean = false;
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -38,8 +39,10 @@ export class ResetPasswordComponent {
   );
 
   resetPasswordNow() {
+    this.isloading = true;
     if (this.resetPasswordForm.valid) {
       if (!this.token) {
+        this.isloading = false;
         this.showAlert = true;
         this.alertMessage = 'Please provide valid link';
         this.alertType = 'danger';
@@ -51,11 +54,13 @@ export class ResetPasswordComponent {
           )
           .subscribe({
             next: (response) => {
+              this.isloading = false;
               this.showAlert = true;
               this.alertMessage = 'Password has been changed';
               this.alertType = 'success';
             },
             error: (error) => {
+              this.isloading = false;
               this.showAlert = true;
               this.alertMessage = error.error.message;
               this.alertType = 'danger';
@@ -63,10 +68,14 @@ export class ResetPasswordComponent {
           });
       }
     } else {
+      this.isloading = false;
       this.showAlert = true;
       this.alertMessage = 'Please provide your password';
       this.alertType = 'danger';
     }
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2000);
   }
 
   togglePasswordVisibility() {

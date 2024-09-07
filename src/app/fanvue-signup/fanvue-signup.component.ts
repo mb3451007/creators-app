@@ -16,7 +16,8 @@ export class FanvueSignupComponent {
   alertMessage: string;
   alertType: string;
   passwordVisibility: string;
-  passwordCnfrmVisibility:string
+  passwordCnfrmVisibility: string;
+  isloading: boolean = false;
 
   signUpForm = new FormGroup(
     {
@@ -36,6 +37,7 @@ export class FanvueSignupComponent {
   );
 
   signUpNow() {
+    this.isloading = true;
     if (this.signUpForm.valid) {
       this.authservice
         .signUp(
@@ -49,12 +51,14 @@ export class FanvueSignupComponent {
         )
         .subscribe({
           next: (response) => {
+            this.isloading = false;
             this.showAlert = true;
             this.alertMessage = 'Registered succesfully! Please verify email';
             this.alertType = 'success';
             console.log(response);
           },
           error: (error) => {
+            this.isloading = false;
             this.showAlert = true;
             this.alertMessage = error.error.message;
             this.alertType = 'danger';
@@ -65,11 +69,11 @@ export class FanvueSignupComponent {
       this.showAlert = true;
       this.alertMessage = 'Please fill complete form';
       this.alertType = 'danger';
+      this.isloading = false;
     }
-    setTimeout(()=>{
-      this.showAlert=false;
-       
-    },2000)
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 2000);
   }
 
   get name() {

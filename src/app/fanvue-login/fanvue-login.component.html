@@ -69,7 +69,8 @@
             fieldName="Password"
           ></app-form-validation>
         </div>
-        <div><button>Sign In</button></div>
+        <div *ngIf="!isloading"><button>Sign In</button></div>
+        <div *ngIf="isloading"><app-loader></app-loader></div>
         <div>
           <a class="text-decoration-none forget" routerLink="/forget"
             >Forget password?</a

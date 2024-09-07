@@ -17,6 +17,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FacebookRedirectComponent } from './facebook-redirect/facebook-redirect.component';
 import { AuthinterceptorInterceptor } from './interceptors/authinterceptor.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AuthinterceptorInterceptor } from './interceptors/authinterceptor.inter
     ForgetPasswordComponent,
     ResetPasswordComponent,
     FacebookRedirectComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
