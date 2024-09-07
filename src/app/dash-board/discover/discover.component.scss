@@ -1,13 +1,13 @@
 @import "/src/app/core/common-style.scss";
 .profile-user {
-  box-shadow: 0px 2px 12px -8px;
-  margin-bottom: 1rem;
-  padding: 25px 15px;
-  border-radius: 12px;
+  // box-shadow: 0px 2px 12px -8px;
+  // margin-bottom: 1rem;
+  // padding: 25px 15px;
+  // border-radius: 12px;
 }
 .main-discover {
   &__leftSide {
-    box-shadow: 0px 2px 12px -8px;
+    // box-shadow: 0px 2px 12px -8px;
     //: $secondary-font;
     padding: 0px;
     border-radius: 20px;
@@ -37,8 +37,12 @@
     position: relative;
     min-height: 410px;
     // min-height: 200px;
-    padding-top: 1rem;
-    margin-bottom: 1rem;
+    // padding-top: 1rem;
+    // margin-bottom: 1rem;
+    box-shadow: -8px -6px 12px -7px;
+    margin-bottom: 2rem;
+    // padding: 25px 15px;
+    border-radius: 12px;
   }
   &__user-profile-name {
     position: absolute;
@@ -290,19 +294,42 @@
 
 .file-item img,
 .file-item video {
-  max-width: 100px;
-  max-height: 100px;
-  // display: flex;
+  width: 100px;
+  height: 100px;
+  margin: 4px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .file-item button {
+
+  display: none;
   position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+
   img {
     width: 12px;
+    filter: invert(23%) sepia(90%) saturate(6005%) hue-rotate(355deg)
+      brightness(103%) contrast(125%);
   }
+}
+
+
+.file-item:hover img,
+.file-item:hover video {
+  filter: blur(3px);
+}
+.file-item:hover  button {
+  display: block;
+  top: -36%;
+    right: 3%;
 }
 
 @media screen and (max-width: 768px) {

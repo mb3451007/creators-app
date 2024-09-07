@@ -21,6 +21,8 @@
               name="description"
               required
             />
+
+            
             <div class="selected-files">
               <div
                 *ngFor="let file of selectedFiles; let i = index"
@@ -142,12 +144,6 @@
               </div>
 
               <div>
-                <img
-                  src="assets/side-bar-icon/messages-svgrepo-com.svg"
-                  alt=""
-                />
-              </div>
-              <div>
                 <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="" />
               </div>
             </div>
@@ -169,32 +165,33 @@
             </div>
             <div
               *ngIf="commentsMap[post._id]"
-              class="d-flex flex-column align-items-center justify-content-center"
+              class=""
             >
-              <ul class="list-unstyled">
-                <li *ngFor="let comment of commentsMap[post._id]">
-                  <div
-                    class="w-100 d-flex flex-row align-items-center justify-content-between"
-                  >
-                    <img
-                      [src]="getMediaUrl(comment.userProfile.profile)"
-                      alt=""
-                      style="width: 25px"
-                    />
-                    <div>
-                      {{ comment.userProfile.name }} --- user-profile &nbsp;
+                <span class="main-home__commnetUnOrderList" *ngFor="let comment of commentsMap[post._id]">
+                  <div class="main-home__CommentArea comment-container">
+                    <div class="main-home__userProfileCommentsArea">
+                      <img
+                        [src]="getMediaUrl(comment.userProfile.profile)"
+                        alt=""
+                      />
+                      <div class="comment-content">
+                        <span class="username">{{ comment.userProfile.name }} </span>
+                        <p class="comment-text">{{ comment.comment }}</p>
                     </div>
-                    <p class="m-0">{{ comment.comment }}</p>
-                    <img
-                      (click)="deleteComment(comment._id, post._id)"
-                      width="20px"
-                      src="/assets/profile-icon/delete-svgrepo-com.svg"
-                    />
+                     
+                   
+                    </div>
+                    <div class="main-home__deleteComment delete-btn">
+                      <img
+                        (click)="deleteComment(comment._id, post._id)"
+                        width="20px"
+                        src="/assets/profile-icon/delete-svgrepo-com.svg"
+                      />
+                    </div>
                   </div>
-                </li>
-              </ul>
+                </span>
+            
             </div>
-
             <form
               (ngSubmit)="postComment(post._id)"
               [formGroup]="commentForm"

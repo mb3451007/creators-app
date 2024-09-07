@@ -8,7 +8,6 @@
 }
 .main-home {
   &__leftSide {
-   
     // //: $secondary-font;
     padding: 0px;
     padding-top: 1rem;
@@ -27,8 +26,9 @@
     display: flex;
     padding-right: 0.5rem;
     img {
-      width: 50px;
-      border-radius: 42px;
+      width: 40px;
+      border-radius: 50%;
+      height: 40px;
     }
   }
   &__userName {
@@ -45,6 +45,56 @@
       color: white;
     }
   }
+ 
+  &__CommentArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    background-color: #f9f9f9;
+
+  }
+  &__userProfileCommentsArea {
+    display: flex;
+    img{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+  .comment-content {
+    flex: 1;
+  }
+  
+  .username {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .comment-text {
+    margin: 5px 0;
+  }
+
+  &__deleteComment {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
+    opacity: 0.5 ;
+
+  }
+  &__deleteComment:hover{
+    opacity: 1;
+  }
+
+
   &__right {
     display: flex;
     justify-content: end;
@@ -118,7 +168,7 @@
       opacity: 0.5; /* Reduce opacity */
     }
   }
-  
+
   &__rightUserDetails {
     display: flex;
   }
@@ -261,20 +311,51 @@
 .file-item video {
   width: 100px;
   height: 100px;
+  border-radius: 10px;
   margin: 4px;
-  // display: flex;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .file-item button {
+
+  display: none;
   position: absolute;
-  top: -42px;
-  right: 0;
-  background: none;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+
   img {
     width: 12px;
-    filter: invert(23%) sepia(90%) saturate(6005%) hue-rotate(355deg) brightness(103%) contrast(125%);
+    filter: invert(23%) sepia(90%) saturate(6005%) hue-rotate(355deg)
+      brightness(103%) contrast(125%);
   }
 }
+
+
+.file-item:hover img,
+.file-item:hover video {
+  filter: blur(3px);
+}
+.file-item:hover  button {
+  display: block;
+  top: -36%;
+    right: 3%;
+}
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 768px) {
   .main-home {
