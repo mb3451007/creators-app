@@ -15,8 +15,8 @@ export class FanvueSignupComponent {
   showAlert: boolean;
   alertMessage: string;
   alertType: string;
-  passwordVisibility: string;
-  passwordCnfrmVisibility: string;
+  passwordVisibility:  string  = 'password';
+  passwordCnfrmVisibility: string = 'password';
   isloading: boolean = false;
 
   signUpForm = new FormGroup(

@@ -3,7 +3,7 @@
     <div class="main-login__login-container col-12">
       <div class="fanvue">fanvue <i></i></div>
       <div
-        class="main-login__login-google cursor-pointer"
+        class="main-login__login-google "
         (click)="loginWithGoogle()"
       >
         <span>
@@ -12,7 +12,7 @@
         </span>
       </div>
       <div
-        class="main-login__login-facebook cursor-pointer"
+        class="main-login__login-facebook "
         (click)="loginWithFacebook()"
       >
         <span>
@@ -20,15 +20,7 @@
           Continue with Facebook
         </span>
       </div>
-      <!-- <div class="main-login__login-X">
-        <span>
-          <img
-            src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
-            alt=""
-          />
-          Continue with X
-        </span>
-      </div> -->
+     
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="m-0">
           <input

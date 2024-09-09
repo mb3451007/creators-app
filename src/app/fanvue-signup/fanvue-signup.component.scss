@@ -51,6 +51,9 @@
         color: white;
         font-weight: 600;
       }
+      button:hover {
+        background: $backgroundHover;
+      }
     }
     .password {
       position: relative;
@@ -84,6 +87,26 @@
         width: 5px;
         background-color: $secondary-color;
       }
+    }
+  }
+  &__login-google{
+    span{
+      cursor: pointer;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    span:hover{
+      transform: scale(1.1); /* Make it slightly bigger */
+      opacity: 0.5; /* Reduce opacity */
+    }
+  }
+  &__login-facebook{
+    span{
+      cursor: pointer;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    span:hover{
+      transform: scale(1.1); /* Make it slightly bigger */
+      opacity: 0.5; /* Reduce opacity */
     }
   }
 }

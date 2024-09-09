@@ -5,7 +5,24 @@ $backgroung:linear-gradient(
     rgb(244, 138, 108) 0%,
     rgb(253, 29, 93) 100%
   );
+$backGround:linear-gradient(
+  91.93deg,
+  rgb(244, 138, 108) 0%,
+  rgba(253, 29, 93, 0.1) 100%
+);
+$backgroundHover:linear-gradient(
+  95.92deg,
+  rgb(253, 29, 93) 100%,
+  rgb(244, 138, 108) 0%
+);
+$backGroundColor:  linear-gradient(
+  95.92deg,
+  rgb(244, 138, 108) 0%,
+  rgb(253, 29, 93) 100%
+);
 $secondary-color: #f94f64;
 $border-color: #f94f64;
 $grey-img: invert(73%) sepia(12%) saturate(0%) hue-rotate(219deg)
 brightness(83%) contrast(95%);
+$grey-img-hover: invert(80%) sepia(40%) saturate(30%) hue-rotate(219deg)
+brightness(40%) contrast(60%);

@@ -51,11 +51,11 @@
   &__info-btn{
     display: flex;
     font-size: 24px;
-    //: Roboto, Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding-top: 2rem;
     padding-bottom: 3rem;
     padding-left: 1rem;
+    cursor: pointer;
     img{
   cursor: pointer;
 
@@ -84,9 +84,7 @@
 .accout-active{
     display: flex;
     align-items: baseline;
-    //: sans-serif;
     cursor: pointer;
-    // width: 330px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 0px;
@@ -102,11 +100,10 @@
         align-items: center;
         font-size: 16px;
         font-weight: 600;
-        // padding-top: 5px;
-        // padding-left: 8px;
+        
+        
         img{
             width: 20px;
-            // padding-top: 5px;
             margin-right: 7px;
         }
     }

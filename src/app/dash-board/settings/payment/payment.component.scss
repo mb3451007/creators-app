@@ -61,8 +61,7 @@
   }
   &__password-btn {
     padding: 0rem 1rem 1rem;
-    // display: flex;
-    // justify-content: center;
+    
     button{
       width: 100%;
     display: flex;
@@ -71,7 +70,6 @@
     -webkit-box-pack: center;
     justify-content: center;
     flex-shrink: 0;
-    //: Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 30px;
@@ -79,8 +77,15 @@
     user-select: none;
     border: none;
     padding: 4% 18%;
-    // margin-top: 1.3rem;
     color: rgb(255, 255, 255);
+    
+    background: linear-gradient(
+      91.93deg,
+      rgb(244, 138, 108) 0%,
+      rgba(253, 29, 93, 0.1) 100%
+    );
+  }
+  button:hover{
     background: linear-gradient(
       95.92deg,
       rgb(244, 138, 108) 0%,

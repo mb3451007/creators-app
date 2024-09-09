@@ -256,6 +256,12 @@
       #send-chat {
         img {
           filter: $grey-img;
+          cursor: pointer;
+        }
+      }
+      #send-chat {
+        img:hover {
+          filter: $grey-img-hover
         }
       }
     }

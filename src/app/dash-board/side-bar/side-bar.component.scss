@@ -1,10 +1,10 @@
-.active{
+.active {
   background: linear-gradient(
-        91.93deg,
-        rgba(244, 138, 108, 0.1) 0%,
-        rgba(253, 29, 93, 0.1) 100%
-      );
-      border-radius: 34px;
+    91.93deg,
+    rgba(244, 138, 108, 0.1) 0%,
+    rgba(253, 29, 93, 0.1) 100%
+  );
+  border-radius: 34px;
 }
 
 .main-sidebar {
@@ -23,11 +23,6 @@
     overflow: hidden;
     user-select: none;
     color: rgb(255, 255, 255);
-    background: linear-gradient(
-      95.92deg,
-      rgb(244, 138, 108) 0%,
-      rgb(253, 29, 93) 100%
-    );
     width: 32px;
     height: 32px;
     margin: 1.5rem 0rem 2rem 3rem;
@@ -49,9 +44,16 @@
       border: none;
       color: white;
     }
+    button:hover {
+      background: linear-gradient(
+        95.92deg,
+        rgb(253, 29, 93) 100%,
+        rgb(244, 138, 108) 0%
+      );
+    }
   }
   &__hr-line {
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     color: lightgray;
     border: 0;
     border-top: 1px solid;
@@ -148,8 +150,8 @@
     }
     button {
       color: black;
-    font-size: 19px;
-    font-weight: 400;
+      font-size: 19px;
+      font-weight: 400;
       background: #ffffff;
       box-shadow: 0px 0px 2px 0px;
       border: none;
@@ -166,13 +168,11 @@
       rgba(253, 29, 93, 0.1) 100%
     );
     color: #f94f64;
-    img{
-     
-      filter: invert(47%) sepia(30%) saturate(5536%) hue-rotate(324deg) brightness(99%) contrast(97%);
-      
+    img {
+      filter: invert(47%) sepia(30%) saturate(5536%) hue-rotate(324deg)
+        brightness(99%) contrast(97%);
     }
   }
-  
 }
 
 .sidebar a {
@@ -218,18 +218,17 @@
   margin: 20px;
 }
 
-@media screen and (max-width: '850px') {
+@media screen and (max-width: "850px") {
   ul li {
     padding: 0.5rem 0rem 0.5rem 0 !important;
   }
 }
 
-@media screen and (max-width: '768px') {
-
+@media screen and (max-width: "768px") {
   .main-sidebar {
     &__muiAvatar {
       display: flex;
-      margin: 1.5rem 0rem 2rem .5rem;
+      margin: 1.5rem 0rem 2rem 0.5rem;
     }
     &__side-nav-bar {
       font-size: 17px;
@@ -254,11 +253,11 @@
   }
 }
 // @media screen and (max-width: '849px') {
-  // .main-sidebar {
-    // &__muiAvatar {
-    //   display: none}
-    // &__side-nav-bar {
-    //   display: none;
-    // }
-  // }
+// .main-sidebar {
+// &__muiAvatar {
+//   display: none}
+// &__side-nav-bar {
+//   display: none;
+// }
+// }
 // }

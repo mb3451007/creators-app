@@ -142,108 +142,7 @@
             <span>Discover creators</span>
           </div>
         </div>
-        <!-- <div class="row">
-          <div class="col-12" *ngIf="selectedDiv === 4">
-            <div class="main-messages__user-profileByName col-12">
-              <div class="main-messages__user-profileById col-9">
-                <div class="main-messages__avatar-profile">
-                  <img src="assets/home-icon/avatarImg.png" alt="" />
-                </div>
-                <div>
-                  <div class="userById">user 4</div>
-                  <div class="user-no">@user_4</div>
-                </div>
-              </div>
-              <div class="menu-btn col-3">
-                <img
-                  src="/assets/menu-vertical-svgrepo-com.svg"
-                  alt=""
-                  style="width: 25px"
-                />
-              </div>
-            </div>
-
-            <div class="main-messages__profile-btn col-12">
-              <div
-                class="main-messages__chats col-6"
-                (click)="chatHide()"
-                [ngClass]="{ active: activeDiv === 1 }"
-                (click)="setActiveDiv(1)"
-              >
-                <div>Chat</div>
-              </div>
-              <div
-                class="main-messages__media col-6"
-                (click)="mediaHide()"
-                [ngClass]="{ active: activeDiv === 2 }"
-                (click)="setActiveDiv(2)"
-              >
-                <div>Media</div>
-              </div>
-            </div>
-            <div class="col-12" *ngIf="showHide">
-              <div class="scroll-view-chat col-12">
-                <div class="main-messages__chat-date col-12">04 Jul, 2024</div>
-
-                <div class="main-messages__chat-user col-12">
-                  <div class="main-messages__chat-profile">
-                    <img src="assets/home-icon/avatarImg.png" alt="" />
-                  </div>
-                  <div class="chat-box">
-                    <div id="one-msg">Hi. where are you?</div>
-                    <div id="two-msg">I have an urgent tast to do</div>
-                    <div class="chat-time">10:34</div>
-                  </div>
-                </div>
-                <div class="main-messages__chat-tips col-12">
-                  <div class="tips col-12">
-                    As a follower, you can message @user_4 only if you add a
-                    tip.
-                  </div>
-                  <div class="tips col-12">
-                    @user_4 is running a limited time offer ,
-                    <span>Check it out!</span>
-                  </div>
-                </div>
-              </div>
-              <div class="main-messages__chatWithUser col-12">
-                <div class="input-text">
-                  <img
-                    src="assets/messages.icon/smiling-face-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <input type="text" placeholder="type a message" />
-                </div>
-                <div class="messages-featured">
-                  <div>
-                    <img
-                      src="assets/messages.icon/upload-svgrepo-com.svg"
-                      alt=""
-                    />
-                    <img
-                      src="assets/messages.icon/dollar-minimalistic-svgrepo-com.svg"
-                      alt=""
-                    />
-                  </div>
-                  <div id="send-chat">
-                    <img
-                      src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12" *ngIf="!showHide">media</div>
-          </div>
-
-          <div class="col-12" *ngIf="selectedDiv === 1">
-            user 1
-            <button>user1</button>
-          </div>
-          <div class="col-12" *ngIf="selectedDiv === 2">user 2</div>
-          <div class="col-12" *ngIf="selectedDiv === 3">user 3</div>
-        </div> -->
+        
         <div class="row" *ngIf="currentMessageConversation">
           <div class="col-12">
             <div class="main-messages__user-profileByName col-12">
@@ -380,7 +279,7 @@
                     "
                     id="send-chat"
                   >
-                    <img
+                    <img class="main-messages__send-chat"
                       src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
                       alt=""
                     />

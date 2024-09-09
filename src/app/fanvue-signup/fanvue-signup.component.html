@@ -9,7 +9,7 @@
         </span>
       </div>
       <div
-        class="main-login__login-facebook cursor-pointer"
+        class="main-login__login-facebook"
         (click)="loginWithFacebook()"
       >
         <span>
@@ -17,15 +17,7 @@
           Continue with Facebook
         </span>
       </div>
-      <!-- <div class="main-login__login-X">
-        <span>
-          <img
-            src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
-            alt=""
-          />
-          Continue with X
-        </span>
-      </div> -->
+      
       <form [formGroup]="signUpForm" (ngSubmit)="signUpNow()">
         <div>
           <input
@@ -90,7 +82,7 @@
         <div>
           <label class="password">
             <input
-              type="{{ passwordVisibility }}"
+              [type]=" passwordVisibility "
               name=""
               id="password"
               placeholder="Password *"
@@ -101,7 +93,7 @@
               (click)="togglePasswordVisibility()"
               class="eyeimg cursor-pointer"
               src="assets/login-icon/eye-close-solid-svgrepo-com.svg"
-              alt=""
+              alt="Toggle Password Visibility"
             />
           </label>
         </div>

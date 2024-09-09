@@ -12,10 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ResetPasswordComponent {
   showAlert: boolean;
   alertMessage: string;
+  passwordReseted: boolean = false;
   alertType: string;
   token: string;
-  passwordVisibility: string;
-  passwordCnfrmVisibility: string;
+  passwordVisibility: string = 'password';;
+  passwordCnfrmVisibility: string = 'password';;
   isloading: boolean = false;
   constructor(
     private authservice: AuthService,
@@ -58,6 +59,8 @@ export class ResetPasswordComponent {
               this.showAlert = true;
               this.alertMessage = 'Password has been changed';
               this.alertType = 'success';
+              this.passwordReseted = true;
+              this.resetPasswordForm.reset();
             },
             error: (error) => {
               this.isloading = false;
