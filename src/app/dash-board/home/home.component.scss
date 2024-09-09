@@ -45,7 +45,7 @@
       color: white;
     }
   }
- 
+
   &__CommentArea {
     display: flex;
     align-items: center;
@@ -56,11 +56,10 @@
     margin-bottom: 10px;
     position: relative;
     background-color: #f9f9f9;
-
   }
   &__userProfileCommentsArea {
     display: flex;
-    img{
+    img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -70,12 +69,12 @@
   .comment-content {
     flex: 1;
   }
-  
+
   .username {
     font-weight: bold;
     display: block;
   }
-  
+
   .comment-text {
     margin: 5px 0;
   }
@@ -87,13 +86,11 @@
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 3px;
-    opacity: 0.5 ;
-
+    opacity: 0.5;
   }
-  &__deleteComment:hover{
+  &__deleteComment:hover {
     opacity: 1;
   }
-
 
   &__right {
     display: flex;
@@ -320,7 +317,6 @@
 }
 
 .file-item button {
-
   display: none;
   position: absolute;
   top: 10px;
@@ -339,25 +335,15 @@
   }
 }
 
-
 .file-item:hover img,
 .file-item:hover video {
   filter: blur(3px);
 }
-.file-item:hover  button {
+.file-item:hover button {
   display: block;
   top: -36%;
-    right: 3%;
+  right: 3%;
 }
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 768px) {
   .main-home {

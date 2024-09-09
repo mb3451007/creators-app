@@ -178,18 +178,30 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  followUser(userId: any, followIsTrue: boolean,index:number) {
+  followUser(userId: any, followIsTrue: boolean, index: number) {
     console.log(userId, followIsTrue);
     this.postService.followUser(userId, followIsTrue).subscribe({
       next: (response) => {
         console.log(response);
         this.recommendadProfiles[index].isFollowing = true;
-      
+
         this.getRecommendedUsers();
-    
       },
       error: (error) => {
         console.log(error.error.message);
+      },
+    });
+  }
+
+  deletePost(postId: string) {
+    this.postService.deletePost(postId).subscribe({
+      next: (response) => {
+        console.log(response);
+
+        this.posts = this.posts.filter((post) => post._id !== postId);
+      },
+      error: (error) => {
+        console.log(error);
       },
     });
   }

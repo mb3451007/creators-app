@@ -71,6 +71,10 @@ export class PostService {
     });
   }
 
+  deletePost(postId: string) {
+    return this.http.delete(`${env.baseURL}/posts/delete/${postId}`);
+  }
+
   getMediaUrl(media: string): string {
     return `${env.baseURL}${media}`;
   }
