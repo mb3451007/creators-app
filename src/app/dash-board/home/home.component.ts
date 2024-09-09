@@ -2,15 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  keyframes,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('removeAnimation', [
+      transition(':leave', [
+        animate(
+          '0.5s ease-in',
+          keyframes([
+            style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
+            style({ opacity: 0, transform: 'translateX(-100%)', offset: 1 }),
+          ])
+        ),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit {
+  isModalVisible: boolean = false;
+  isClosing: boolean = false;
   postDescription: string = '';
-  selectedFiles: any[] = [];
+  selectedFiles: Array<any> = [];
   isLiked: boolean = false;
   recommendadProfiles: any[] = [];
   commentsMap: { [key: string]: any[] } = {};
@@ -73,12 +95,20 @@ export class HomeComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+
+    // Reset file input value to allow selecting the same file again
+    event.target.value = null;
   }
 
   removeFile(index: number) {
     this.selectedFiles.splice(index, 1);
   }
 
+  
+
+
+  
+  
   onSubmit() {
     const formData = new FormData();
     formData.append('description', this.postDescription);
@@ -207,5 +237,32 @@ export class HomeComponent implements OnInit {
   }
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
+  }
+
+  // Function to open the modal
+  openProfileModal() {
+    this.isModalVisible = true;
+    this.isClosing = false;
+    document.body.classList.add('modal-open');
+  }
+
+  // Function to close the modal with animation
+  closeProfileModal(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.classList.contains('modal')) {
+      this.isClosing = true;
+      document.body.classList.remove('modal-open');
+
+      // Delay to allow the animation to play before removing modal
+      setTimeout(() => {
+        this.isModalVisible = false;
+        this.isClosing = false;
+      }, 300); // Match the duration of your CSS animation (0.3s)
+    }
+  }
+
+  // Prevent modal close when clicking on the image
+  preventClose(event: MouseEvent) {
+    event.stopPropagation();
   }
 }

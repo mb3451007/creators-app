@@ -26,6 +26,7 @@
               <div
                 *ngFor="let file of selectedFiles; let i = index"
                 class="file-item"
+                @removeAnimation
               >
                 <img
                   *ngIf="file.type.startsWith('image')"
@@ -65,10 +66,10 @@
               accept="image/*,video/*"
             />
             <button
-              class="btn-secondary"
+              [ngClass]="{ 'btn-secondary': selectedFiles.length }"
               (click)="onSubmit()"
               type="submit"
-              [disabled]="!postForm.valid || selectedFiles.length === 0"
+              [disabled]="selectedFiles.length === 0"
             >
               Post
             </button>
@@ -85,10 +86,37 @@
           >
             <div class="main-home__left-profile col-12">
               <div class="main-home__leftUserDetails col-6">
-                <div class="main-home__profileImg">
+                <div
+                  class="main-home__profileImg profileImge"
+                  (click)="openProfileModal()"
+                >
                   <img [src]="getMediaUrl(currentUser.profile)" alt="" />
                 </div>
-                <div class="main-home__userName">
+
+                <!-- Modal for displaying profile image -->
+                <div
+                  class="modal"
+                  *ngIf="isModalVisible"
+                  (click)="closeProfileModal($event)"
+                >
+                  <div
+                    class="modal-content"
+                    (click)="preventClose($event)"
+                    [class.close-animation]="isClosing"
+                  >
+                    <img
+                      [src]="getMediaUrl(currentUser.profile)"
+                      alt="User Profile Large"
+                    />
+                  </div>
+                </div>
+
+                <!-- img model -->
+
+                <div
+                  class="main-home__userName"
+                  [routerLink]="['/dashboard/profile']"
+                >
                   <div class="user">{{ post.user.name }}</div>
                   <div>{{ post.user.username }}</div>
                 </div>
@@ -97,7 +125,8 @@
                 <div>{{ post.createdAt | TimeAgo }}</div>
                 <div *ngIf="post.user._id === currentUser._id">
                   <img
-                    src="assets/side-bar-icon/more-horizontal-svgrepo-com.svg"
+                    width="20px"
+                    src="/assets/profile-icon/delete-svgrepo-com.svg"
                     alt=""
                     style="cursor: pointer"
                     (click)="deletePost(post._id)"
@@ -254,15 +283,12 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-12"> -->
           <div class="pagination col-12">
             <div class="left col-1">
               <img
-                src="assets/profile-icon/left-arrow-next-svgrepo-com.svg"
+                src="assets/home-icon/left-arrow-backup-2-svgrepo-com.svg"
                 alt=""
-                style="width: 10px"
               />
-              <!-- <a id="" href="#">&laquo;</a> -->
             </div>
 
             <div class="page-paginate col-10">
@@ -275,20 +301,14 @@
             </div>
             <div class="right col-1">
               <img
-                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                src="assets/home-icon/right-arrow-backup-2-svgrepo-com.svg"
                 alt=""
-                style="width: 19px"
               />
-
-              <!-- style="width: 10px;" -->
-              <!-- <a id="" href="#">&raquo;</a> -->
             </div>
           </div>
-          <!-- </div> -->
         </div>
       </div>
     </div>
-    <!-- </div> -->
   </div>
   <app-livestream
     [show]="show"

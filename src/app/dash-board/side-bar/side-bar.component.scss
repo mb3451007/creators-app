@@ -9,14 +9,12 @@
 
 .main-sidebar {
   &__muiAvatar {
-    // position: relative;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
     flex-shrink: 0;
-    //: Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 50%;
@@ -28,12 +26,10 @@
     margin: 1.5rem 0rem 2rem 3rem;
     button {
       margin: 0;
-      //: "Roboto", "Helvetica", "Arial", sans-serif;
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5;
       letter-spacing: 0.00938em;
-      //: var(--font-basier-circle);
       font-size: 12px;
       font-weight: bold;
       background: linear-gradient(
@@ -68,7 +64,6 @@
     ul li {
       padding: 0.5rem 0rem 0.5rem 10%;
       margin-bottom: 1.2rem;
-      //: sans-serif;
       cursor: pointer;
       img {
         width: 26px;
@@ -138,8 +133,6 @@
   }
   ul li {
     padding: 0.5rem 0rem 0.5rem 1rem;
-    // margin-bottom: 1.2rem;
-    //: sans-serif;
     cursor: pointer;
     img {
       width: 26px;
@@ -188,13 +181,7 @@
   background-color: #575757;
 }
 
-// .sidebar .closebtn {
-//   position: absolute;
-//   top: 0;
-//   right: 25px;
-//   font-size: 36px;
-//   margin-left: 50px;
-// }
+
 
 /* Styles for the overlay */
 .overlay {
