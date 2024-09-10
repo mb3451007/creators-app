@@ -229,9 +229,23 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+  // getMediaUrl(media) {
+  //   return this.postService.getMediaUrl(media);
+  // }
+  scrollImages(direction: string) {
+    const container = document.querySelector('.image-container');
+    if (container) {
+      const scrollAmount = container.clientWidth / 1; // Scroll half the width of the container
+      if (direction === 'next') {
+        container.scrollLeft += scrollAmount;
+      } else if (direction === 'prev') {
+        container.scrollLeft -= scrollAmount;
+      }
+    }
+  }
+  
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
   }
-
   
 }

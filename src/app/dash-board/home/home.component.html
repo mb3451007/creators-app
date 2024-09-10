@@ -125,13 +125,32 @@
             <div class="main-home__subscriber col-12">
               {{ post.description }}
             </div>
-            <div class="col-12" *ngFor="let media of post.media">
-              <img
-                [src]="getMediaUrl(media)"
-                alt="Post media"
-                style="width: 100%"
-              />
+          
+
+            <div class="postProfile col-12">
+              <button class="prev-btn" 
+              *ngIf="post.media.length > 1"
+              (click)="scrollImages('prev')">❮</button>
+              
+              <div class="image-container">
+                <div class="col-12 images-wrapper" *ngFor="let media of post.media">
+                  <img
+                    [src]="getMediaUrl(media)"
+                    alt="Postmedia"
+                    class="post-image"
+                  />
+                </div>
+              </div>
+            
+              <button class="next-btn" 
+              *ngIf="post.media.length > 1"
+              (click)="scrollImages('next')">❯</button>
             </div>
+            
+
+
+
+          
             <div class="main-home__review col-12">
               <div
                 *ngIf="!post.hasLiked"
@@ -291,6 +310,7 @@
                 src="assets/home-icon/right-arrow-backup-2-svgrepo-com.svg"
                 alt=""
               />
+              
             </div>
           </div>
         </div>

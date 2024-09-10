@@ -1,4 +1,69 @@
 @import "/src/app/core/common-style.scss";
+
+.postProfile {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  display: flex;
+}
+
+.image-container {
+  // position: relative;
+
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  margin: 0px 0px; /* Adds space for buttons */
+}
+
+.images-wrapper {
+  min-width: 150px; /* Adjust width based on your design */
+  margin-right: 10px;
+}
+
+.post-image {
+  width: 100%; /* Adjust size based on your design */
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+  height: 500px;
+}
+
+.prev-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color:transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  left: 2%;
+
+}
+
+
+
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color:transparent;
+ color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  right: 2%;
+ 
+}
+
+
+
+//  ///////////////////////////////////////
 .left {
   transition: transform 0.9s ease;
   cursor: pointer;
@@ -321,7 +386,7 @@
 .action-button:hover {
   transform: scale(1.1);
 }
- 
+
 .actionPostutton {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
@@ -335,15 +400,12 @@
   }
 }
 
-
 .selected-files {
   margin-top: 20px;
   display: flex;
   overflow: auto;
   scrollbar-width: none;
 }
-
-
 
 .file-item {
   margin-bottom: 10px;
@@ -360,7 +422,6 @@
 
   cursor: pointer;
 }
-
 
 .file-item button {
   display: none;
@@ -381,9 +442,6 @@
   }
 }
 
-
-
-
 .file-item:hover img,
 .file-item:hover video {
   filter: blur(3px);
@@ -393,7 +451,6 @@
   top: -36%;
   right: 3%;
 }
-
 
 @media screen and (max-width: 768px) {
   .main-home {
