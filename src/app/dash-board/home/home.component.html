@@ -26,14 +26,14 @@
               <div
                 *ngFor="let file of selectedFiles; let i = index"
                 class="file-item"
-                @removeAnimation
+                [@fadeOut]
               >
                 <img
                   *ngIf="file.type.startsWith('image')"
                   [src]="file.url"
                   alt="Selected Image"
                 />
-                <button (click)="removeFile(i)">
+                <button (click)="removeFile(i)" >
                   <img
                     src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
                     alt=""
@@ -42,6 +42,9 @@
               </div>
             </div>
           </div>
+
+
+
           <div class="create-post-actions">
             <button class="action-button" (click)="toggleLiveStreamModal()">
               <img
@@ -66,6 +69,7 @@
               accept="image/*,video/*"
             />
             <button
+            class="actionPostutton"
               [ngClass]="{ 'btn-secondary': selectedFiles.length }"
               (click)="onSubmit()"
               type="submit"
@@ -83,35 +87,18 @@
           <div
             class="left-side-users col-12"
             *ngFor="let post of posts; let i = index"
+            [@fadeOut]
           >
             <div class="main-home__left-profile col-12">
               <div class="main-home__leftUserDetails col-6">
                 <div
-                  class="main-home__profileImg profileImge"
-                  (click)="openProfileModal()"
+                  class="main-home__profileImg "
+                  [routerLink]="['/dashboard/profile']"
                 >
                   <img [src]="getMediaUrl(currentUser.profile)" alt="" />
                 </div>
 
-                <!-- Modal for displaying profile image -->
-                <div
-                  class="modal"
-                  *ngIf="isModalVisible"
-                  (click)="closeProfileModal($event)"
-                >
-                  <div
-                    class="modal-content"
-                    (click)="preventClose($event)"
-                    [class.close-animation]="isClosing"
-                  >
-                    <img
-                      [src]="getMediaUrl(currentUser.profile)"
-                      alt="User Profile Large"
-                    />
-                  </div>
-                </div>
-
-                <!-- img model -->
+               
 
                 <div
                   class="main-home__userName"

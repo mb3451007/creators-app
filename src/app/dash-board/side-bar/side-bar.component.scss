@@ -21,11 +21,13 @@
     overflow: hidden;
     user-select: none;
     color: rgb(255, 255, 255);
-    width: 32px;
-    height: 32px;
+    width: 50px;
+    height: 50px;
     margin: 1.5rem 0rem 2rem 3rem;
     button {
       margin: 0;
+      width: 50px;
+      height: 50px;
       font-weight: 400;
       font-size: 1rem;
       line-height: 1.5;
@@ -181,8 +183,6 @@
   background-color: #575757;
 }
 
-
-
 /* Styles for the overlay */
 .overlay {
   position: fixed;
@@ -239,12 +239,3 @@
     }
   }
 }
-// @media screen and (max-width: '849px') {
-// .main-sidebar {
-// &__muiAvatar {
-//   display: none}
-// &__side-nav-bar {
-//   display: none;
-// }
-// }
-// }
