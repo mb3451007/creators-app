@@ -33,7 +33,7 @@
                   [src]="file.url"
                   alt="Selected Image"
                 />
-                <button (click)="removeFile(i)" >
+                <button (click)="removeFile(i)">
                   <img
                     src="assets/login-icon/multiply-mathematical-sign-svgrepo-com.svg"
                     alt=""
@@ -42,8 +42,6 @@
               </div>
             </div>
           </div>
-
-
 
           <div class="create-post-actions">
             <button class="action-button" (click)="toggleLiveStreamModal()">
@@ -69,7 +67,7 @@
               accept="image/*,video/*"
             />
             <button
-            class="actionPostutton"
+              class="actionPostutton"
               [ngClass]="{ 'btn-secondary': selectedFiles.length }"
               (click)="onSubmit()"
               type="submit"
@@ -92,13 +90,11 @@
             <div class="main-home__left-profile col-12">
               <div class="main-home__leftUserDetails col-6">
                 <div
-                  class="main-home__profileImg "
+                  class="main-home__profileImg"
                   [routerLink]="['/dashboard/profile']"
                 >
                   <img [src]="getMediaUrl(currentUser.profile)" alt="" />
                 </div>
-
-               
 
                 <div
                   class="main-home__userName"
@@ -125,15 +121,21 @@
             <div class="main-home__subscriber col-12">
               {{ post.description }}
             </div>
-          
 
             <div class="postProfile col-12">
-              <button class="prev-btn" 
-              *ngIf="post.media.length > 1"
-              (click)="scrollImages('prev')">❮</button>
-              
+              <button
+                class="prev-btn"
+                *ngIf="post.media.length > 1"
+                (click)="scrollImages('prev')"
+              >
+                ❮
+              </button>
+
               <div class="image-container">
-                <div class="col-12 images-wrapper" *ngFor="let media of post.media">
+                <div
+                  class="col-12 images-wrapper"
+                  *ngFor="let media of post.media"
+                >
                   <img
                     [src]="getMediaUrl(media)"
                     alt="Postmedia"
@@ -141,16 +143,16 @@
                   />
                 </div>
               </div>
-            
-              <button class="next-btn" 
-              *ngIf="post.media.length > 1"
-              (click)="scrollImages('next')">❯</button>
+
+              <button
+                class="next-btn"
+                *ngIf="post.media.length > 1"
+                (click)="scrollImages('next')"
+              >
+                ❯
+              </button>
             </div>
-            
 
-
-
-          
             <div class="main-home__review col-12">
               <div
                 *ngIf="!post.hasLiked"
@@ -188,7 +190,9 @@
               <div class="main-home__likes col-6">
                 <p class="text-info fw-bold me-1 fs-5">{{ post.totalLikes }}</p>
                 <div class="main-home__like">likes</div>
-
+                <p class="text-info fw-bold me-1 fs-5">
+                  {{ post.totalComments }}
+                </p>
                 <div>comments</div>
               </div>
 
@@ -310,7 +314,6 @@
                 src="assets/home-icon/right-arrow-backup-2-svgrepo-com.svg"
                 alt=""
               />
-              
             </div>
           </div>
         </div>

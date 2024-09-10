@@ -13,18 +13,14 @@ import { trigger, transition, style, animate } from '@angular/animations';
       // Transition for element entering
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('500ms ease-in', style({ opacity: 1 }))
+        animate('500ms ease-in', style({ opacity: 1 })),
       ]),
       // Transition for element leaving (fade-out)
-      transition(':leave', [
-        animate('500ms ease-out', style({ opacity: 0 }))
-      ])
-    ])
-  ]
-
+      transition(':leave', [animate('500ms ease-out', style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit {
-  
   postDescription: string = '';
   selectedFiles: Array<any> = [];
   isLiked: boolean = false;
@@ -98,11 +94,6 @@ export class HomeComponent implements OnInit {
     this.selectedFiles.splice(index, 1);
   }
 
-  
-
-
-  
-  
   onSubmit() {
     const formData = new FormData();
     formData.append('description', this.postDescription);
@@ -157,6 +148,10 @@ export class HomeComponent implements OnInit {
           next: (response) => {
             console.log(response);
             this.getPostComments(postId);
+            const post = this.posts.find((post) => post._id === postId);
+            if (post) {
+              post.totalComments += 1;
+            }
             this.commentForm.reset();
           },
           error: (error) => {
@@ -183,6 +178,10 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.getPostComments(postId);
+        const post = this.posts.find((post) => post._id === postId);
+        if (post) {
+          post.totalComments -= 1;
+        }
       },
       error: (error) => {
         console.log(error.error.message);
@@ -243,9 +242,8 @@ export class HomeComponent implements OnInit {
       }
     }
   }
-  
+
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
   }
-  
 }
