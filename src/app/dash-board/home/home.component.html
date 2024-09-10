@@ -85,7 +85,7 @@
           <div
             class="left-side-users col-12"
             *ngFor="let post of posts; let i = index"
-            [@fadeOut]
+            
           >
             <div class="main-home__left-profile col-12">
               <div class="main-home__leftUserDetails col-6">
@@ -153,7 +153,7 @@
               </button>
             </div>
 
-            <div class="main-home__review col-12">
+            <div class="main-home__review col-12" [@fadeOut]>
               <div
                 *ngIf="!post.hasLiked"
                 class="cursor-pointer"
