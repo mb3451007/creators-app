@@ -21,7 +21,7 @@
 }
 
 .images-wrapper {
-  min-width: 150px; /* Adjust width based on your design */
+  width: 100%; /* Adjust width based on your design */
   margin-right: 10px;
 }
 
@@ -29,7 +29,6 @@
   width: 100%; /* Adjust size based on your design */
   height: auto;
   object-fit: cover;
-  width: 100%;
   height: 500px;
 }
 
@@ -113,7 +112,7 @@
   &__left-profile {
     display: flex;
     padding-bottom: 2rem;
-    padding: 0rem 2rem 1rem;
+    padding: 0rem 0rem 1rem 0rem;
   }
   &__leftUserDetails {
     display: flex;
