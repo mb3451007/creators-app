@@ -60,8 +60,8 @@ export class PostService {
   deleteComment(commentId: any): Observable<any> {
     return this.http.delete(`${env.baseURL}/comment/delete/${commentId}`);
   }
-  getUsers(): Observable<any> {
-    return this.http.get(`${env.baseURL}/user/`);
+  getUsers(page: number, limit: number): Observable<any> {
+    return this.http.get(`${env.baseURL}/user/?page=${page}&limit=${limit}`);
   }
 
   followUser(userIdToFollow: any, followIsTrue: boolean): Observable<any> {

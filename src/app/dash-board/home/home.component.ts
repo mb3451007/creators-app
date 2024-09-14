@@ -31,6 +31,9 @@ export class HomeComponent implements OnInit {
   comments: any[] = [];
   currentUser: any;
   show: boolean = false;
+  currentPage: number = 1;
+  limit: number = 3;
+  totalPages: number = 0;
 
   commentForm = new FormGroup({
     comment: new FormControl('', Validators.required),
@@ -60,7 +63,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authservice.getUserData;
 
-    this.getRecommendedUsers();
+    this.getRecommendedUsers(this.currentPage);
     this.fetchPosts();
   }
 
@@ -189,16 +192,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getRecommendedUsers() {
-    this.postService.getUsers().subscribe({
-      next: (response) => {
-        this.recommendadProfiles = response;
+  getRecommendedUsers(page: number) {
+    this.postService.getUsers(page, this.limit).subscribe({
+      next: (response: any) => {
+        this.recommendadProfiles = response.users;
+        this.totalPages = response.totalPages;
+        this.currentPage = response.currentPage;
         console.log(response);
       },
       error: (error) => {
         console.log(error.error.message);
       },
     });
+  }
+  nextPage() {
+    console.log('clicked');
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.getRecommendedUsers(this.currentPage);
+    }
+  }
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getRecommendedUsers(this.currentPage);
+    }
   }
 
   followUser(userId: any, followIsTrue: boolean, index: number) {
@@ -208,7 +226,7 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.recommendadProfiles[index].isFollowing = true;
 
-        this.getRecommendedUsers();
+        this.getRecommendedUsers(this.currentPage);
       },
       error: (error) => {
         console.log(error.error.message);

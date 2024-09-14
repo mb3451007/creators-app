@@ -44,13 +44,13 @@
           </div>
 
           <div class="create-post-actions">
-            <button class="action-button" (click)="toggleLiveStreamModal()">
+            <!-- <button class="action-button" (click)="toggleLiveStreamModal()">
               <img
                 src="assets/home-icon/videocamera-record-svgrepo-com.svg"
                 alt=""
               />
               <span>Create Room</span>
-            </button>
+            </button> -->
             <button class="action-button" (click)="fileInput.click()">
               <img
                 src="assets/home-icon/gallery-round-svgrepo-com.svg"
@@ -85,7 +85,6 @@
           <div
             class="left-side-users col-12"
             *ngFor="let post of posts; let i = index"
-            
           >
             <div class="main-home__left-profile col-12">
               <div class="main-home__leftUserDetails col-6">
@@ -153,7 +152,7 @@
               </button>
             </div>
 
-            <div class="main-home__review col-12" [@fadeOut]  >
+            <div class="main-home__review col-12" [@fadeOut]>
               <div
                 *ngIf="!post.hasLiked"
                 class="cursor-pointer"
@@ -294,27 +293,27 @@
             </div>
           </div>
           <div class="pagination col-12">
-            <div class="left col-1">
+            <button class="left col-1 bg-transparent" (click)="prevPage()">
               <img
                 src="assets/home-icon/left-arrow-backup-2-svgrepo-com.svg"
                 alt=""
               />
-            </div>
+            </button>
 
             <div class="page-paginate col-10">
-              <a href="#">.</a>
+              <!-- <a href="#">.</a>
               <a href="#" class="active">.</a>
               <a href="#">.</a>
               <a href="#">.</a>
               <a href="#">.</a>
-              <a href="#">.</a>
+              <a href="#">.</a> -->
             </div>
-            <div class="right col-1">
+            <button class="right col-1 bg-transparent" (click)="nextPage()">
               <img
                 src="assets/home-icon/right-arrow-backup-2-svgrepo-com.svg"
                 alt=""
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
