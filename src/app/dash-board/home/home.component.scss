@@ -36,31 +36,42 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color:transparent;
+  background-color: transparent;
   color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
   left: 2%;
-
 }
-
-
+.prev-btn:hover {
+  color: #f94f64;
+}
 
 .next-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color:transparent;
- color: white;
+  background-color: transparent;
+  color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
   right: 2%;
- 
+}
+.next-btn:hover {
+  color: #f94f64;
 }
 
-
+.postCommnet {
+  cursor: pointer;
+  width: 35px;
+  filter: invert(73%) sepia(12%) saturate(0%) hue-rotate(219deg)
+  brightness(83%) contrast(95%);
+}
+.postCommnet:hover {
+  filter: invert(24%) sepia(91%) saturate(5076%) hue-rotate(343deg)
+    brightness(100%) contrast(92%);
+}
 
 //  ///////////////////////////////////////
 .left {
@@ -122,9 +133,9 @@
     padding-right: 0.5rem;
     cursor: pointer;
     img {
-      width: 40px;
+      width: 50px;
       border-radius: 50%;
-      height: 40px;
+      height: 50px;
     }
   }
 
