@@ -44,7 +44,9 @@
   left: 2%;
 
 }
-
+.prev-btn:hover{
+  color:#f94f64 ;
+}
 
 
 .next-btn {
@@ -59,7 +61,9 @@
   right: 2%;
  
 }
-
+.next-btn:hover{
+  color:#f94f64 ;
+}
 
 
 //  ///////////////////////////////////////
@@ -122,9 +126,9 @@
     padding-right: 0.5rem;
     cursor: pointer;
     img {
-      width: 40px;
+      width: 50px;
       border-radius: 50%;
-      height: 40px;
+      height: 50px;
     }
   }
 

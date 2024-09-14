@@ -220,7 +220,7 @@ export class HomeComponent implements OnInit {
     this.postService.deletePost(postId).subscribe({
       next: (response) => {
         console.log(response);
-
+        
         this.posts = this.posts.filter((post) => post._id !== postId);
       },
       error: (error) => {

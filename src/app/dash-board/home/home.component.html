@@ -237,10 +237,10 @@
               class="d-flex flex-row align-items-center justify-content-center"
             >
               <input
-                class="w-75 px-2 rounded"
+                class="w-75 px-2 rounded cursor-pointer"
                 type="text"
                 formControlName="comment"
-              />
+                />
               <a (click)="postComment(post._id)"
                 ><img
                   class="cursor-pointer"
@@ -269,8 +269,6 @@
                     <img
                       [src]="getMediaUrl(recommendadProfiles[i].profile)"
                       alt=""
-                      style="width: 50px"
-                      class="rounded-circle"
                     />
                   </div>
                   <div class="main-home__userName">
