@@ -55,6 +55,15 @@
             style="display: none"
             accept="image/*,video/*"
           />
+          <button
+            class="actionPostutton"
+            [ngClass]="{ 'btn-secondary': selectedFiles.length }"
+            (click)="onSubmit()"
+            type="submit"
+            [disabled]="selectedFiles.length === 0"
+          >
+            Post
+          </button>
         </div>
       </div>
 

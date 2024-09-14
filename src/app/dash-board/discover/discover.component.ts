@@ -53,6 +53,9 @@ export class DiscoverComponent implements OnInit {
   removeFile(index: number) {
     this.selectedFiles.splice(index, 1);
   }
+  onSubmit() {
+    console.log('Clicked');
+  }
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
   }
