@@ -9,7 +9,6 @@
 }
 
 .image-container {
-  // position: relative;
 
   display: flex;
   overflow-x: auto;
@@ -73,7 +72,6 @@
     brightness(100%) contrast(92%);
 }
 
-//  ///////////////////////////////////////
 .left {
   transition: transform 0.9s ease;
   cursor: pointer;
@@ -83,8 +81,7 @@
   }
 }
 .left:hover {
-  transform: scale(1.5); /* Make it slightly bigger */
-  /* Reduce opacity */
+  transform: scale(1.5);
 }
 .right {
   transition: transform 0.9s ease;
