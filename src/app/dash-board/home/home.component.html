@@ -71,9 +71,10 @@
               [ngClass]="{ 'btn-secondary': selectedFiles.length }"
               (click)="onSubmit()"
               type="submit"
-              [disabled]="selectedFiles.length === 0"
+              [disabled]="selectedFiles.length === 0 || isLoading"
             >
-              Post
+            <span *ngIf="!isLoading">Post</span>
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
             </button>
           </div>
         </form>

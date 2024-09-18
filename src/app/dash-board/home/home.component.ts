@@ -21,6 +21,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class HomeComponent implements OnInit {
+  isLoading = false;  // Add this to your component
   postDescription: string = '';
   selectedFiles: Array<any> = [];
   isLiked: boolean = false;
@@ -98,23 +99,30 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;  // Show the loader when submitting
+  
     const formData = new FormData();
     formData.append('description', this.postDescription);
     for (let file of this.selectedFiles) {
       formData.append('files', file.file);
     }
     console.log(formData);
-
+  
     this.postService.uploadPost(formData).subscribe({
       next: (response) => {
         console.log('Post uploaded successfully', response);
         this.fetchPosts();
         this.postDescription = '';
         this.selectedFiles = [];
+        this.isLoading = false;  // Hide the loader after success
       },
       error: (error) => {
         console.error('Error uploading post', error);
+        this.isLoading = false;  // Hide the loader after error
       },
+      complete: () => {
+        this.isLoading = false;  // Ensure loader is hidden when request is complete
+      }
     });
   }
 
