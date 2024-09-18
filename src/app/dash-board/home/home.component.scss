@@ -242,6 +242,7 @@
   &__showComment {
     display: flex;
     justify-content: end;
+    cursor: pointer;
   }
 
   //right
@@ -459,6 +460,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .create-post-header{
+    display: block;
+  }
   .main-home {
     &__sides {
       display: flex;
