@@ -1,0 +1,73 @@
+<div class="main-discover__rightSide col-lg-9 col-md-9 col-12">
+  <div class="row">
+    <div class="col-12" *ngIf="recommendadProfiles.length > 0; else elseBlock">
+      <!-- <div class="main-discover__suggestCreator col-12">Suggested Creator</div> -->
+      <div class="col-12">
+        <div
+          class="main-discover__rightProfile col-12"
+          *ngFor="let user of recommendadProfiles; let i = index"
+          [ngClass]="{ followed: user.isFollowing }"
+        >
+          <div class="col-6">
+            <div class="main-discover__rightUserDetails">
+              <div class="main-discover__profileImg">
+                <img
+                  [src]="getMediaUrl(recommendadProfiles[i].profile)"
+                  alt=""
+                />
+              </div>
+              <div class="main-discover__userName">
+                <div class="user">{{ recommendadProfiles[i].name }}</div>
+                <div class="userId">
+                  {{ recommendadProfiles[i].username }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-discover__rightSideFollow-btn col-6">
+            <div class="main-discover__right-btn col-12">
+              <button
+                (click)="followUser(recommendadProfiles[i]._id, false, i)"
+              >
+                Unfollow
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-12">
+        <div class="pagination col-12">
+          <button class="left col-1 bg-transparent">
+            <img
+              src="assets/profile-icon/left-arrow-next-svgrepo-com.svg"
+              alt=""
+              style="width: 10px"
+            />
+          </button>
+
+          <button class="right col-1 bg-transparent">
+            <img
+              src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+              alt=""
+              style="width: 19px"
+            />
+          </button>
+        </div>
+      </div> -->
+    </div>
+    <ng-template #elseBlock>
+      <div class="row" *ngIf="!isloading">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+          <p class="fw-bold fs-5">You are following no one</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <span *ngIf="isloading" class="spinner-border spinner-border-lg"></span>
+    </div>
+  </div>
+</div>

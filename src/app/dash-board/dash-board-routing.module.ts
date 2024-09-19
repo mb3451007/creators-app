@@ -6,6 +6,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { SuggestedCreatorComponent } from './suggested-creator/suggested-creator.component';
 import { DashBoardComponent } from './dash-board.component';
 import { authGuard } from '../guards/auth.guard';
+import { FollowingComponent } from './following/following.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
           ),
       },
       { path: 'messages', component: MessagesComponent },
+
       {
         path: 'setting',
         loadChildren: () =>
@@ -37,6 +39,7 @@ const routes: Routes = [
       },
       { path: 'discover', component: DiscoverComponent },
       { path: 'suggested', component: SuggestedCreatorComponent },
+      { path: 'following', component: FollowingComponent },
     ],
   },
 ];

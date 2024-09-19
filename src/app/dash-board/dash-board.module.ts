@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TimeAgoPipe } from '../pipes/timeago.pipe';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { ModalComponent } from '../modal/modal.component';
+import { FollowingComponent } from './following/following.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ModalComponent } from '../modal/modal.component';
     TimeAgoPipe,
     LivestreamComponent,
     ModalComponent,
+    FollowingComponent,
   ],
   imports: [
     CommonModule,

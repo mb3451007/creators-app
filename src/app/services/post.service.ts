@@ -63,6 +63,11 @@ export class PostService {
   getUsers(page: number, limit: number): Observable<any> {
     return this.http.get(`${env.baseURL}/user/?page=${page}&limit=${limit}`);
   }
+  getFollowingUsers(page: number, limit: number): Observable<any> {
+    return this.http.get(
+      `${env.baseURL}/user/following/?page=${page}&limit=${limit}`
+    );
+  }
 
   followUser(userIdToFollow: any, followIsTrue: boolean): Observable<any> {
     return this.http.patch(`${env.baseURL}/follow/`, {

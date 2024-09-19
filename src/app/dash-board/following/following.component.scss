@@ -1,0 +1,335 @@
+@import "/src/app/core/common-style.scss";
+
+.main-discover {
+  &__leftSide {
+    // box-shadow: 0px 2px 12px -8px;
+    //: $secondary-font;
+    padding: 0px;
+    border-radius: 20px;
+    margin-top: 4rem;
+  }
+  &__srch-dicsover {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    .discover {
+      padding-right: 1rem;
+      cursor: pointer;
+    }
+    .division {
+      color: #9e9e9e;
+    }
+    .srch {
+      padding-left: 1rem;
+      cursor: pointer;
+    }
+  }
+  &__user-profile {
+    background-image: url("/assets/home-icon/islamabad.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 410px;
+    // min-height: 200px;
+    // padding-top: 1rem;
+    // margin-bottom: 1rem;
+    box-shadow: -8px -6px 12px -7px;
+    margin-bottom: 2rem;
+    // padding: 25px 15px;
+    border-radius: 12px;
+  }
+  &__user-profile-name {
+    position: absolute;
+    top: 334px;
+    // padding-top: 10rem;
+    display: flex;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  &__user-profile-menu {
+    padding-left: 3rem;
+    padding-top: 11px;
+    img {
+      width: 25px;
+      filter: invert(100%) sepia(64%) saturate(0%) hue-rotate(203deg)
+        brightness(112%) contrast(101%);
+      padding-bottom: 0.5rem;
+    }
+  }
+  &__about-user-profile {
+    display: flex;
+    .about {
+      display: flex;
+      align-items: self-end;
+    }
+    img {
+      width: 25px;
+      filter: invert(100%) sepia(64%) saturate(0%) hue-rotate(203deg)
+        brightness(112%) contrast(101%);
+      padding-right: 0.3rem;
+    }
+    span {
+      color: white;
+      padding-right: 0.5rem;
+    }
+  }
+
+  &__user-profileImg {
+    img {
+      width: 70px;
+      border-radius: 60px;
+    }
+  }
+  &__prifle-content {
+    display: flex;
+  }
+  &__userName {
+    //: $secondary-font;
+    color: white;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    .user {
+      font-weight: bold;
+      display: flex;
+      padding-bottom: 0.3rem;
+      color: white;
+    }
+  }
+  //right
+
+  &__rightSide {
+    //: $secondary-font;
+    padding: 1rem 0rem 0rem 1rem;
+  }
+  &__profileImg {
+    img {
+      width: 70px;
+      border-radius: 50px;
+    }
+  }
+
+  &__suggestCreator {
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 2rem;
+  }
+  &__rightProfile {
+    background-image: url("/assets/home-icon/islamabad.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    min-height: 100px;
+    padding: 2rem 0rem 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 18px;
+  }
+  &__rightUserDetails {
+    display: flex;
+  }
+  &__rightSideFollow-btn {
+    position: relative;
+  }
+  &__right-follow-btn {
+    display: flex;
+    justify-content: end;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+    button {
+      //: $secondary-font;
+      border-radius: 30px;
+      overflow: hidden;
+      border: none;
+      padding: 4% 18%;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
+    }
+  }
+  &__right-btn {
+    button {
+      position: absolute;
+      right: 5%;
+      //:$secondary-font;
+      border-radius: 30px;
+      overflow: hidden;
+      border: none;
+      padding: 4% 18%;
+      color: rgb(255, 255, 255);
+      background: linear-gradient(
+        95.92deg,
+        rgb(244, 138, 108) 0%,
+        rgb(253, 29, 93) 100%
+      );
+    }
+  }
+}
+.active {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  //:$secondary-font;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.page-paginate {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+// image upload apart
+
+.create-post {
+  background-color: #f1f1f1;
+  height: 50px;
+  border-bottom: 1px solid #dfdede;
+  border-radius: 11px 11px 0px 0px;
+  color: black;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1rem;
+}
+.create-post-container {
+  // width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  // padding: 10px;
+  background-color: #fff;
+}
+
+.create-post-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dfdede;
+  margin-left: 11px;
+  margin-right: 11px;
+  padding: 8px 0px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  // border: 1px solid #ddd;
+  // border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  // background-color: #f0f2f5;
+}
+
+.create-post-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 5px;
+}
+
+.action-button {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+  img {
+    width: 20px;
+  }
+  span {
+    margin-left: 0.3rem;
+  }
+}
+.action-button:hover {
+  transform: scale(1.1);
+}
+
+.selected-files {
+  margin-top: 20px;
+  display: flex;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.file-item {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.file-item img,
+.file-item video {
+  width: 100px;
+  height: 100px;
+  margin: 4px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.file-item button {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  img {
+    width: 12px;
+    filter: invert(23%) sepia(90%) saturate(6005%) hue-rotate(355deg)
+      brightness(103%) contrast(125%);
+  }
+}
+
+.file-item:hover img,
+.file-item:hover video {
+  filter: blur(3px);
+}
+.file-item:hover button {
+  display: block;
+  top: -36%;
+  right: 3%;
+}
+
+@media screen and (max-width: 768px) {
+  .main-discover {
+    &__sides {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
