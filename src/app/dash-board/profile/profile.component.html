@@ -6,17 +6,7 @@
         <div class="main-profile__fan-dot"></div>
       </div>
       <div class="main-profile__fan-logo row">
-        <button
-          *ngIf="userData.profile === '/uploads/default_profile_picture.png'"
-          class="toggle-btn"
-        >
-          NC
-        </button>
-        <img
-          *ngIf="userData.profile !== '/uploads/default_profile_picture.png'"
-          class="toggle-btn"
-          [src]="getMediaUrl(userData.profile)"
-        />
+        <img class="profile_image" [src]="getMediaUrl(userData.profile)" />
       </div>
       <div class="row">
         <div class="main-profile__fan-logo-title col-12">

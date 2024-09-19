@@ -104,6 +104,11 @@
   margin: 10px;
   transition: 0.3s;
 }
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 75%;
+}
 
 .toggle-btn:hover {
   background-color: #444;

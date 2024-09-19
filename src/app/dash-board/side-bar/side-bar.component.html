@@ -1,16 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="main-sidebar__muiAvatar col-12">
-      <button
+      <!-- <button
         *ngIf="currentUser.profile === '/uploads/default_profile_picture.png'"
         class="toggle-btn"
         (click)="toggleSidebar()"
       >
         NC
-      </button>
+      </button> -->
       <img
-        *ngIf="currentUser.profile !== '/uploads/default_profile_picture.png'"
-        class="toggle-btn"
+        class="profile-image"
         (click)="toggleSidebar()"
         [src]="getMediaUrl(currentUser.profile)"
       />
