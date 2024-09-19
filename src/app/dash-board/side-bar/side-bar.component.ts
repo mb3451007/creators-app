@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,7 +10,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SideBarComponent {
   isSidebarOpen = false;
-  constructor(private authservice: AuthService, private router: Router) {}
+  currentUser: any;
+  constructor(
+    private authservice: AuthService,
+    private router: Router,
+    private postService: PostService
+  ) {
+    this.authservice.user$.subscribe((userData) => {
+      this.currentUser = userData;
+    });
+  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -17,6 +27,9 @@ export class SideBarComponent {
 
   closeSidebar() {
     this.isSidebarOpen = false;
+  }
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 
   logout() {

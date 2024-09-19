@@ -1,7 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="main-sidebar__muiAvatar col-12">
-      <button class="toggle-btn" (click)="toggleSidebar()">NC</button>
+      <button
+        *ngIf="currentUser.profile === '/uploads/default_profile_picture.png'"
+        class="toggle-btn"
+        (click)="toggleSidebar()"
+      >
+        NC
+      </button>
+      <img
+        *ngIf="currentUser.profile !== '/uploads/default_profile_picture.png'"
+        class="toggle-btn"
+        (click)="toggleSidebar()"
+        [src]="getMediaUrl(currentUser.profile)"
+      />
       <div class="overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
       <div class="sidebar" [class.open]="isSidebarOpen">
         <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeSidebar()">&times;</a> -->
@@ -97,7 +109,7 @@
             />
             <span>Suggest a feature</span>
           </li>
-       
+
           <hr class="main-sidebar__hr-line" />
           <li
             [routerLink]="'/login'"

@@ -73,8 +73,11 @@
               type="submit"
               [disabled]="selectedFiles.length === 0 || isLoading"
             >
-            <span *ngIf="!isLoading">Post</span>
-            <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+              <span *ngIf="!isLoading">Post</span>
+              <span
+                *ngIf="isLoading"
+                class="spinner-border spinner-border-sm"
+              ></span>
             </button>
           </div>
         </form>
@@ -112,9 +115,18 @@
                     src="/assets/profile-icon/delete-svgrepo-com.svg"
                     alt=""
                     style="cursor: pointer"
-                    (click)="deletePost(post._id)"
+                    (click)="toggleDeleteModal(post._id)"
                   />
                 </div>
+                <!-- <div *ngIf="post.user._id === currentUser._id">
+                  <img
+                    width="20px"
+                    src="/assets/profile-icon/delete-svgrepo-com.svg"
+                    alt=""
+                    style="cursor: pointer"
+                    (click)="deletePost(post._id)"
+                  />
+                </div> -->
               </div>
             </div>
 
@@ -237,7 +249,7 @@
               class="d-flex flex-row align-items-center justify-content-center"
             >
               <input
-                class="w-75 px-2 rounded "
+                class="w-75 px-2 rounded"
                 type="text"
                 formControlName="comment"
               />
@@ -321,4 +333,11 @@
     [show]="show"
     (close)="toggleLiveStreamModal()"
   ></app-livestream>
+
+  <app-modal
+    [show]="showDelete"
+    (close)="toggleDeleteModal('')"
+    (deleteItem)="deletePost()"
+  >
+  </app-modal>
 </div>

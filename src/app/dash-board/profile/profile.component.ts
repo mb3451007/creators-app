@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent {
   userData: any;
-  constructor(private authservice: AuthService) {
+  constructor(
+    private authservice: AuthService,
+    private postService: PostService
+  ) {
     this.authservice.user$.subscribe((res) => (this.userData = res));
   }
 
@@ -26,5 +30,8 @@ export class ProfileComponent {
 
   purchaseHide() {
     this.showHide = false;
+  }
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 }
