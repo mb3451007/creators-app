@@ -96,6 +96,15 @@
                   "
                   alt=""
                 />
+                <p
+                  *ngIf="
+                    conversation.members[
+                      getOtherMemberIndexInConversations(conversation)
+                    ].isActive
+                  "
+                >
+                  Active
+                </p>
               </div>
               <div class="col-9">
                 <div class="main-messages__user-time">
@@ -142,7 +151,7 @@
             <span>Discover creators</span>
           </div>
         </div>
-        
+
         <div class="row" *ngIf="currentMessageConversation">
           <div class="col-12">
             <div class="main-messages__user-profileByName col-12">
@@ -195,7 +204,7 @@
               </div>
             </div>
             <div class="col-12" *ngIf="showHide">
-              <div class="scroll-view-chat col-12">
+              <div class="scroll-view-chat col-12" (scroll)="onScroll($event)">
                 <!-- <div class="main-messages__chat-date col-12">04 Jul, 2024</div> -->
 
                 <div class="main-messages__chat-user col-12">
@@ -233,8 +242,7 @@
                 </div>
                 <div class="main-messages__chat-tips col-12">
                   <div class="tips col-12">
-                    As a follower, you can message user_4 only if you add a
-                    tip.
+                    As a follower, you can message user_4 only if you add a tip.
                   </div>
                   <div class="tips col-12">
                     user_4 is running a limited time offer ,
@@ -279,7 +287,8 @@
                     "
                     id="send-chat"
                   >
-                    <img class="main-messages__send-chat"
+                    <img
+                      class="main-messages__send-chat"
                       src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
                       alt=""
                     />

@@ -32,6 +32,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   receiverID: number;
   currentUser: User | null = null;
   currentUserId: string | null = null;
+  activeUsers: any[] = [];
+  isLoading: boolean = false;
+  currentPage: number = 1;
+  limit: number = 4;
 
   messageForm = new FormGroup({
     message: new FormControl('', Validators.required),
@@ -61,11 +65,19 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.handleIncomingMessages.bind(this)
       )
     );
+    this.subscription.add(
+      this.socketService.on('active-users', (users) => {
+        this.activeUsers = users;
+        console.log('Active users:', this.activeUsers);
+        this.updateMemberStatus();
+      })
+    );
   }
   fetchConversations() {
     this.conversationService.getAllConversations().subscribe({
       next: (response: Conversation[]) => {
         this.conversations = response;
+
         if (this.conversations.length > 0) {
           this.fetchMessages(this.conversations[0]._id);
         }
@@ -75,11 +87,29 @@ export class MessagesComponent implements OnInit, OnDestroy {
       },
     });
   }
+  updateMemberStatus() {
+    this.conversations.forEach((conversation) => {
+      conversation.members.forEach((member) => {
+        // Check if the member is in the activeUsers array
+        member.isActive = this.activeUsers.some(
+          (activeUser) => activeUser._id === member._id
+        );
+      });
+    });
+    console.log('Updated Conversations:', this.conversations);
+  }
 
-  fetchMessages(conversationId) {
-    this.messageService.getAllMessages(conversationId).subscribe({
+  fetchMessages(conversationId: string, page: number = 1) {
+    const limit = 4;
+
+    this.messageService.getAllMessages(conversationId, limit, page).subscribe({
       next: (response: Message[]) => {
-        this.messages = response;
+        if (page === 1) {
+          this.messages = response;
+        } else {
+          this.messages = [...response, ...this.messages];
+        }
+
         this.currentMessageConversation = this.conversations.find(
           (conversation) => conversation._id === conversationId
         );
@@ -149,6 +179,39 @@ export class MessagesComponent implements OnInit, OnDestroy {
         });
     }
   }
+  onScroll(event: any): void {
+    const scrollTop = event.target.scrollTop;
+    if (scrollTop === 0 && !this.isLoading) {
+      this.loadMoreMessages();
+    }
+  }
+  loadMoreMessages(): void {
+    this.isLoading = true;
+    this.currentPage++; // Increment the page number to load older messages
+
+    this.messageService
+      .getAllMessages(
+        this.currentMessageConversation._id,
+        this.limit,
+        this.currentPage
+      )
+      .subscribe({
+        next: (response: Message[]) => {
+          if (response.length > 0) {
+            this.messages = [...response, ...this.messages]; // Prepend older messages
+          } else {
+            // No more messages to load
+            this.currentPage--; // Go back to the previous page if there are no more messages
+          }
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.log(error.error.message);
+          this.isLoading = false;
+        },
+      });
+  }
+
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
   }

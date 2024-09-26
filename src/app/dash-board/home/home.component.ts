@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ConversationService } from 'src/app/services/conversation.service';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private conversationService: ConversationService
   ) {}
 
   fetchPosts() {
@@ -239,7 +241,14 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.recommendadProfiles[index].isFollowing = true;
-
+        this.conversationService.createOrAccessConversation(userId).subscribe({
+          next: (response) => {
+            console.log('conversation created');
+          },
+          error: (error) => {
+            console.log('error: ', error);
+          },
+        });
         this.getRecommendedUsers(this.currentPage);
       },
       error: (error) => {

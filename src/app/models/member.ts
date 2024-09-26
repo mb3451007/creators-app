@@ -3,4 +3,5 @@ export class Member {
   username: string = '';
   name: string = '';
   profile: string = '';
+  isActive: boolean = false;
 }
