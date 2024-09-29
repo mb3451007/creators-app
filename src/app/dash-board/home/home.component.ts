@@ -61,9 +61,7 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-  toggleLiveStreamModal() {
-    this.show = !this.show;
-  }
+
   toggleDeleteModal(postId: string) {
     this.showDelete = !this.showDelete;
     this.postDeletId = postId;

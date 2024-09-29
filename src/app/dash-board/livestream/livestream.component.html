@@ -1,83 +1,48 @@
-<div
-  class="modal fade"
-  id="staticBackdrop"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
-  [ngClass]="{ show: true, hide: false }"
-  [ngStyle]="{ display: show ? 'block' : 'none' }"
->
-  <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-    <div class="modal-content">
-      <div class="modal-header py-0">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Live Stream</h1>
-        <button
-          type="button"
-          class="btn-close"
-          (click)="closeModal()"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body d-flex flex-row">
-        <div
-          class="w-75 d-flex flex-row align-items-center bg-warning justify-content-center"
-        >
-          <video
-            *ngIf="userData.role === 'creator'"
-            id="localVideo"
-            autoplay
-            muted
-            class="w-full"
-          ></video>
-          <video
-            *ngIf="userData.role === 'subscriber' && selectedStream"
-            id="remoteVideo"
-            autoplay
-            class="w-full"
-          ></video>
-        </div>
-        <div class="w-25 d-flex flex-column align-items-center bg-warning">
-          <h3 *ngIf="userData.role === 'subscriber'">Available Streams</h3>
-          <ul *ngIf="userData.role === 'subscriber' && !selectedStream">
-            <li
-              *ngFor="let streamId of availableStreams"
-              (click)="joinStream(streamId)"
-              style="
-                cursor: pointer;
-                background-color: lightblue;
-                margin: 5px;
-                padding: 10px;
-              "
-            >
-              Stream ID: {{ streamId }}
-            </li>
-          </ul>
-          <h3 *ngIf="selectedStream">Live Chat</h3>
-          <div class="chat-box" *ngIf="selectedStream">
-            <div *ngFor="let message of messages">
-              <div
-                [ngStyle]="{
-                  'background-color':
-                    message.sender === userData._id ? 'red' : 'aquamarine'
-                }"
-              >
-                {{ message.message }}
-              </div>
-              <div class="chat-time">
-                {{ message.createdAt | TimeAgo }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer" *ngIf="userData.role === 'creator'">
-          <button type="button" class="btn btn-primary" (click)="startStream()">
-            Start Video Call
-          </button>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-6 bg-dark d-flex flex-column align-items-center">
+      <p class="text-white">Local Stream</p>
+      <video
+        #localVideo
+        width="300"
+        height="200"
+        autoplay
+        class="bg-warning"
+      ></video>
+    </div>
+    <div class="col-6 bg-warning d-flex flex-column align-items-center">
+      <p>Remote Stream</p>
+      <video
+        #remoteVideo
+        width="300"
+        height="200"
+        autoplay
+        class="bg-dark"
+      ></video>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-12 d-flex flex-row align-items-center justify-content-center py-5"
+    >
+      <button
+        class="bg-success mx-1 text-light"
+        *ngIf="!streamActive && userData.role === 'creator'"
+        (click)="startStream()"
+      >
+        Start Stream
+      </button>
+      <button
+        class="bg-danger mx-1 text-light"
+        *ngIf="streamActive"
+        (click)="stopStream()"
+      >
+        Stop Stream
+      </button>
+      <button class="bg-warning mx-1 text-light">Join Stream</button>
+      <ul *ngFor="let stream of availableStreams">
+        <li>{{ stream.userId }}</li>
+      </ul>
     </div>
   </div>
 </div>

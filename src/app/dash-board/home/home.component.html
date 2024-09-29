@@ -44,13 +44,16 @@
           </div>
 
           <div class="create-post-actions">
-            <!-- <button class="action-button" (click)="toggleLiveStreamModal()">
+            <button
+              class="action-button"
+              [routerLink]="['/dashboard/livestream']"
+            >
               <img
                 src="assets/home-icon/videocamera-record-svgrepo-com.svg"
                 alt=""
               />
               <span>Create Room</span>
-            </button> -->
+            </button>
             <button class="action-button" (click)="fileInput.click()">
               <img
                 src="assets/home-icon/gallery-round-svgrepo-com.svg"
@@ -329,10 +332,6 @@
       </div>
     </div>
   </div>
-  <app-livestream
-    [show]="show"
-    (close)="toggleLiveStreamModal()"
-  ></app-livestream>
 
   <app-modal
     [show]="showDelete"
