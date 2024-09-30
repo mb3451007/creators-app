@@ -11,7 +11,7 @@ import { ConversationService } from 'src/app/services/conversation.service';
   styleUrls: ['./home.component.scss'],
   animations: [
     trigger('fadeOut', [
-      // Transition for element entering
+      // Transition for element enterin
       transition(':enter', [
         style({ opacity: 0 }),
         animate('500ms ease-in', style({ opacity: 1 })),

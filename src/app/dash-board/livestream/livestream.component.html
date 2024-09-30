@@ -39,9 +39,25 @@
       >
         Stop Stream
       </button>
-      <button class="bg-warning mx-1 text-light">Join Stream</button>
-      <ul *ngFor="let stream of availableStreams">
-        <li>{{ stream.userId }}</li>
+      <button
+        class="bg-warning mx-1 text-light"
+        *ngIf="!streamActive"
+        (click)="joinStream(selectedStream)"
+      >
+        Join Stream
+      </button>
+
+      <!-- List of available stream -->
+      <ul>
+        <li *ngFor="let stream of availableStreams">
+          <input
+            type="radio"
+            name="stream"
+            [value]="stream.userId"
+            [(ngModel)]="selectedStream"
+          />
+          Stream by User: {{ stream.userId }}
+        </li>
       </ul>
     </div>
   </div>
