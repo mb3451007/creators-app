@@ -1,64 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6 bg-dark d-flex flex-column align-items-center">
-      <p class="text-white">Local Stream</p>
-      <video
-        #localVideo
-        width="300"
-        height="200"
-        autoplay
-        class="bg-warning"
-      ></video>
-    </div>
-    <div class="col-6 bg-warning d-flex flex-column align-items-center">
-      <p>Remote Stream</p>
-      <video
-        #remoteVideo
-        width="300"
-        height="200"
-        autoplay
-        class="bg-dark"
-      ></video>
-    </div>
-  </div>
-  <div class="row">
-    <div
-      class="col-12 d-flex flex-row align-items-center justify-content-center py-5"
-    >
-      <button
-        class="bg-success mx-1 text-light"
-        *ngIf="!streamActive && userData.role === 'creator'"
-        (click)="startStream()"
-      >
-        Start Stream
-      </button>
-      <button
-        class="bg-danger mx-1 text-light"
-        *ngIf="streamActive"
-        (click)="stopStream()"
-      >
-        Stop Stream
-      </button>
-      <button
-        class="bg-warning mx-1 text-light"
-        *ngIf="!streamActive"
-        (click)="joinStream(selectedStream)"
-      >
-        Join Stream
-      </button>
-
-      <!-- List of available stream -->
-      <ul>
-        <li *ngFor="let stream of availableStreams">
-          <input
-            type="radio"
-            name="stream"
-            [value]="stream.userId"
-            [(ngModel)]="selectedStream"
-          />
-          Stream by User: {{ stream.userId }}
-        </li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+  <div id="video-grid" class="video-container"></div>
 </div>
+<!-- <div class="row">
+  <button (click)="startStream()">Start Stream</button>
+</div> -->
