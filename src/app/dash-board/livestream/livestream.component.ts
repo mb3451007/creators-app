@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Peer from 'peerjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
@@ -8,13 +10,18 @@ import { SocketService } from 'src/app/services/socket.service';
   templateUrl: './livestream.component.html',
   styleUrls: ['./livestream.component.scss'],
 })
-export class LivestreamComponent {
+export class LivestreamComponent implements OnInit, OnDestroy {
   peer: any;
   userData: any;
   myVideoStream: MediaStream | undefined;
   videoGrid: HTMLElement | null = null;
-
-  constructor(private socket: SocketService, private auth: AuthService) {
+  subscription: Subscription = new Subscription();
+  activeStreams: any[] = [];
+  constructor(
+    private socket: SocketService,
+    private auth: AuthService,
+    private postService: PostService
+  ) {
     this.auth.user$.subscribe((user) => {
       this.userData = user;
     });
@@ -23,53 +30,99 @@ export class LivestreamComponent {
   ngOnInit(): void {
     this.videoGrid = document.getElementById('video-grid');
 
-    // Create a video element for own stream
-    const myVideo = document.createElement('video');
-    myVideo.muted = true;
-
-    // PeerJS setup
+    // Initialize PeerJS
     this.peer = new Peer(undefined, {
       path: 'peerjs',
-      host: '/',
+      host: 'oboplatform.com',
       port: 3000,
+      secure: true,
     });
 
-    // When the peer connects
+    // Peer ID ready event
     this.peer.on('open', (id) => {
-      // Replace ROOM_ID with actual value or a variable
-      this.socket.emit('join-room', {
-        roomId: '1234',
-        peerId: id,
-      });
+      console.log('Peer connected with ID:', id);
     });
 
-    // Get video and audio stream from user's camera
+    this.socket.addUser(this.userData._id, this.userData.name);
+
+    // Listen for other user connections
+    this.peer.on('call', (call: any) => {
+      // Answer with your own stream if available (for streamer side)
+      if (this.myVideoStream) {
+        call.answer(this.myVideoStream); // Streamer answering a viewer's call
+        const video = document.createElement('video');
+        call.on('stream', (userVideoStream: MediaStream) => {
+          this.addVideoStream(video, userVideoStream);
+        });
+      } else {
+        // Viewer answers the call with no stream (if they don't have a stream)
+        call.answer(); // Viewers don't send streams, they receive
+        const video = document.createElement('video');
+        call.on('stream', (userVideoStream: MediaStream) => {
+          this.addVideoStream(video, userVideoStream); // Viewer receives the stream
+        });
+      }
+    });
+
+    // Handle new user connected to the room
+    this.socket.on('user-connected', (userId: string) => {
+      if (this.myVideoStream) {
+        // Streamer connects to the viewer
+        this.connectNewUser(userId, this.myVideoStream);
+        console.log('User is connected', userId);
+      }
+    });
+    this.subscription.add(
+      this.socket.on('active-streams', (streams) => {
+        console.log('Active streams received:', streams); // Add this line for debugging
+        this.activeStreams = streams;
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.socket.disconnect();
+    this.subscription.unsubscribe();
+  }
+
+  // Start the stream as a
+  startStream(): void {
     navigator.mediaDevices
       .getUserMedia({
         video: true,
-        audio: false,
+        audio: true,
       })
       .then((stream: MediaStream) => {
         this.myVideoStream = stream;
+        const myVideo = document.createElement('video');
+        myVideo.muted = true;
         this.addVideoStream(myVideo, stream);
 
-        // Answer peer calls with your stream
-        this.peer.on('call', (call: any) => {
-          call.answer(stream); // Answer the call with the current stream
-          const video = document.createElement('video');
-          call.on('stream', (userVideoStream: MediaStream) => {
-            this.addVideoStream(video, userVideoStream);
-          });
+        // Notify server to join the room with the broadcaster's peer ID
+        this.socket.emit('join-room', {
+          roomId: this.userData._id, // Replace with actual room ID
+          peerId: this.peer.id,
         });
 
-        // Handle user-connected event from socket
-        this.socket.on('user-connected', (userId: string) => {
-          this.connectNewUser(userId, stream);
+        this.socket.emit('stream-started', {
+          roomId: this.userData._id, // Replace with actual room ID
+          peerId: this.peer.id,
         });
+      })
+      .catch((err) => {
+        console.error('Error accessing media devices:', err);
       });
   }
 
-  // Function to connect to new user
+  // Viewer joins an existing stream
+  joinStream(roomId: string): void {
+    // Notify server to join the room as a viewer (no stream yet)
+    this.socket.emit('join-room', {
+      roomId: roomId, // Replace with actual room ID
+      peerId: this.peer.id,
+    });
+  }
+
+  // Streamer connects to a new viewer user
   connectNewUser(userId: string, stream: MediaStream): void {
     const call = this.peer.call(userId, stream);
     const video = document.createElement('video');
@@ -78,12 +131,15 @@ export class LivestreamComponent {
     });
   }
 
-  // Add a video stream to the grid
+  // Add a video stream to the video grid
   addVideoStream(video: HTMLVideoElement, stream: MediaStream): void {
     video.srcObject = stream;
     this.videoGrid?.append(video);
     video.addEventListener('loadedmetadata', () => {
       video.play();
     });
+  }
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 }

@@ -13,6 +13,9 @@ export class SocketService {
       withCredentials: true,
       forceNew: true,
     });
+    this.socket.on('connect', () => {
+      console.log('Socket connected:', this.socket.id);
+    });
   }
 
   emit(event: string, data: any) {
