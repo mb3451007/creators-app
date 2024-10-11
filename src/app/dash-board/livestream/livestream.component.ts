@@ -36,6 +36,33 @@ export class LivestreamComponent implements OnInit, OnDestroy {
       host: 'oboplatform.com',
       port: 3000,
       secure: true,
+      config: {
+        iceServers: [
+          {
+            urls: 'stun:stun.relay.metered.ca:80',
+          },
+          {
+            urls: 'turn:global.relay.metered.ca:80',
+            username: '9c8d518c8a83f62cb3f9c0b6',
+            credential: 'PyavdO9Bfm5ydrWi',
+          },
+          {
+            urls: 'turn:global.relay.metered.ca:80?transport=tcp',
+            username: '9c8d518c8a83f62cb3f9c0b6',
+            credential: 'PyavdO9Bfm5ydrWi',
+          },
+          {
+            urls: 'turn:global.relay.metered.ca:443',
+            username: '9c8d518c8a83f62cb3f9c0b6',
+            credential: 'PyavdO9Bfm5ydrWi',
+          },
+          {
+            urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+            username: '9c8d518c8a83f62cb3f9c0b6',
+            credential: 'PyavdO9Bfm5ydrWi',
+          },
+        ],
+      },
     });
 
     // Peer ID ready event
