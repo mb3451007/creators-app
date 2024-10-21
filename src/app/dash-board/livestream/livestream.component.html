@@ -1,44 +1,47 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div id="video-grid"></div>
-
-      <button (click)="startStream()" *ngIf="userData.role === 'creator'">
-        Start Stream
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="main-home__rightSide col-lg-8 col-md-8 col-12">
+<div class="livestream-container">
+  <h1>Live Streaming</h1>
   <div
-    class="row"
-    *ngIf="activeStreams.length > 0 && userData.role === 'subscriber'"
-  >
-    <div class="col-12">
-      <div class="main-home__suggestCreator col-12">Live Streams Available</div>
+    id="local-video"
+    class="video-container"
+    *ngIf="userData.role === 'creator'"
+  ></div>
+  <div
+    *ngIf="userData.role !== 'creator' && streamJoined"
+    id="remote-video"
+    class="video-container"
+  ></div>
+  <div class="main-home__rightSide col-lg-8 col-md-8 col-12">
+    <div
+      class="row"
+      *ngIf="activeStreams.length > 0 && userData.role === 'subscriber'"
+    >
       <div class="col-12">
-        <div
-          class="main-home__rightProfile col-12"
-          *ngFor="let stream of activeStreams; let i = index"
-        >
-          <div class="col-6">
-            <div class="main-home__rightUserDetails">
-              <div class="main-home__profileImg">
-                <img [src]="getMediaUrl(userData.profile)" alt="" />
-              </div>
-              <div class="main-home__userName">
-                <div class="user">{{ userData.name }}</div>
-                <div class="userId">
-                  {{ userData.username }}
+        <div class="main-home__suggestCreator col-12">
+          Live Streams Available
+        </div>
+        <div class="col-12">
+          <div
+            class="main-home__rightProfile col-12"
+            *ngFor="let stream of activeStreams; let i = index"
+          >
+            <div class="col-6">
+              <div class="main-home__rightUserDetails">
+                <div class="main-home__profileImg">
+                  <img [src]="getMediaUrl(userData.profile)" alt="" />
+                </div>
+                <div class="main-home__userName">
+                  <div class="user">{{ userData.name }}</div>
+                  <div class="userId">
+                    {{ userData.username }}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="main-home__rightSideFollow-btn col-6">
-            <div class="main-home__right-btn col-12">
-              <button (click)="joinStream(stream.room)">Join Now</button>
+            <div class="main-home__rightSideFollow-btn col-6">
+              <div class="main-home__right-btn col-12">
+                <button (click)="joinStream(stream)">Join Now</button>
+              </div>
             </div>
           </div>
         </div>
@@ -46,3 +49,7 @@
     </div>
   </div>
 </div>
+<button (click)="ngOnDestroy()">Leave Channel</button>
+<button *ngIf="userData.role === 'creator'" (click)="startStream()">
+  Start Stream
+</button>

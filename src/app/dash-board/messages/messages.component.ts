@@ -53,12 +53,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.socketService.disconnect();
     this.subscription.unsubscribe();
   }
 
   initializeSocketConnection() {
-    this.socketService.addUser(this.currentUser._id, this.currentUser.name);
     this.subscription.add(
       this.socketService.on(
         'getMessage',

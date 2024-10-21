@@ -8,16 +8,20 @@ import { env } from '../environments/env.development';
 export class SocketService {
   private socket: Socket;
 
-  constructor() {
-    this.socket = io(`${env.baseURL}`, {
-      withCredentials: true,
-      forceNew: true,
-    });
-    this.socket.on('connect', () => {
-      console.log('Socket connected:', this.socket.id);
-    });
+  constructor() {}
+  connect(userId: string, name: string) {
+    if (!this.socket) {
+      this.socket = io(`${env.baseURL}`, {
+        withCredentials: true,
+        forceNew: true,
+      });
+      const data = { userId, name };
+      this.emit('AddUser', data);
+      this.socket.on('connect', () => {
+        console.log('Socket connected:', this.socket.id);
+      });
+    }
   }
-
   emit(event: string, data: any) {
     this.socket.emit(event, data);
   }

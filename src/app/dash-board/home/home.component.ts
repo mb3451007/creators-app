@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ConversationService } from 'src/app/services/conversation.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private postService: PostService,
     private authservice: AuthService,
-    private conversationService: ConversationService
+    private conversationService: ConversationService,
+    private socket: SocketService
   ) {}
 
   fetchPosts() {
@@ -107,16 +109,17 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     this.isLoading = true; // Show the loader when submitting
 
-    const formData = new FormData();
+    let formData = new FormData();
     formData.append('description', this.postDescription);
     for (let file of this.selectedFiles) {
       formData.append('files', file.file);
     }
-    console.log(formData);
+    console.log(formData, 'Form Data --------');
 
     this.postService.uploadPost(formData).subscribe({
       next: (response) => {
         console.log('Post uploaded successfully', response);
+
         this.fetchPosts();
         this.postDescription = '';
         this.selectedFiles = [];
@@ -132,9 +135,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addLike(postId: string) {
-    this.postService.addLike(postId).subscribe({
+  addLike(post: any) {
+    this.postService.addLike(post._id).subscribe({
       next: (response) => {
+        if (post.userId !== this.currentUser._id) {
+          this.socket.emit('post-liked', {
+            likedBy: this.currentUser.name,
+            contentId: post._id,
+            userId: post.userId,
+          });
+        }
         console.log(response);
         this.isLiked = true;
         this.fetchPosts();
@@ -157,13 +167,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  postComment(postId: any) {
+  postComment(commentPost: any) {
     if (this.commentForm.valid) {
+      let postId = commentPost._id;
       this.postService
         .addComment(postId, this.commentForm.value.comment.toString())
         .subscribe({
           next: (response) => {
             console.log(response);
+            if (commentPost.userId !== this.currentUser._id) {
+              this.socket.emit('post-comment', {
+                commentBy: this.currentUser.name,
+                contentId: postId,
+                userId: commentPost.userId,
+              });
+            }
             this.getPostComments(postId);
             const post = this.posts.find((post) => post._id === postId);
             if (post) {

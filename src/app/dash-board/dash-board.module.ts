@@ -22,6 +22,8 @@ import { TimeAgoPipe } from '../pipes/timeago.pipe';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { ModalComponent } from '../modal/modal.component';
 import { FollowingComponent } from './following/following.component';
+import { NotificationComponent } from './notification/notification.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { FollowingComponent } from './following/following.component';
     LivestreamComponent,
     ModalComponent,
     FollowingComponent,
+    NotificationComponent,
+    PostComponent,
   ],
   imports: [
     CommonModule,

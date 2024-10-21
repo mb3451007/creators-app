@@ -1,6 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import Peer from 'peerjs';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import AgoraRTC, {
+  IAgoraRTCClient,
+  ILocalVideoTrack,
+  ILocalAudioTrack,
+} from 'agora-rtc-sdk-ng';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { SocketService } from 'src/app/services/socket.service';
@@ -11,159 +14,121 @@ import { SocketService } from 'src/app/services/socket.service';
   styleUrls: ['./livestream.component.scss'],
 })
 export class LivestreamComponent implements OnInit, OnDestroy {
-  peer: any;
+  private client: IAgoraRTCClient;
+  private localAudioTrack: ILocalAudioTrack;
+  private localVideoTrack: ILocalVideoTrack;
+  private APP_ID = '869766876d184dbc9416f0874d876fed'; // Replace with your Agora App ID
+  private TOKEN = null; // Replace with your Agora Token
+  private CHANNEL: string;
+  activeStreams: any = [];
   userData: any;
-  myVideoStream: MediaStream | undefined;
-  videoGrid: HTMLElement | null = null;
-  subscription: Subscription = new Subscription();
-  activeStreams: any[] = [];
+  streamJoined: boolean = false;
+
   constructor(
+    private authService: AuthService,
     private socket: SocketService,
-    private auth: AuthService,
     private postService: PostService
   ) {
-    this.auth.user$.subscribe((user) => {
+    this.authService.user$.subscribe((user) => {
       this.userData = user;
-    });
-  }
-
-  ngOnInit(): void {
-    this.videoGrid = document.getElementById('video-grid');
-
-    // Initialize PeerJS
-    this.peer = new Peer(undefined, {
-      path: 'peerjs',
-      host: 'oboplatform.com',
-      port: 3000,
-      secure: true,
-      config: {
-        iceServers: [
-          {
-            urls: 'stun:stun.relay.metered.ca:80',
-          },
-          {
-            urls: 'turn:global.relay.metered.ca:80',
-            username: '9c8d518c8a83f62cb3f9c0b6',
-            credential: 'PyavdO9Bfm5ydrWi',
-          },
-          {
-            urls: 'turn:global.relay.metered.ca:80?transport=tcp',
-            username: '9c8d518c8a83f62cb3f9c0b6',
-            credential: 'PyavdO9Bfm5ydrWi',
-          },
-          {
-            urls: 'turn:global.relay.metered.ca:443',
-            username: '9c8d518c8a83f62cb3f9c0b6',
-            credential: 'PyavdO9Bfm5ydrWi',
-          },
-          {
-            urls: 'turns:global.relay.metered.ca:443?transport=tcp',
-            username: '9c8d518c8a83f62cb3f9c0b6',
-            credential: 'PyavdO9Bfm5ydrWi',
-          },
-        ],
-      },
-    });
-
-    // Peer ID ready event
-    this.peer.on('open', (id) => {
-      console.log('Peer connected with ID:', id);
-    });
-
-    this.socket.addUser(this.userData._id, this.userData.name);
-
-    // Listen for other user connections
-    this.peer.on('call', (call: any) => {
-      // Answer with your own stream if available (for streamer side)
-      if (this.myVideoStream) {
-        call.answer(this.myVideoStream); // Streamer answering a viewer's call
-        const video = document.createElement('video');
-        call.on('stream', (userVideoStream: MediaStream) => {
-          this.addVideoStream(video, userVideoStream);
-        });
-      } else {
-        // Viewer answers the call with no stream (if they don't have a stream)
-        call.answer(); // Viewers don't send streams, they receive
-        const video = document.createElement('video');
-        call.on('stream', (userVideoStream: MediaStream) => {
-          this.addVideoStream(video, userVideoStream); // Viewer receives the stream
-        });
+      this.client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
+      if (this.userData.role === 'creator') {
+        this.client.setClientRole('host');
       }
     });
+  }
 
-    // Handle new user connected to the room
-    this.socket.on('user-connected', (userId: string) => {
-      if (this.myVideoStream) {
-        // Streamer connects to the viewer
-        this.connectNewUser(userId, this.myVideoStream);
-        console.log('User is connected', userId);
+  ngOnInit() {
+    // Join the channel
+
+    // await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
+    // // console.log('User joined channel:', this.CHANNEL);
+
+    // if (this.userData.role === 'creator') {
+    //   // Create local tracks for the creator
+    //   [this.localAudioTrack, this.localVideoTrack] =
+    //     await AgoraRTC.createMicrophoneAndCameraTracks();
+
+    //   // Publish the local tracks
+    //   await this.client.publish([this.localAudioTrack, this.localVideoTrack]);
+    //   // console.log('Local tracks published');
+
+    //   // Play the local video track
+    //   this.localVideoTrack.play('local-video');
+
+    //   this.socket.emit('stream-start', {
+    //     channel: this.CHANNEL,
+    //     creator: this.userData.name,
+    //   });
+    // }
+
+    // // Subscribe to remote users
+    // this.client.on('user-published', async (user, mediaType) => {
+    //   await this.client.subscribe(user, mediaType);
+    //   // console.log('User published:', user);
+
+    //   if (mediaType === 'video') {
+    //     const remoteVideoTrack = user.videoTrack;
+    //     remoteVideoTrack.play('remote-video'); // Play the remote video in the div with id 'remote-video'
+    //   }
+
+    //   if (mediaType === 'audio') {
+    //     const remoteAudioTrack = user.audioTrack;
+    //     remoteAudioTrack.play();
+    //   }
+    // });
+    this.socket.on('active-streams', (streams) => {
+      this.activeStreams = streams;
+      console.log(this.activeStreams, 'Active Streams are Here-------------');
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.userData.role === 'creator') {
+      // Stop and release the local tracks
+      this.localAudioTrack.close();
+      this.localVideoTrack.close();
+      this.socket.emit('stream-end', { channelName: this.CHANNEL });
+    }
+    this.client.leave();
+    this.streamJoined = false;
+    // console.log('User left the channel');
+  }
+  async joinStream(stream: any) {
+    this.CHANNEL = stream.channel;
+    await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
+    console.log('User joined channel: ', this.CHANNEL);
+    this.client.on('user-published', async (user, mediaType) => {
+      await this.client.subscribe(user, mediaType);
+      console.log('User published:', user);
+      this.streamJoined = true;
+
+      if (mediaType === 'video') {
+        const remoteVideoTrack = user.videoTrack;
+        remoteVideoTrack.play('remote-video');
+      }
+
+      if (mediaType === 'audio') {
+        const remoteAudioTrack = user.audioTrack;
+        remoteAudioTrack.play();
       }
     });
-    this.subscription.add(
-      this.socket.on('active-streams', (streams) => {
-        console.log('Active streams received:', streams); // Add this line for debugging
-        this.activeStreams = streams;
-      })
-    );
-  }
-  ngOnDestroy(): void {
-    this.socket.disconnect();
-    this.subscription.unsubscribe();
   }
 
-  // Start the stream as a
-  startStream(): void {
-    navigator.mediaDevices
-      .getUserMedia({
-        video: true,
-        audio: true,
-      })
-      .then((stream: MediaStream) => {
-        this.myVideoStream = stream;
-        const myVideo = document.createElement('video');
-        myVideo.muted = true;
-        this.addVideoStream(myVideo, stream);
+  async startStream() {
+    this.CHANNEL = this.userData._id;
+    await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
 
-        // Notify server to join the room with the broadcaster's peer ID
-        this.socket.emit('join-room', {
-          roomId: this.userData._id, // Replace with actual room ID
-          peerId: this.peer.id,
-        });
+    [this.localAudioTrack, this.localVideoTrack] =
+      await AgoraRTC.createMicrophoneAndCameraTracks();
 
-        this.socket.emit('stream-started', {
-          roomId: this.userData._id, // Replace with actual room ID
-          peerId: this.peer.id,
-        });
-      })
-      .catch((err) => {
-        console.error('Error accessing media devices:', err);
-      });
-  }
+    await this.client.publish([this.localAudioTrack, this.localVideoTrack]);
 
-  // Viewer joins an existing stream
-  joinStream(roomId: string): void {
-    // Notify server to join the room as a viewer (no stream yet)
-    this.socket.emit('join-room', {
-      roomId: roomId, // Replace with actual room ID
-      peerId: this.peer.id,
-    });
-  }
+    this.localVideoTrack.play('local-video');
 
-  // Streamer connects to a new viewer user
-  connectNewUser(userId: string, stream: MediaStream): void {
-    const call = this.peer.call(userId, stream);
-    const video = document.createElement('video');
-    call.on('stream', (userVideoStream: MediaStream) => {
-      this.addVideoStream(video, userVideoStream);
-    });
-  }
-
-  // Add a video stream to the video grid
-  addVideoStream(video: HTMLVideoElement, stream: MediaStream): void {
-    video.srcObject = stream;
-    this.videoGrid?.append(video);
-    video.addEventListener('loadedmetadata', () => {
-      video.play();
+    this.socket.emit('stream-start', {
+      channel: this.CHANNEL,
+      creator: this.userData.name,
     });
   }
   getMediaUrl(media) {

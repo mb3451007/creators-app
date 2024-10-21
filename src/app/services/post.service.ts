@@ -80,6 +80,10 @@ export class PostService {
     return this.http.delete(`${env.baseURL}/posts/delete/${postId}`);
   }
 
+  getSinglePost(postId: any) {
+    return this.http.get(`${env.baseURL}/posts/${postId}`);
+  }
+
   getMediaUrl(media: string): string {
     return `${env.baseURL}${media}`;
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,7 +15,8 @@ export class SideBarComponent {
   constructor(
     private authservice: AuthService,
     private router: Router,
-    private postService: PostService
+    private postService: PostService,
+    private socket: SocketService
   ) {
     this.authservice.user$.subscribe((userData) => {
       this.currentUser = userData;
@@ -37,6 +39,7 @@ export class SideBarComponent {
       next: (response) => {
         this.authservice.setUserData(null);
         localStorage.removeItem('user');
+        this.socket.disconnect();
         this.router.navigate(['/']);
       },
       error: (error) => {

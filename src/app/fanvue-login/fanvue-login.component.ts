@@ -71,7 +71,7 @@ export class FanvueLoginComponent implements OnInit {
             this.isloading = false;
             console.log(response);
             this.authservice.setUserData(response);
-
+            this.socketService.connect(response._id, response.name);
             this.router.navigate(['/dashboard']);
           },
           error: (error) => {

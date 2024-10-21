@@ -8,6 +8,8 @@ import { DashBoardComponent } from './dash-board.component';
 import { authGuard } from '../guards/auth.guard';
 import { FollowingComponent } from './following/following.component';
 import { LivestreamComponent } from './livestream/livestream.component';
+import { NotificationComponent } from './notification/notification.component';
+import { PostComponent } from './post/post.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -42,6 +44,8 @@ const routes: Routes = [
       { path: 'discover', component: DiscoverComponent },
       { path: 'suggested', component: SuggestedCreatorComponent },
       { path: 'following', component: FollowingComponent },
+      { path: 'notification', component: NotificationComponent },
+      { path: 'post/:postId', component: PostComponent },
     ],
   },
 ];
