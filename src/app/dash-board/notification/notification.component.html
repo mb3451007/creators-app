@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-lg-8">
       <ul class="w-100" *ngFor="let notification of notifications">
-        <li [routerLink]="['/dashboard/post', notification.contentId]">
+        <li
+          [routerLink]="['/dashboard/post', notification.contentId]"
+          (click)="markNotificationAsRead(notification._id)"
+          [ngClass]="{ 'unread-notification': !notification.read }"
+        >
           {{ notification.message }} {{ notification.contentId }}
         </li>
       </ul>

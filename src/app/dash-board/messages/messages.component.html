@@ -96,15 +96,6 @@
                   "
                   alt=""
                 />
-                <p
-                  *ngIf="
-                    conversation.members[
-                      getOtherMemberIndexInConversations(conversation)
-                    ].isActive
-                  "
-                >
-                  Active
-                </p>
               </div>
               <div class="col-9">
                 <div class="main-messages__user-time">
@@ -114,6 +105,15 @@
                         getOtherMemberIndexInConversations(conversation)
                       ].name
                     }}
+                    <p
+                      *ngIf="
+                        conversation.members[
+                          getOtherMemberIndexInConversations(conversation)
+                        ].active === true
+                      "
+                    >
+                      online
+                    </p>
                   </div>
                 </div>
               </div>

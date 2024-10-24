@@ -10,6 +10,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class NotificationComponent implements OnInit {
   userData: any;
   notifications: any[] = [];
+  unReadNotification: number = 0;
   constructor(
     private notificationService: NotificationService,
     private authService: AuthService
@@ -20,18 +21,35 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getNotifications();
+    this.notificationService.notifications$.subscribe((notification) => {
+      this.notifications = notification;
+    });
   }
-  getNotifications() {
-    console.log('here');
-    this.notificationService.getNotifications(this.userData._id).subscribe({
-      next: (response: any) => {
-        this.notifications = response.notification;
-        console.log(response, 'Here');
+
+  markNotificationAsRead(notificationId: string) {
+    this.notificationService.markAsRead(notificationId).subscribe({
+      next: (response) => {
+        console.log('Notification is read now');
+        const updatedNotification = this.notifications.map((notification) => {
+          if (notification._id === notificationId) {
+            return { ...notification, read: true };
+          }
+          return notification;
+        });
+
+        this.notifications = updatedNotification;
+        this.notificationService.setNotificationsData(this.notifications);
+        this.updateNotificationCount();
       },
       error: (error) => {
-        console.log(error);
+        console.log('Some Erroe Occured');
       },
     });
+  }
+  updateNotificationCount() {
+    this.unReadNotification = this.notifications.filter(
+      (notification) => !notification.read
+    ).length;
+    this.notificationService.setNotificationsCount(this.unReadNotification);
   }
 }

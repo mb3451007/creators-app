@@ -1,20 +1,32 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { env } from '../environments/env.development';
+import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService {
   private socket: Socket;
-
-  constructor() {}
+  private activeUsersSubject = new BehaviorSubject<string[]>([]);
+  activeUsers$ = this.activeUsersSubject.asObservable();
+  currentUser: any;
+  constructor(private authService: AuthService) {
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.currentUser = user;
+        this.connect(this.currentUser._id, this.currentUser.name);
+      }
+    });
+  }
   connect(userId: string, name: string) {
     if (!this.socket) {
       this.socket = io(`${env.baseURL}`, {
         withCredentials: true,
         forceNew: true,
       });
+      console.log('Here From Sockets ');
       const data = { userId, name };
       this.emit('AddUser', data);
       this.socket.on('connect', () => {

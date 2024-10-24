@@ -27,12 +27,12 @@
             <div class="col-6">
               <div class="main-home__rightUserDetails">
                 <div class="main-home__profileImg">
-                  <img [src]="getMediaUrl(userData.profile)" alt="" />
+                  <img [src]="getMediaUrl(stream.creator.profile)" alt="" />
                 </div>
                 <div class="main-home__userName">
-                  <div class="user">{{ userData.name }}</div>
+                  <div class="user">{{ stream.creator.name }}</div>
                   <div class="userId">
-                    {{ userData.username }}
+                    {{ stream.creator.username }}
                   </div>
                 </div>
               </div>

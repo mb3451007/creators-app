@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
 })
-export class MessagesComponent implements OnInit, OnDestroy {
+export class MessagesComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   constructor(
     private conversationService: ConversationService,
@@ -52,9 +52,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy(): void {}
 
   initializeSocketConnection() {
     this.subscription.add(
@@ -64,10 +62,25 @@ export class MessagesComponent implements OnInit, OnDestroy {
       )
     );
     this.subscription.add(
-      this.socketService.on('active-users', (users) => {
-        this.activeUsers = users;
-        console.log('Active users:', this.activeUsers);
-        this.updateMemberStatus();
+      this.socketService.on('user-activated', (userId) => {
+        this.conversations.forEach((conversation) => {
+          conversation.members.forEach((member) => {
+            if (member._id === userId) {
+              member.active = true;
+            }
+          });
+        });
+      })
+    );
+    this.subscription.add(
+      this.socketService.on('user-deactivated', (userId) => {
+        this.conversations.forEach((conversation) => {
+          conversation.members.forEach((member) => {
+            if (member._id === userId) {
+              member.active = false;
+            }
+          });
+        });
       })
     );
   }
@@ -75,7 +88,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.conversationService.getAllConversations().subscribe({
       next: (response: Conversation[]) => {
         this.conversations = response;
-
+        console.log(this.conversations);
         if (this.conversations.length > 0) {
           this.fetchMessages(this.conversations[0]._id);
         }
@@ -84,17 +97,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
         console.log(error.error.message);
       },
     });
-  }
-  updateMemberStatus() {
-    this.conversations.forEach((conversation) => {
-      conversation.members.forEach((member) => {
-        // Check if the member is in the activeUsers array
-        member.isActive = this.activeUsers.some(
-          (activeUser) => activeUser._id === member._id
-        );
-      });
-    });
-    console.log('Updated Conversations:', this.conversations);
   }
 
   fetchMessages(conversationId: string, page: number = 1) {

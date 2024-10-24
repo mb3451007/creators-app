@@ -7,6 +7,7 @@ import AgoraRTC, {
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { SocketService } from 'src/app/services/socket.service';
+import { StreamService } from 'src/app/services/stream.service';
 
 @Component({
   selector: 'app-livestream',
@@ -27,7 +28,8 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private socket: SocketService,
-    private postService: PostService
+    private postService: PostService,
+    private streamService: StreamService
   ) {
     this.authService.user$.subscribe((user) => {
       this.userData = user;
@@ -39,6 +41,15 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.streamService.getStreams().subscribe({
+      next: (response: any) => {
+        this.activeStreams = response.formattedStreams;
+        console.log(this.activeStreams);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
     // Join the channel
 
     // await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
@@ -77,9 +88,27 @@ export class LivestreamComponent implements OnInit, OnDestroy {
     //     remoteAudioTrack.play();
     //   }
     // });
-    this.socket.on('active-streams', (streams) => {
-      this.activeStreams = streams;
+    this.socket.on('stream-started', (stream) => {
+      const streamExists = this.activeStreams.some(
+        (activeStream) => activeStream.channel === stream.channel
+      );
+
+      if (!streamExists) {
+        this.activeStreams.push(stream);
+      }
+
       console.log(this.activeStreams, 'Active Streams are Here-------------');
+    });
+
+    this.socket.on('stream-ended', (stream) => {
+      console.log('Stream Ended: ', stream);
+      this.activeStreams = this.activeStreams.filter(
+        (activeStream) => activeStream.channel !== stream.channelName
+      );
+      console.log(
+        this.activeStreams,
+        'Updated Active Streams are Here-------------'
+      );
     });
   }
 
@@ -128,7 +157,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
 
     this.socket.emit('stream-start', {
       channel: this.CHANNEL,
-      creator: this.userData.name,
+      creator: this.userData,
     });
   }
   getMediaUrl(media) {

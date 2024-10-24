@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { PostService } from 'src/app/services/post.service';
 import { SocketService } from 'src/app/services/socket.service';
 
@@ -12,14 +13,20 @@ import { SocketService } from 'src/app/services/socket.service';
 export class SideBarComponent {
   isSidebarOpen = false;
   currentUser: any;
+  notificationsCount: any;
   constructor(
     private authservice: AuthService,
     private router: Router,
     private postService: PostService,
-    private socket: SocketService
+    private socket: SocketService,
+    private notificationService: NotificationService
   ) {
     this.authservice.user$.subscribe((userData) => {
       this.currentUser = userData;
+    });
+
+    this.notificationService.notificationsCount$.subscribe((notifications) => {
+      this.notificationsCount = notifications;
     });
   }
 
