@@ -43,12 +43,12 @@ export class PostService {
     return this.http.get(`${env.baseURL}/posts/`);
   }
 
-  addLike(postId: string): Observable<any> {
-    return this.http.post(`${env.baseURL}/like/add`, { postId });
+  addLike(postId: string, postUID: string): Observable<any> {
+    return this.http.post(`${env.baseURL}/like/add`, { postId, postUID });
   }
 
-  deleteLike(postId: string): Observable<any> {
-    return this.http.post(`${env.baseURL}/like/delete`, { postId });
+  deleteLike(postId: string, postUID: any): Observable<any> {
+    return this.http.post(`${env.baseURL}/like/delete`, { postId, postUID });
   }
   addComment(postId: any, comment: string): Observable<any> {
     return this.http.post(`${env.baseURL}/comment/add`, { postId, comment });

@@ -111,10 +111,11 @@ export class PostComponent implements OnInit {
       },
     });
   }
-  deleteLike(postId: any) {
-    this.postService.deleteLike(postId).subscribe({
+  deleteLike(post: any) {
+    this.postService.deleteLike(post._id, post.userId).subscribe({
       next: (response) => {
         console.log(response);
+        this.postId = post._id;
         this.fetchSinglePost(this.postId);
       },
       error: (error) => {
@@ -123,7 +124,7 @@ export class PostComponent implements OnInit {
     });
   }
   addLike(post: any) {
-    this.postService.addLike(post._id).subscribe({
+    this.postService.addLike(post._id, post.userId).subscribe({
       next: (response) => {
         if (post.userId !== this.currentUser._id) {
           this.socket.emit('post-liked', {

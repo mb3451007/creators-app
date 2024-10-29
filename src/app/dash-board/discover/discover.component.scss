@@ -31,7 +31,7 @@
     }
   }
   &__user-profile {
-    background-image: url("/assets/home-icon/islamabad.jpg");
+    // background-image: url("/assets/home-icon/islamabad.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -43,6 +43,10 @@
     margin-bottom: 2rem;
     // padding: 25px 15px;
     border-radius: 12px;
+    &.followed {
+      transform: scale(1.1); /* Make it slightly bigger */
+      opacity: 0.5; /* Reduce opacity */
+    }
   }
   &__user-profile-name {
     position: absolute;
@@ -265,7 +269,7 @@
 
 .action-button {
   margin-right: 0.5rem;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
@@ -302,7 +306,6 @@
 }
 
 .file-item button {
-
   display: none;
   position: absolute;
   top: 10px;
@@ -321,15 +324,14 @@
   }
 }
 
-
 .file-item:hover img,
 .file-item:hover video {
   filter: blur(3px);
 }
-.file-item:hover  button {
+.file-item:hover button {
   display: block;
   top: -36%;
-    right: 3%;
+  right: 3%;
 }
 
 @media screen and (max-width: 768px) {

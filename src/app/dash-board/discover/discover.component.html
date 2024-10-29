@@ -90,36 +90,42 @@
         <div class="profile-user col-12" *ngIf="showHide">
           <div
             class="main-discover__user-profile col-12"
-            *ngFor="let user of userprofile"
+            *ngFor="let user of recommendedProfiles; let i = index"
+            [style.backgroundImage]="
+              user.coverImage
+                ? 'url(' + getMediaUrl(user.coverImage) + ')'
+                : 'url(/assets/home-icon/islamabad.jpg)'
+            "
+            [ngClass]="{ followed: user.isFollowing }"
           >
             <div class="main-discover__user-profile-name col-12">
               <div class="main-discover__prifle-content col-10">
                 <div class="main-discover__user-profileImg">
-                  <img src="assets/home-icon/avatarImg.png" alt="" />
+                  <img [src]="getMediaUrl(user.profile)" alt="" />
                 </div>
                 <div class="main-discover__userName">
-                  <div class="user">user 1</div>
+                  <div class="user">{{ user.username }}</div>
                   <div class="main-discover__about-user-profile">
                     <div class="about">
                       <img src="assets/camera-svgrepo-com.svg" alt="" />
-                      <span>3</span>
+                      <span>{{ user.totalPosts }}</span>
                     </div>
-                    <div class="about">
+                    <!-- <div class="about">
                       <img src="assets/video-recorder-svgrepo-com.svg" alt="" />
-                      <span>93</span>
-                    </div>
+                      <span>{{ user.totalPosts }}</span>
+                    </div> -->
                     <div class="about">
                       <img src="assets/heart-svgrepo-com (1).svg" alt="" />
-                      <span>2.3k</span>
+                      <span>{{ user.totalLikes }}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="main-discover__user-profile-menu col-2">
-                <div>
+                <div (click)="followUser(user._id, true, i)">
                   <img src="assets/profile-plus-1354-svgrepo-com.svg" alt="" />
                 </div>
-                <div><img src="assets/menu-dots-svgrepo-com.svg" alt="" /></div>
+                <!-- <div><img src="assets/menu-dots-svgrepo-com.svg" alt="" /></div> -->
               </div>
             </div>
           </div>

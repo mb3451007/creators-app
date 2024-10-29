@@ -136,8 +136,11 @@ export class HomeComponent implements OnInit {
   }
 
   addLike(post: any) {
-    this.postService.addLike(post._id).subscribe({
+    this.postService.addLike(post._id, post.userId).subscribe({
       next: (response) => {
+        this.isLiked = true;
+
+        this.fetchPosts();
         if (post.userId !== this.currentUser._id) {
           this.socket.emit('post-liked', {
             likedBy: this.currentUser.name,
@@ -146,8 +149,6 @@ export class HomeComponent implements OnInit {
           });
         }
         console.log(response);
-        this.isLiked = true;
-        this.fetchPosts();
       },
       error: (error) => {
         console.log(error.error.message);
@@ -155,8 +156,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteLike(postId: any) {
-    this.postService.deleteLike(postId).subscribe({
+  deleteLike(post: any) {
+    this.postService.deleteLike(post._id, post.userId).subscribe({
       next: (response) => {
         console.log(response);
         this.fetchPosts();

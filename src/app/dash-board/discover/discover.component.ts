@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ConversationService } from 'src/app/services/conversation.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -13,14 +14,33 @@ export class DiscoverComponent implements OnInit {
   suggestedprofile: any[] = Array(3);
   showHide: boolean = true;
   currentUser: any;
+  recommendedProfiles: any = [];
+  currentPage: number = 1;
+  limit: number = 5;
+  totalPages: number = 0;
 
   constructor(
     private authService: AuthService,
-    private postService: PostService
+    private postService: PostService,
+    private conversationService: ConversationService
   ) {}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getUserData;
+    this.getRecommendedUsers(this.currentPage);
+  }
+  getRecommendedUsers(page: number) {
+    this.postService.getUsers(page, this.limit).subscribe({
+      next: (response: any) => {
+        this.recommendedProfiles = response.users;
+        this.totalPages = response.totalPages;
+        this.currentPage = response.currentPage;
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
   }
   activeDiv: number = 1; // By default, the first div is active
 
@@ -55,6 +75,28 @@ export class DiscoverComponent implements OnInit {
   }
   onSubmit() {
     console.log('Clicked');
+  }
+
+  followUser(userId: any, followIsTrue: boolean, index: number) {
+    console.log(userId, followIsTrue);
+    this.postService.followUser(userId, followIsTrue).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.recommendedProfiles[index].isFollowing = true;
+        this.conversationService.createOrAccessConversation(userId).subscribe({
+          next: (response) => {
+            console.log('conversation created');
+            this.getRecommendedUsers(this.currentPage);
+          },
+          error: (error) => {
+            console.log('error: ', error);
+          },
+        });
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
   }
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
