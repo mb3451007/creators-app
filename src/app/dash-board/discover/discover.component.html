@@ -130,12 +130,57 @@
             </div>
           </div>
         </div>
-        <div class="col-12" *ngIf="!showHide">search-area</div>
+        <div class="col-12" *ngIf="!showHide">
+          <div class="row">
+            <div class="col-12">
+              <div class="search-container w-100 position-relative">
+                <input
+                  class="w-100 rounded search-input"
+                  [formControl]="searchControl"
+                  type="text"
+                  placeholder="Search users..."
+                />
+                <img
+                  width="25"
+                  src="assets/header-icon/icons8-search.svg"
+                  alt=""
+                  class="search-icon"
+                />
+
+                <!-- Search Results Dropdown -->
+                <ul
+                  class="dropdown-list list-group w-100 mt-1 position-absolute"
+                  *ngIf="searchUserResult.length"
+                >
+                  <li
+                    *ngFor="let user of searchUserResult"
+                    class="dropdown-item list-group-item d-flex align-items-center gap-2"
+                  >
+                    <!-- User Avatar -->
+                    <img
+                      [src]="getMediaUrl(user.profile)"
+                      width="40"
+                      height="40"
+                      class="rounded-circle"
+                      alt="User Avatar"
+                    />
+
+                    <!-- User Info -->
+                    <div class="user-info">
+                      <div class="user-name">{{ user.name }}</div>
+                      <div class="user-username">@{{ user.username }}</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="main-discover__rightSide col-lg-4 col-md-4 col-12">
-      <!-- <div class="row">
+    <!-- <div class="main-discover__rightSide col-lg-4 col-md-4 col-12">
+       <div class="row">
         <div class="col-12">
           <div class="main-discover__suggestCreator col-12">
             Suggested Creator
@@ -199,7 +244,7 @@
           </div>
           </div>
         </div>
-      </div> -->
-    </div>
+      </div>  
+    </div> -->
   </div>
 </div>

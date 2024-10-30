@@ -10,6 +10,7 @@ import { FollowingComponent } from './following/following.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PostComponent } from './post/post.component';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -20,10 +21,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'newsfeed',
         pathMatch: 'full',
       },
-      { path: 'home', component: HomeComponent },
+      { path: 'newsfeed', component: NewsFeedComponent },
       {
         path: 'profile',
         loadChildren: () =>
@@ -46,6 +47,7 @@ const routes: Routes = [
       { path: 'following', component: FollowingComponent },
       { path: 'notification', component: NotificationComponent },
       { path: 'post/:postId', component: PostComponent },
+      { path: 'home', component: HomeComponent },
     ],
   },
 ];

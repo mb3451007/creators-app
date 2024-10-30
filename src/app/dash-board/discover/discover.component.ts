@@ -1,4 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, Subscription, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { PostService } from 'src/app/services/post.service';
@@ -8,7 +10,7 @@ import { PostService } from 'src/app/services/post.service';
   templateUrl: './discover.component.html',
   styleUrls: ['./discover.component.scss'],
 })
-export class DiscoverComponent implements OnInit {
+export class DiscoverComponent implements OnInit, OnDestroy {
   selectedFiles: any[] = [];
   userprofile: any[] = Array(6);
   suggestedprofile: any[] = Array(3);
@@ -18,16 +20,34 @@ export class DiscoverComponent implements OnInit {
   currentPage: number = 1;
   limit: number = 5;
   totalPages: number = 0;
+  searchControl = new FormControl();
+  searchUserResult: any[] = [];
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private authService: AuthService,
     private postService: PostService,
     private conversationService: ConversationService
   ) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.currentUser = this.authService.getUserData;
     this.getRecommendedUsers(this.currentPage);
+
+    this.subscription.add(
+      this.searchControl.valueChanges
+        .pipe(
+          debounceTime(300), // Wait for 300ms pause in events
+          switchMap((query) => this.authService.searchUsers(query)) // Make the API call
+        )
+        .subscribe((results) => {
+          this.searchUserResult = results;
+          console.log(results, 'Here are the results');
+        })
+    );
   }
 
   @HostListener('window:scroll', [])

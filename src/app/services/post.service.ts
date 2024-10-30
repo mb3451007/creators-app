@@ -39,8 +39,9 @@ export class PostService {
     return this.http.post(`${env.baseURL}/posts/create`, formdata);
   }
 
-  getUserPost(): Observable<any> {
-    return this.http.get(`${env.baseURL}/posts/`);
+  getUserPost(following: boolean): Observable<any> {
+    console.log(`${env.baseURL}/posts/${following}`);
+    return this.http.get(`${env.baseURL}/posts/${following}`);
   }
 
   addLike(postId: string, postUID: string): Observable<any> {

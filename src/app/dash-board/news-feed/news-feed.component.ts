@@ -5,11 +5,10 @@ import { PostService } from 'src/app/services/post.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { SocketService } from 'src/app/services/socket.service';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-news-feed',
+  templateUrl: './news-feed.component.html',
+  styleUrls: ['./news-feed.component.scss'],
   animations: [
     trigger('fadeOut', [
       // Transition for element enterin
@@ -22,7 +21,7 @@ import { SocketService } from 'src/app/services/socket.service';
     ]),
   ],
 })
-export class HomeComponent implements OnInit {
+export class NewsFeedComponent implements OnInit {
   isLoading = false; // Add this to your component
   postDescription: string = '';
   selectedFiles: Array<any> = [];
@@ -52,7 +51,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   fetchPosts() {
-    this.postService.getUserPost(false).subscribe({
+    this.postService.getUserPost(true).subscribe({
       next: (response) => {
         this.posts = response;
         console.log(response);
@@ -184,6 +183,7 @@ export class HomeComponent implements OnInit {
               });
             }
             this.getPostComments(postId);
+
             const post = this.posts.find((post) => post._id === postId);
             if (post) {
               post.totalComments += 1;
@@ -202,6 +202,7 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.commentsMap[postId] = response;
+        console.log(this.commentsMap[postId], 'This is the comments Map');
       },
 
       error: (error) => {

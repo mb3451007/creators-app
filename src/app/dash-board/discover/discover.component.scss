@@ -342,3 +342,51 @@
     }
   }
 }
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding-right: 35px; /* Leave space for the search icon */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-username {
+  color: gray;
+  font-size: 0.9em;
+}

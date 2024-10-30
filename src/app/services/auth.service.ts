@@ -130,4 +130,8 @@ export class AuthService {
 
     return this.http.patch(`${env.baseURL}/user/update`, formData);
   }
+
+  searchUsers(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${env.baseURL}/user/search?query=${query}`);
+  }
 }
