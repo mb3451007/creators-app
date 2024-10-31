@@ -11,6 +11,7 @@ import { LivestreamComponent } from './livestream/livestream.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PostComponent } from './post/post.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -48,6 +49,7 @@ const routes: Routes = [
       { path: 'notification', component: NotificationComponent },
       { path: 'post/:postId', component: PostComponent },
       { path: 'home', component: HomeComponent },
+      { path: 'user/:userId', component: UserProfileComponent },
     ],
   },
 ];

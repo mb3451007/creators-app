@@ -43,6 +43,9 @@ export class PostService {
     console.log(`${env.baseURL}/posts/${following}`);
     return this.http.get(`${env.baseURL}/posts/${following}`);
   }
+  getSingleUserPost(userId: string): Observable<any> {
+    return this.http.get(`${env.baseURL}/posts/getIndividualPosts/${userId}`);
+  }
 
   addLike(postId: string, postUID: string): Observable<any> {
     return this.http.post(`${env.baseURL}/like/add`, { postId, postUID });

@@ -1,0 +1,295 @@
+<div class="container">
+  <div class="main-discover__sides row">
+    <!-- <div class="main-home__sides col-12"> -->
+    <div class="col-lg-8 col-md-8 col-12">
+      <div class="main-discover__leftSide col-12">
+        <div class="profile-user col-12" *ngIf="showHide">
+          <div
+            class="main-discover__user-profile col-12"
+            [style.backgroundImage]="
+              userData.coverImage
+                ? 'url(' + getMediaUrl(userData.coverImage) + ')'
+                : 'url(/assets/home-icon/islamabad.jpg)'
+            "
+          >
+            <div class="main-discover__user-profile-name col-12">
+              <div class="main-discover__prifle-content col-10">
+                <div class="main-discover__user-profileImg">
+                  <img [src]="getMediaUrl(userData.profile)" alt="" />
+                </div>
+                <div class="main-discover__userName">
+                  <div class="user">{{ userData.username }}</div>
+                  <div class="main-discover__about-user-profile">
+                    <div class="about">
+                      <img src="assets/camera-svgrepo-com.svg" alt="" />
+                      <span>{{ userData.totalPosts }}</span>
+                    </div>
+                    <!-- <div class="about">
+                        <img src="assets/video-recorder-svgrepo-com.svg" alt="" />
+                        <span>{{ user.totalPosts }}</span>
+                      </div> -->
+                    <div class="about">
+                      <img src="assets/heart-svgrepo-com (1).svg" alt="" />
+                      <span>{{ userData.totalLikes }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                *ngIf="userData._id !== currentUser._id"
+                class="main-discover__user-profile-menu col-2"
+              >
+                <div (click)="followUser(userData._id, true)">
+                  <img src="assets/profile-plus-1354-svgrepo-com.svg" alt="" />
+                </div>
+                <!-- <div><img src="assets/menu-dots-svgrepo-com.svg" alt="" /></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-home__leftSide col-12">
+        <div class="row">
+          <div
+            class="left-side-users col-12"
+            *ngFor="let post of posts; let i = index"
+          >
+            <div class="main-home__left-profile col-12">
+              <div class="main-home__leftUserDetails col-6">
+                <div
+                  class="main-home__profileImg"
+                  [routerLink]="['/dashboard/profile']"
+                >
+                  <img [src]="getMediaUrl(currentUser.profile)" alt="" />
+                </div>
+
+                <div
+                  class="main-home__userName"
+                  [routerLink]="['/dashboard/profile']"
+                >
+                  <div class="user">{{ post.user.name }}</div>
+                  <div>{{ post.user.username }}</div>
+                </div>
+              </div>
+              <div class="main-home__right col-6">
+                <div>{{ post.createdAt | TimeAgo }}</div>
+                <div *ngIf="post.user._id === currentUser._id">
+                  <img
+                    width="20px"
+                    src="/assets/profile-icon/delete-svgrepo-com.svg"
+                    alt=""
+                    style="cursor: pointer"
+                    (click)="toggleDeleteModal(post._id)"
+                  />
+                </div>
+                <!-- <div *ngIf="post.user._id === currentUser._id">
+                  <img
+                    width="20px"
+                    src="/assets/profile-icon/delete-svgrepo-com.svg"
+                    alt=""
+                    style="cursor: pointer"
+                    (click)="deletePost(post._id)"
+                  />
+                </div> -->
+              </div>
+            </div>
+
+            <div class="main-home__subscriber col-12">
+              {{ post.description }}
+            </div>
+
+            <div class="postProfile col-12">
+              <button
+                class="prev-btn"
+                *ngIf="post.media.length > 1"
+                (click)="scrollImages('prev')"
+              >
+                ❮
+              </button>
+
+              <div class="image-container">
+                <div
+                  class="col-12 images-wrapper"
+                  *ngFor="let media of post.media"
+                >
+                  <img
+                    [src]="getMediaUrl(media)"
+                    alt="Postmedia"
+                    class="post-image"
+                  />
+                </div>
+              </div>
+
+              <button
+                class="next-btn"
+                *ngIf="post.media.length > 1"
+                (click)="scrollImages('next')"
+              >
+                ❯
+              </button>
+            </div>
+
+            <div class="main-home__review col-12" [@fadeOut]>
+              <div
+                *ngIf="!post.hasLiked"
+                class="cursor-pointer"
+                (click)="addLike(post)"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3l0 3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1l0-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9l0 3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4l0-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z"
+                  />
+                </svg>
+              </div>
+              <div
+                *ngIf="post.hasLiked"
+                class="cursor-pointer"
+                (click)="deleteLike(post)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="red"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <img src="/assets/home-icon/dollar-svgrepo-com.svg" alt="" />
+              </div>
+            </div>
+
+            <div class="main-home__reviewCount col-12">
+              <div class="main-home__likes col-6">
+                <p class="text-info fw-bold me-1 fs-5">{{ post.totalLikes }}</p>
+                <div class="main-home__like">likes</div>
+                <p class="text-info fw-bold me-1 fs-5">
+                  {{ post.totalComments }}
+                </p>
+                <div>comments</div>
+              </div>
+
+              <div
+                class="main-home__showComment col-6"
+                (click)="getPostComments(post._id)"
+              >
+                show comment
+              </div>
+            </div>
+            <div *ngIf="commentsMap[post._id]" class="">
+              <span
+                class="main-home__commnetUnOrderList"
+                *ngFor="let comment of commentsMap[post._id]"
+              >
+                <div class="main-home__CommentArea comment-container">
+                  <div class="main-home__userProfileCommentsArea">
+                    <img
+                      [src]="getMediaUrl(comment.userProfile.profile)"
+                      alt=""
+                    />
+                    <div class="comment-content">
+                      <span class="username"
+                        >{{ comment.userProfile.name }}
+                      </span>
+                      <p class="comment-text">{{ comment.comment }}</p>
+                    </div>
+                  </div>
+                  <div class="main-home__deleteComment delete-btn">
+                    <img
+                      (click)="deleteComment(comment._id, post._id)"
+                      width="20px"
+                      src="/assets/profile-icon/delete-svgrepo-com.svg"
+                    />
+                  </div>
+                </div>
+              </span>
+            </div>
+            <form
+              (ngSubmit)="postComment(post._id)"
+              [formGroup]="commentForm"
+              class="d-flex flex-row align-items-center justify-content-center"
+            >
+              <input
+                class="w-75 px-2 rounded"
+                type="text"
+                formControlName="comment"
+              />
+              <a (click)="postComment(post)"
+                ><img
+                  class="postCommnet"
+                  src="/assets/profile-icon/send-alt-1-svgrepo-com.svg"
+              /></a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-home__rightSide col-lg-4 col-md-4 col-12">
+      <div class="row" *ngIf="recommendedProfiles.length > 0">
+        <div class="col-12">
+          <div class="main-home__suggestCreator col-12">Suggested Creator</div>
+          <div class="col-12">
+            <div
+              class="main-home__rightProfile col-12"
+              *ngFor="let user of recommendedProfiles; let i = index"
+              [ngClass]="{ followed: user.isFollowing }"
+            >
+              <div class="col-6">
+                <div class="main-home__rightUserDetails">
+                  <div class="main-home__profileImg">
+                    <img
+                      [src]="getMediaUrl(recommendedProfiles[i].profile)"
+                      alt=""
+                    />
+                  </div>
+                  <div class="main-home__userName">
+                    <div class="user">{{ recommendedProfiles[i].name }}</div>
+                    <div class="userId">
+                      {{ recommendedProfiles[i].username }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="main-home__rightSideFollow-btn col-6">
+                <div class="main-home__right-btn col-12">
+                  <button
+                    (click)="followUser(recommendedProfiles[i]._id, true)"
+                  >
+                    follow
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pagination col-12">
+            <button class="left col-1 bg-transparent" (click)="prevPage()">
+              <img
+                src="assets/home-icon/left-arrow-backup-2-svgrepo-com.svg"
+                alt=""
+              />
+            </button>
+
+            <div class="page-paginate col-10">
+              <!-- <a href="#">.</a>
+              <a href="#" class="active">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a>
+              <a href="#">.</a> -->
+            </div>
+            <button class="right col-1 bg-transparent" (click)="nextPage()">
+              <img
+                src="assets/home-icon/right-arrow-backup-2-svgrepo-com.svg"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

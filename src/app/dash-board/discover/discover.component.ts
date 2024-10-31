@@ -1,5 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversationService } from 'src/app/services/conversation.service';
@@ -27,7 +28,8 @@ export class DiscoverComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private postService: PostService,
-    private conversationService: ConversationService
+    private conversationService: ConversationService,
+    private router: Router
   ) {}
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -136,5 +138,8 @@ export class DiscoverComponent implements OnInit, OnDestroy {
   }
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
+  }
+  navigateToUser(userId: number) {
+    this.router.navigate(['/dashboard/user', userId]);
   }
 }

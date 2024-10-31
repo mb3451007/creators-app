@@ -25,6 +25,7 @@ import { FollowingComponent } from './following/following.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PostComponent } from './post/post.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NewsFeedComponent } from './news-feed/news-feed.component';
     NotificationComponent,
     PostComponent,
     NewsFeedComponent,
+    UserProfileComponent,
   ],
   imports: [
     CommonModule,
