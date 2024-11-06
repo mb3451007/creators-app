@@ -8,7 +8,7 @@ import { NotificationService } from '../services/notification.service';
   templateUrl: './dash-board.component.html',
   styleUrls: ['./dash-board.component.scss'],
 })
-export class DashBoardComponent implements AfterViewInit, OnInit {
+export class DashBoardComponent implements OnInit {
   currentUser: any;
   notifications: any;
   unReadNotification: number = 0;
@@ -42,8 +42,11 @@ export class DashBoardComponent implements AfterViewInit, OnInit {
         this.notificationService.setNotificationsCount(this.unReadNotification);
       });
     });
+    this.socket.on('user-activated', (userId) => {
+      console.log(`User with ${userId} is activated ---------------- here`);
+    });
   }
-  ngAfterViewInit(): void {}
+
   getNotifications() {
     console.log('here');
     this.notificationService.getNotifications(this.currentUser._id).subscribe({

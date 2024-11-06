@@ -59,30 +59,30 @@ export class MessagesComponent implements OnInit {
         this.handleIncomingMessages.bind(this)
       )
     );
-    this.subscription.add(
-      this.socketService.on('user-activated', (userId) => {
-        console.log('Here user is activated');
-        this.conversations.forEach((conversation) => {
-          conversation.members.forEach((member) => {
-            if (member._id === userId) {
-              member.active = true;
-            }
-          });
-        });
-      })
-    );
-    this.subscription.add(
-      this.socketService.on('user-deactivated', (userId) => {
-        console.log('Here user is deactivated');
-        this.conversations.forEach((conversation) => {
-          conversation.members.forEach((member) => {
-            if (member._id === userId) {
-              member.active = false;
-            }
-          });
-        });
-      })
-    );
+    // this.subscription.add(
+    //   this.socketService.on('user-activated', (userId) => {
+    //     console.log('Here user is activated');
+    //     this.conversations.forEach((conversation) => {
+    //       conversation.members.forEach((member) => {
+    //         if (member._id === userId) {
+    //           member.active = true;
+    //         }
+    //       });
+    //     });
+    //   })
+    // );
+    // this.subscription.add(
+    //   this.socketService.on('user-deactivated', (userId) => {
+    //     console.log('Here user is deactivated');
+    //     this.conversations.forEach((conversation) => {
+    //       conversation.members.forEach((member) => {
+    //         if (member._id === userId) {
+    //           member.active = false;
+    //         }
+    //       });
+    //     });
+    //   })
+    // );
   }
   fetchConversations() {
     this.conversationService.getAllConversations().subscribe({

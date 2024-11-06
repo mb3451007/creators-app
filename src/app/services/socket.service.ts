@@ -14,9 +14,10 @@ export class SocketService {
   currentUser: any;
   constructor(private authService: AuthService) {
     this.authService.user$.subscribe((user) => {
-      if (user) {
-        this.currentUser = user;
-        this.connect(this.currentUser._id, this.currentUser.name);
+      if (user && !this.socket) {
+        this.connect(user._id, user.name);
+      } else if (!user && this.socket) {
+        this.disconnect();
       }
     });
   }
@@ -26,7 +27,7 @@ export class SocketService {
         withCredentials: true,
         forceNew: true,
       });
-      console.log('Here From Sockets ');
+      console.log('Here From Sockets it is running fine ---------------------');
       const data = { userId, name };
       this.emit('AddUser', data);
       this.socket.on('connect', () => {
@@ -50,6 +51,7 @@ export class SocketService {
   disconnect() {
     if (this.socket) {
       this.socket.disconnect();
+      this.socket = null;
     }
   }
 }
