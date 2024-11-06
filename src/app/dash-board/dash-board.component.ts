@@ -24,9 +24,9 @@ export class DashBoardComponent implements AfterViewInit, OnInit {
     this.notificationService.notificationsCount$.subscribe((count) => {
       this.unReadNotification = count;
     });
+    this.getNotifications();
   }
   ngOnInit() {
-    this.getNotifications();
     this.socket.connect(this.currentUser._id, this.currentUser.name);
     this.socket.on('notification', (notification) => {
       this.notificationService.notifications$.subscribe((notifications) => {
@@ -75,5 +75,6 @@ export class DashBoardComponent implements AfterViewInit, OnInit {
         count
       );
     });
+    this.unReadNotification = 0;
   }
 }

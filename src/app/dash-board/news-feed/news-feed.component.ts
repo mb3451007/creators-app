@@ -176,10 +176,18 @@ export class NewsFeedComponent implements OnInit {
         .subscribe({
           next: (response) => {
             console.log(response);
+            // if (commentPost.userId !== this.currentUser._id) {
+            //   this.socket.emit('post-comment', {
+            //     commentBy: this.currentUser.name,
+            //     contentId: postId,
+            //     userId: commentPost.userId,
+            //   });
+            // }
             if (commentPost.userId !== this.currentUser._id) {
               this.socket.emit('post-comment', {
                 commentBy: this.currentUser.name,
-                contentId: postId,
+                contentId: commentPost._id,
+                mediaUrl: commentPost.media[0],
                 userId: commentPost.userId,
               });
             }

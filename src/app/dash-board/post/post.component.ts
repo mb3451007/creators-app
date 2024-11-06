@@ -68,7 +68,8 @@ export class PostComponent implements OnInit {
             if (commentPost.userId !== this.currentUser._id) {
               this.socket.emit('post-comment', {
                 commentBy: this.currentUser.name,
-                contentId: postId,
+                contentId: commentPost._id,
+                mediaUrl: commentPost.media[0],
                 userId: commentPost.userId,
               });
             }
@@ -133,6 +134,7 @@ export class PostComponent implements OnInit {
           this.socket.emit('post-liked', {
             likedBy: this.currentUser.name,
             contentId: post._id,
+            mediaUrl: post.media[0],
             userId: post.userId,
           });
         }
