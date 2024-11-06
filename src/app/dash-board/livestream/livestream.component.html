@@ -1,73 +1,105 @@
-<div class="livestream-container">
-  <h1>Live Streaming</h1>
-  <div
-    id="local-video"
-    class="video-container"
-    *ngIf="userData.role === 'creator'"
-  ></div>
+<div class="livestream-container p-4">
+  <h1 class="text-center mb-4">Live Streaming</h1>
+
+  <!-- Video Containers -->
+  <div *ngIf="userData.role === 'creator'" class="video-container-wrapper mb-3">
+    <div id="local-video" class="video-container rounded-3 shadow"></div>
+  </div>
   <div
     *ngIf="userData.role !== 'creator' && streamJoined"
-    id="remote-video"
-    class="video-container"
-  ></div>
-  <div class="main-home__rightSide col-lg-8 col-md-8 col-12">
-    <div
-      class="row"
-      *ngIf="activeStreams.length > 0 && userData.role === 'subscriber'"
-    >
-      <div class="col-12">
-        <div class="main-home__suggestCreator col-12">
-          Live Streams Available
-        </div>
-        <div class="col-12">
-          <div
-            class="main-home__rightProfile col-12"
-            *ngFor="let stream of activeStreams; let i = index"
-          >
-            <div class="col-6">
-              <div class="main-home__rightUserDetails">
-                <div class="main-home__profileImg">
-                  <img [src]="getMediaUrl(stream.creator.profile)" alt="" />
-                </div>
-                <div class="main-home__userName">
-                  <div class="user">{{ stream.creator.name }}</div>
-                  <div class="userId">
-                    {{ stream.creator.username }}
-                  </div>
-                </div>
-              </div>
-            </div>
+    class="video-container-wrapper mb-3"
+  >
+    <div id="remote-video" class="video-container rounded-3 shadow"></div>
+  </div>
 
-            <div class="main-home__rightSideFollow-btn col-6">
-              <div class="main-home__right-btn col-12">
-                <button (click)="joinStream(stream)">Join Now</button>
-              </div>
+  <!-- Active Streams Section for Subscribers -->
+  <div
+    *ngIf="userData.role === 'subscriber'"
+    class="stream-list col-lg-8 col-md-10 mx-auto mb-4"
+  >
+    <div
+      *ngIf="activeStreams.length > 0 && !streamJoined"
+      class="available-streams text-center p-3 rounded bg-light shadow"
+    >
+      Live Streams Available
+    </div>
+    <div
+      *ngIf="activeStreams.length === 0"
+      class="no-streams text-center p-3 rounded bg-light shadow"
+    >
+      No Streams Available
+    </div>
+
+    <div *ngIf="activeStreams.length > 0 && !streamJoined">
+      <div
+        *ngFor="let stream of activeStreams"
+        class="stream-item p-3 mb-3 d-flex align-items-center justify-content-between rounded shadow"
+      >
+        <div class="creator-info d-flex align-items-center">
+          <div class="profile-img me-3">
+            <img
+              [src]="getMediaUrl(stream.creator.profile)"
+              alt="Profile Image"
+              class="rounded-circle"
+              width="50"
+              height="50"
+            />
+          </div>
+          <div class="creator-details">
+            <div class="creator-name fw-bold">{{ stream.creator.name }}</div>
+            <div class="creator-username text-muted">
+              @{{ stream.creator.username }}
             </div>
           </div>
+        </div>
+        <div>
+          <button
+            (click)="joinStream(stream)"
+            class="join-btn px-4 py-2 bg-primary text-light rounded"
+          >
+            Join Now
+          </button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Action Buttons for Creator and Subscriber -->
+  <div class="stream-actions text-center mt-3">
+    <button
+      *ngIf="userData.role === 'creator' && streamStarted"
+      class="stop-btn bg-danger text-light px-4 py-2 rounded me-2"
+      (click)="ngOnDestroy()"
+    >
+      Stop Stream
+    </button>
+    <button
+      *ngIf="userData.role === 'subscriber' && streamJoined"
+      class="leave-btn bg-danger text-light px-4 py-2 rounded me-2"
+      (click)="ngOnDestroy()"
+    >
+      Leave Stream
+    </button>
+    <button
+      *ngIf="userData.role === 'creator' && !streamStarted"
+      class="start-btn bg-success text-light px-4 py-2 rounded me-2"
+      (click)="startStream()"
+    >
+      Start Stream
+    </button>
+    <button
+      *ngIf="userData.role === 'creator' && streamStarted"
+      class="audio-toggle-btn bg-secondary text-light px-4 py-2 rounded me-2"
+      (click)="toggleAudio()"
+    >
+      {{ isAudioMuted ? "Unmute" : "Mute" }}
+    </button>
+    <button
+      *ngIf="userData.role === 'creator' && streamStarted"
+      class="video-toggle-btn bg-secondary text-light px-4 py-2 rounded"
+      (click)="toggleVideo()"
+    >
+      {{ isVideoOff ? "Turn Video On" : "Turn Video Off" }}
+    </button>
+  </div>
 </div>
-<button (click)="ngOnDestroy()">Leave Channel</button>
-<button
-  class="ms-2"
-  *ngIf="userData.role === 'creator'"
-  (click)="startStream()"
->
-  Start Stream
-</button>
-<button
-  class="ms-2"
-  *ngIf="userData.role === 'creator'"
-  (click)="toggleAudio()"
->
-  {{ isAudioMuted ? "Unmute" : "Mute" }}
-</button>
-<button
-  class="ms-2"
-  *ngIf="userData.role === 'creator'"
-  (click)="toggleVideo()"
->
-  {{ isVideoOff ? "Turn Video On" : "Turn Video Off" }}
-</button>

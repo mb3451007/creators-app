@@ -495,3 +495,64 @@
     }
   }
 }
+
+.livestream-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-container-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.video-container {
+  width: 100%;
+  height: 400px;
+  background: #333;
+}
+
+.stream-item {
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.join-btn,
+.stop-btn,
+.leave-btn,
+.start-btn,
+.audio-toggle-btn,
+.video-toggle-btn {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.join-btn:hover {
+  background-color: #0056b3;
+}
+
+.stop-btn:hover,
+.leave-btn:hover {
+  background-color: #c82333;
+}
+
+.start-btn:hover {
+  background-color: #218838;
+}
+
+.audio-toggle-btn:hover,
+.video-toggle-btn:hover {
+  background-color: #6c757d;
+}
+
+.creator-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img img {
+  object-fit: cover;
+}

@@ -26,6 +26,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   streamJoined: boolean = false;
   isAudioMuted: boolean = false;
   isVideoOff: boolean = false;
+  streamStarted: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -142,6 +143,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
         this.localVideoTrack.close();
       }
       this.socket.emit('stream-end', { channelName: this.CHANNEL });
+      this.streamStarted = false;
     }
     this.client.leave();
     this.streamJoined = false;
@@ -183,6 +185,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
       channel: this.CHANNEL,
       creator: this.userData,
     });
+    this.streamStarted = true;
   }
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
