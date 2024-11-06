@@ -40,10 +40,13 @@ export class PostComponent implements OnInit {
   }
 
   fetchSinglePost(postId: any) {
+    console.log('Fetch Post is loading post', postId);
     this.postService.getSinglePost(postId).subscribe({
       next: (response: any) => {
+        console.log(response, '----------------------------------------------');
         console.log(response.post);
         this.post = response.post;
+
         this.post.hasLiked = this.post.likes.some(
           (like: any) => this.currentUser._id === like.userId
         );

@@ -24,6 +24,8 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   activeStreams: any = [];
   userData: any;
   streamJoined: boolean = false;
+  isAudioMuted: boolean = false;
+  isVideoOff: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -39,7 +41,24 @@ export class LivestreamComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  toggleAudio() {
+    if (this.isAudioMuted) {
+      this.localAudioTrack.setEnabled(true);
+      this.isAudioMuted = false;
+    } else {
+      this.localAudioTrack.setEnabled(false);
+      this.isAudioMuted = true;
+    }
+  }
+  toggleVideo() {
+    if (this.isVideoOff) {
+      this.localVideoTrack.setEnabled(true);
+      this.isVideoOff = false;
+    } else {
+      this.localVideoTrack.setEnabled(false);
+      this.isVideoOff = true;
+    }
+  }
   ngOnInit() {
     this.streamService.getStreams().subscribe({
       next: (response: any) => {
@@ -115,8 +134,13 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.userData.role === 'creator') {
       // Stop and release the local tracks
-      this.localAudioTrack.close();
-      this.localVideoTrack.close();
+      if (this.localAudioTrack) {
+        this.localAudioTrack.close();
+      }
+
+      if (this.localVideoTrack) {
+        this.localVideoTrack.close();
+      }
       this.socket.emit('stream-end', { channelName: this.CHANNEL });
     }
     this.client.leave();

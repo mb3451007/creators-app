@@ -8,7 +8,7 @@ import { NotificationService } from '../services/notification.service';
   templateUrl: './dash-board.component.html',
   styleUrls: ['./dash-board.component.scss'],
 })
-export class DashBoardComponent implements AfterViewInit {
+export class DashBoardComponent implements AfterViewInit, OnInit {
   currentUser: any;
   notifications: any;
   unReadNotification: number = 0;
@@ -20,11 +20,30 @@ export class DashBoardComponent implements AfterViewInit {
     this.authService.user$.subscribe((user) => {
       this.currentUser = user;
     });
+
+    this.notificationService.notificationsCount$.subscribe((count) => {
+      this.unReadNotification = count;
+    });
+  }
+  ngOnInit() {
     this.getNotifications();
-  }
-  ngAfterViewInit(): void {
     this.socket.connect(this.currentUser._id, this.currentUser.name);
+    this.socket.on('notification', (notification) => {
+      this.notificationService.notifications$.subscribe((notifications) => {
+        notifications.unshift(notification);
+        console.log(this.notifications);
+        this.unReadNotification =
+          this.notificationService.getNotificationsCount();
+        console.log(
+          this.unReadNotification,
+          'Consoliong notification after gettin new'
+        );
+        this.unReadNotification += 1;
+        this.notificationService.setNotificationsCount(this.unReadNotification);
+      });
+    });
   }
+  ngAfterViewInit(): void {}
   getNotifications() {
     console.log('here');
     this.notificationService.getNotifications(this.currentUser._id).subscribe({
@@ -42,9 +61,19 @@ export class DashBoardComponent implements AfterViewInit {
   getNotificationCount() {
     this.notifications.forEach((notification) => {
       if (notification.read === false) {
-        this.unReadNotification += 1;
+        this.unReadNotification = this.unReadNotification + 1;
       }
     });
+
     this.notificationService.setNotificationsCount(this.unReadNotification);
+    this.notificationService.notificationsCount$.subscribe((count) => {
+      this.unReadNotification = count;
+      console.log(
+        'Notification Count is :',
+        this.unReadNotification,
+        ' True count is :',
+        count
+      );
+    });
   }
 }

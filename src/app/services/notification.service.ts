@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class NotificationService {
-  private notificationsCountSubject = new BehaviorSubject<string[]>([]);
+  private notificationsCountSubject = new BehaviorSubject<number>(0);
   private notificationsSubject = new BehaviorSubject<string[]>([]);
   notificationsCount$ = this.notificationsCountSubject.asObservable();
   notifications$ = this.notificationsSubject.asObservable();

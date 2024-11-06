@@ -3,11 +3,21 @@
     <div class="col-lg-8">
       <ul class="w-100" *ngFor="let notification of notifications">
         <li
-          [routerLink]="['/dashboard/post', notification.contentId]"
-          (click)="markNotificationAsRead(notification._id)"
+          (click)="markNotificationRead(notification)"
           [ngClass]="{ 'unread-notification': !notification.read }"
+          class="notification-item d-flex align-items-center"
         >
-          {{ notification.message }} {{ notification.contentId }}
+          <!-- Display the first image of the post if mediaUrl is available -->
+          <div *ngIf="notification.mediaUrl" class="notification-image">
+            <img
+              [src]="getMediaUrl(notification.mediaUrl)"
+              alt="Post Image"
+              class="img-thumbnail"
+            />
+          </div>
+
+          <!-- Display the notification message -->
+          <span class="notification-text ms-2">{{ notification.message }}</span>
         </li>
       </ul>
     </div>

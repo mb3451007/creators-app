@@ -146,8 +146,10 @@ export class HomeComponent implements OnInit {
             likedBy: this.currentUser.name,
             contentId: post._id,
             userId: post.userId,
+            mediaUrl: post.media[0], // Assuming media is an array of objects with 'url' property
           });
         }
+
         console.log(response);
       },
       error: (error) => {

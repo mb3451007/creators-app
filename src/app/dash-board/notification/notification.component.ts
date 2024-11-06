@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-notification',
@@ -10,10 +12,12 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class NotificationComponent implements OnInit {
   userData: any;
   notifications: any[] = [];
-  unReadNotification: number = 0;
+  notificationCount: number = 0;
   constructor(
     private notificationService: NotificationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private postService: PostService,
+    private router: Router
   ) {
     this.authService.user$.subscribe((user) => {
       this.userData = user;
@@ -22,34 +26,40 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.notificationService.notifications$.subscribe((notification) => {
+      console.log('Fetched Notifications:', notification);
       this.notifications = notification;
     });
+    this.notificationService.notificationsCount$.subscribe((count) => {
+      this.notificationCount = count;
+    });
   }
 
-  markNotificationAsRead(notificationId: string) {
-    this.notificationService.markAsRead(notificationId).subscribe({
+  markNotificationRead(notification: any) {
+    this.notificationService.markAsRead(notification._id).subscribe({
       next: (response) => {
-        console.log('Notification is read now');
-        const updatedNotification = this.notifications.map((notification) => {
-          if (notification._id === notificationId) {
-            return { ...notification, read: true };
-          }
-          return notification;
-        });
+        console.log('Marked as read', response);
 
-        this.notifications = updatedNotification;
-        this.notificationService.setNotificationsData(this.notifications);
-        this.updateNotificationCount();
+        // Find the notification in the array and mark it as read
+        const index = this.notifications.findIndex(
+          (n) => n._id === notification._id
+        );
+        if (index !== -1) {
+          this.notifications[index].read = true; // Assuming isRead is a flag in your notification data structure
+        }
+        if (this.notificationCount > 0) {
+          this.notificationCount -= 1;
+        }
+
+        this.notificationService.setNotificationsCount(this.notificationCount);
+        this.router.navigate(['/dashboard/post', notification.contentId]);
       },
       error: (error) => {
-        console.log('Some Erroe Occured');
+        console.log('Got an error:', error);
       },
     });
   }
-  updateNotificationCount() {
-    this.unReadNotification = this.notifications.filter(
-      (notification) => !notification.read
-    ).length;
-    this.notificationService.setNotificationsCount(this.unReadNotification);
+
+  getMediaUrl(media) {
+    return this.postService.getMediaUrl(media);
   }
 }

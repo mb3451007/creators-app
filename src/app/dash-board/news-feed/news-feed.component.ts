@@ -144,6 +144,7 @@ export class NewsFeedComponent implements OnInit {
           this.socket.emit('post-liked', {
             likedBy: this.currentUser.name,
             contentId: post._id,
+            mediaUrl: post.media[0],
             userId: post.userId,
           });
         }

@@ -85,7 +85,8 @@ export class PostService {
   }
 
   getSinglePost(postId: any) {
-    return this.http.get(`${env.baseURL}/posts/${postId}`);
+    console.log('Getting post for you for post id :', postId);
+    return this.http.get(`${env.baseURL}/posts/getSinglePost/${postId}`);
   }
 
   getMediaUrl(media: string): string {

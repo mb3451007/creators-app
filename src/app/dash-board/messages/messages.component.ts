@@ -34,8 +34,6 @@ export class MessagesComponent implements OnInit {
   currentUserId: string | null = null;
   activeUsers: any[] = [];
   isLoading: boolean = false;
-  currentPage: number = 1;
-  limit: number = 4;
 
   messageForm = new FormGroup({
     message: new FormControl('', Validators.required),
@@ -63,6 +61,7 @@ export class MessagesComponent implements OnInit {
     );
     this.subscription.add(
       this.socketService.on('user-activated', (userId) => {
+        console.log('Here user is activated');
         this.conversations.forEach((conversation) => {
           conversation.members.forEach((member) => {
             if (member._id === userId) {
@@ -74,6 +73,7 @@ export class MessagesComponent implements OnInit {
     );
     this.subscription.add(
       this.socketService.on('user-deactivated', (userId) => {
+        console.log('Here user is deactivated');
         this.conversations.forEach((conversation) => {
           conversation.members.forEach((member) => {
             if (member._id === userId) {
@@ -99,16 +99,10 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  fetchMessages(conversationId: string, page: number = 1) {
-    const limit = 4;
-
-    this.messageService.getAllMessages(conversationId, limit, page).subscribe({
+  fetchMessages(conversationId: string) {
+    this.messageService.getAllMessages(conversationId).subscribe({
       next: (response: Message[]) => {
-        if (page === 1) {
-          this.messages = response;
-        } else {
-          this.messages = [...response, ...this.messages];
-        }
+        this.messages = response;
 
         this.currentMessageConversation = this.conversations.find(
           (conversation) => conversation._id === conversationId
@@ -178,38 +172,6 @@ export class MessagesComponent implements OnInit {
           },
         });
     }
-  }
-  onScroll(event: any): void {
-    const scrollTop = event.target.scrollTop;
-    if (scrollTop === 0 && !this.isLoading) {
-      this.loadMoreMessages();
-    }
-  }
-  loadMoreMessages(): void {
-    this.isLoading = true;
-    this.currentPage++; // Increment the page number to load older messages
-
-    this.messageService
-      .getAllMessages(
-        this.currentMessageConversation._id,
-        this.limit,
-        this.currentPage
-      )
-      .subscribe({
-        next: (response: Message[]) => {
-          if (response.length > 0) {
-            this.messages = [...response, ...this.messages]; // Prepend older messages
-          } else {
-            // No more messages to load
-            this.currentPage--; // Go back to the previous page if there are no more messages
-          }
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.log(error.error.message);
-          this.isLoading = false;
-        },
-      });
   }
 
   getMediaUrl(media) {

@@ -50,6 +50,24 @@
   </div>
 </div>
 <button (click)="ngOnDestroy()">Leave Channel</button>
-<button *ngIf="userData.role === 'creator'" (click)="startStream()">
+<button
+  class="ms-2"
+  *ngIf="userData.role === 'creator'"
+  (click)="startStream()"
+>
   Start Stream
+</button>
+<button
+  class="ms-2"
+  *ngIf="userData.role === 'creator'"
+  (click)="toggleAudio()"
+>
+  {{ isAudioMuted ? "Unmute" : "Mute" }}
+</button>
+<button
+  class="ms-2"
+  *ngIf="userData.role === 'creator'"
+  (click)="toggleVideo()"
+>
+  {{ isVideoOff ? "Turn Video On" : "Turn Video Off" }}
 </button>

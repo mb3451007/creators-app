@@ -204,36 +204,40 @@
               </div>
             </div>
             <div class="col-12" *ngIf="showHide">
-              <div class="scroll-view-chat col-12" (scroll)="onScroll($event)">
+              <div class="scroll-view-chat col-12">
                 <!-- <div class="main-messages__chat-date col-12">04 Jul, 2024</div> -->
 
                 <div class="main-messages__chat-user col-12">
                   <div class="main-messages__chat-profile">
-                    <img
+                    <!-- <img
                       [src]="
                         getMediaUrl(
                           currentMessageConversation.members[receiverID].profile
                         )
                       "
                       alt=""
-                    />
+                    /> -->
                   </div>
                   <div class="chat-box" *ngFor="let message of messages">
-                    <div *ngIf="message.sender === currentUserId">
-                      <div style="background-color: red" id="one-msg">
-                        <!-- **RED** bg is message send by current user--- **Blue** is the message received by current user -->
+                    <div
+                      *ngIf="message.sender === currentUserId"
+                      class="message-wrapper sent-message"
+                    >
+                      <div class="message-content">
                         {{ message.message }}
                       </div>
-
                       <div class="chat-time">
                         {{ message.createdAt | TimeAgo }}
                       </div>
                     </div>
-                    <div *ngIf="message.sender !== currentUserId">
-                      <div style="background-color: aquamarine">
+
+                    <div
+                      *ngIf="message.sender !== currentUserId"
+                      class="message-wrapper received-message"
+                    >
+                      <div class="message-content">
                         {{ message.message }}
                       </div>
-
                       <div class="chat-time">
                         {{ message.createdAt | TimeAgo }}
                       </div>

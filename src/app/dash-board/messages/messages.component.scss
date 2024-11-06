@@ -178,7 +178,7 @@
     flex-direction: column;
     .chat-box {
       color: black;
-      background-color: #e8e7e7;
+
       border-radius: 15px;
       padding: 0.5rem;
       #one-msg {
@@ -261,7 +261,7 @@
       }
       #send-chat {
         img:hover {
-          filter: $grey-img-hover
+          filter: $grey-img-hover;
         }
       }
     }
@@ -364,4 +364,46 @@
       width: 100%;
     }
   }
+}
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  min-width: 20%; /* Ensures a minimum width for short messages */
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #fff;
+  word-wrap: break-word;
+}
+
+.sent-message {
+  align-self: flex-end;
+  background-color: #ff5c5c; /* Red for sent messages */
+  border-radius: 15px 15px 0 15px;
+}
+
+.received-message {
+  align-self: flex-start;
+  background-color: #7fffd4; /* Aquamarine for received messages */
+  border-radius: 15px 15px 15px 0;
+}
+
+.message-content {
+  font-size: 1rem;
+  line-height: 1.4;
+  min-width: 100px; /* Minimum width for each message block */
+}
+
+.chat-time {
+  font-size: 0.75rem;
+  color: #ccc;
+  margin-top: 4px;
+  text-align: right;
 }

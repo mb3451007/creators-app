@@ -1,3 +1,35 @@
 .unread-notification {
-  background-color: blanchedalmond;
+  background: linear-gradient(
+    91.93deg,
+    rgba(244, 138, 108, 0.1) 0%,
+    rgba(253, 29, 93, 0.1) 100%
+  );
+}
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f9f9f9;
+}
+
+.notification-image img {
+  width: 40px; /* Adjust as needed */
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.notification-text {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

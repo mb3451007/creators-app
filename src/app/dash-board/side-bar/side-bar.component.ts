@@ -13,7 +13,7 @@ import { SocketService } from 'src/app/services/socket.service';
 export class SideBarComponent {
   isSidebarOpen = false;
   currentUser: any;
-  notificationsCount: any;
+  notificationsCount: number = 0;
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -25,8 +25,8 @@ export class SideBarComponent {
       this.currentUser = userData;
     });
 
-    this.notificationService.notificationsCount$.subscribe((notifications) => {
-      this.notificationsCount = notifications;
+    this.notificationService.notificationsCount$.subscribe((count) => {
+      this.notificationsCount = count;
     });
   }
 
