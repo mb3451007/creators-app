@@ -22,10 +22,21 @@ export class MessageService {
     });
   }
 
-  getAllMessages(conversationId: string): Observable<Message[]> {
+  // getAllMessages(conversationId: string): Observable<Message[]> {
+  //   return this.http
+  //     .get<{ messages: Message[] }>(
+  //       `${env.baseURL}/message/get/${conversationId}`
+  //     )
+  //     .pipe(map((response) => response.messages));
+  // }
+  getAllMessages(
+    conversationId: string,
+    limit: number,
+    page: number
+  ): Observable<Message[]> {
     return this.http
       .get<{ messages: Message[] }>(
-        `${env.baseURL}/message/get/${conversationId}`
+        `${env.baseURL}/message/get/${conversationId}?limit=${limit}&page=${page}`
       )
       .pipe(map((response) => response.messages));
   }

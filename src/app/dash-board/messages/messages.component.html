@@ -204,7 +204,11 @@
               </div>
             </div>
             <div class="col-12" *ngIf="showHide">
-              <div class="scroll-view-chat col-12">
+              <div
+                class="scroll-view-chat col-12"
+                id="messagesContainer"
+                (scroll)="onScroll($event)"
+              >
                 <!-- <div class="main-messages__chat-date col-12">04 Jul, 2024</div> -->
 
                 <div class="main-messages__chat-user col-12">

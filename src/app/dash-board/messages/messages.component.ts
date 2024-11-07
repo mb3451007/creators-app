@@ -35,6 +35,9 @@ export class MessagesComponent implements OnInit {
   activeUsers: any[] = [];
   isLoading: boolean = false;
 
+  currentPage: number = 1;
+  limit: number = 10;
+
   messageForm = new FormGroup({
     message: new FormControl('', Validators.required),
   });
@@ -99,52 +102,24 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  fetchMessages(conversationId: string) {
-    this.messageService.getAllMessages(conversationId).subscribe({
-      next: (response: Message[]) => {
-        this.messages = response;
+  // fetchMessages(conversationId: string) {
+  //   this.messageService.getAllMessages(conversationId).subscribe({
+  //     next: (response: Message[]) => {
+  //       this.messages = response;
 
-        this.currentMessageConversation = this.conversations.find(
-          (conversation) => conversation._id === conversationId
-        );
+  //       this.currentMessageConversation = this.conversations.find(
+  //         (conversation) => conversation._id === conversationId
+  //       );
 
-        this.receiverID = this.getOtherMemberIndexInConversations(
-          this.currentMessageConversation
-        );
-      },
-      error: (error) => {
-        console.log(error.error.message);
-      },
-    });
-  }
-
-  getOtherMemberIndexInConversations(conversation: any) {
-    return conversation.members.findIndex(
-      (member) => member._id !== this.currentUserId
-    );
-  }
-
-  getCurrentMemebersIdInConversation(): number {
-    for (const conversation of this.conversations) {
-      const memberIndex = conversation.members.findIndex((member) => {
-        return member._id !== this.conversationService.userId;
-      });
-      if (memberIndex !== -1) {
-        return memberIndex;
-      }
-    }
-    return -1;
-  }
-
-  getConversationDetails(conversationId) {
-    this.currentMessageConversation = this.conversations.find(
-      (conversation) => conversation._id === conversationId
-    );
-  }
-
-  handleIncomingMessages(data: any) {
-    this.messages.push(data);
-  }
+  //       this.receiverID = this.getOtherMemberIndexInConversations(
+  //         this.currentMessageConversation
+  //       );
+  //     },
+  //     error: (error) => {
+  //       console.log(error.error.message);
+  //     },
+  //   });
+  // }
 
   sendMessage(conversationId: string, username: string, receiverId: string) {
     if (this.messageForm.valid) {
@@ -172,6 +147,108 @@ export class MessagesComponent implements OnInit {
           },
         });
     }
+  }
+  getOtherMemberIndexInConversations(conversation: any) {
+    return conversation.members.findIndex(
+      (member) => member._id !== this.currentUserId
+    );
+  }
+
+  getCurrentMemebersIdInConversation(): number {
+    for (const conversation of this.conversations) {
+      const memberIndex = conversation.members.findIndex((member) => {
+        return member._id !== this.conversationService.userId;
+      });
+      if (memberIndex !== -1) {
+        return memberIndex;
+      }
+    }
+    return -1;
+  }
+
+  getConversationDetails(conversationId) {
+    this.currentMessageConversation = this.conversations.find(
+      (conversation) => conversation._id === conversationId
+    );
+  }
+
+  handleIncomingMessages(data: any) {
+    this.messages.push(data);
+  }
+  fetchMessages(conversationId: string, page: number = 1): void {
+    const limit = 10;
+
+    this.messageService.getAllMessages(conversationId, limit, page).subscribe({
+      next: (response: Message[]) => {
+        console.log(response);
+        response.reverse();
+        this.messages = [...response, ...this.messages];
+        // Set initial messages
+        this.scrollToBottom(); // Scroll to bottom on initial load
+        // } else {
+        //   console.log([...response, ...this.messages]);
+        //   this.messages = [...response, ...this.messages]; // Prepend older messagess
+        // }
+
+        this.currentMessageConversation = this.conversations.find(
+          (conversation) => conversation._id === conversationId
+        );
+
+        this.receiverID = this.getOtherMemberIndexInConversations(
+          this.currentMessageConversation
+        );
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
+  }
+
+  onScroll(event: any): void {
+    const scrollTop = event.target.scrollTop;
+    if (scrollTop === 0 && !this.isLoading) {
+      this.loadMoreMessages();
+    }
+  }
+
+  loadMoreMessages(): void {
+    this.isLoading = true;
+    this.currentPage++; // Increment the page number to load older messages
+
+    this.messageService
+      .getAllMessages(
+        this.currentMessageConversation._id,
+        this.limit,
+        this.currentPage
+      )
+      .subscribe({
+        next: (response: Message[]) => {
+          console.log(response);
+          if (response.length > 0) {
+            response.reverse();
+            this.messages = [...response, ...this.messages];
+            // Prepend older messages
+          } else {
+            // No more messages to load
+            this.currentPage--; // Revert the page increment if no more messages
+          }
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.log(error.error.message);
+          this.isLoading = false;
+        },
+      });
+  }
+
+  // Utility function to scroll to the bottom of the message container
+  scrollToBottom(): void {
+    setTimeout(() => {
+      const messageContainer = document.getElementById('messagesContainer');
+      if (messageContainer) {
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }
+    }, 0); // Delay ensures the DOM updates before scrolling
   }
 
   getMediaUrl(media) {
