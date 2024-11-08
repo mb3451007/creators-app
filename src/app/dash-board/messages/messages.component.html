@@ -156,7 +156,10 @@
           <div class="col-12">
             <div class="main-messages__user-profileByName col-12">
               <div class="main-messages__user-profileById col-9">
-                <p (click)="toggleShowMessageBox()">
+                <p
+                  class="d-lg-none d-sm-block"
+                  (click)="toggleShowMessageBox()"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -338,7 +341,10 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!showMessageBox" class="col-4 col-md-5 col-sm-12 col-12">
+    <div
+      *ngIf="!showMessageBox"
+      class="d-lg-none d-sm-block col-4 col-md-5 col-sm-12 col-12"
+    >
       <div class="container left-side">
         <div class="row">
           <div class="main-messages__message col-12">

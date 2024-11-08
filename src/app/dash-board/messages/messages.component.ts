@@ -34,7 +34,7 @@ export class MessagesComponent implements OnInit {
   currentUserId: string | null = null;
   activeUsers: any[] = [];
   isLoading: boolean = false;
-  showMessageBox: boolean = false;
+  showMessageBox: boolean = true;
 
   currentPage: number = 1;
   limit: number = 10;
