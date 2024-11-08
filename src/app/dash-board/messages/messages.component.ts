@@ -34,6 +34,7 @@ export class MessagesComponent implements OnInit {
   currentUserId: string | null = null;
   activeUsers: any[] = [];
   isLoading: boolean = false;
+  showMessageBox: boolean = false;
 
   currentPage: number = 1;
   limit: number = 10;
@@ -203,6 +204,39 @@ export class MessagesComponent implements OnInit {
       },
     });
   }
+  fetchMessagesForParticularConversation(
+    conversationId: string,
+    page: number = 1
+  ): void {
+    this.messages = [];
+    const limit = 10;
+
+    this.messageService.getAllMessages(conversationId, limit, page).subscribe({
+      next: (response: Message[]) => {
+        console.log(response);
+        response.reverse();
+        this.messages = [...response, ...this.messages];
+        // Set initial messages
+        this.scrollToBottom(); // Scroll to bottom on initial load
+        // } else {
+        //   console.log([...response, ...this.messages]);
+        //   this.messages = [...response, ...this.messages]; // Prepend older messagess
+        // }
+
+        this.currentMessageConversation = this.conversations.find(
+          (conversation) => conversation._id === conversationId
+        );
+
+        this.receiverID = this.getOtherMemberIndexInConversations(
+          this.currentMessageConversation
+        );
+        this.showMessageBox = true;
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
+  }
 
   onScroll(event: any): void {
     const scrollTop = event.target.scrollTop;
@@ -267,5 +301,8 @@ export class MessagesComponent implements OnInit {
 
   mediaHide() {
     this.showHide = false;
+  }
+  toggleShowMessageBox() {
+    this.showMessageBox = !this.showMessageBox;
   }
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 col-md-5 col-sm-12 col-12">
+    <div class="desktop-view col-4 col-md-5 col-sm-12 col-12">
       <div class="container left-side">
         <div class="row">
           <div class="main-messages__message col-12">
@@ -83,7 +83,7 @@
           >
             <div
               class="accout-active col-12"
-              (click)="fetchMessages(conversation._id)"
+              (click)="fetchMessagesForParticularConversation(conversation._id)"
             >
               <div class="main-messages__avatar-profile col-3">
                 <img
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div class="col-8 col-md-7 col-sm-12 col-12">
+    <div *ngIf="showMessageBox" class="col-8 col-md-7 col-sm-12 col-12">
       <div
         class="container right"
         style="box-shadow: 0px 2px 12px -8px; min-height: 100vh"
@@ -156,6 +156,18 @@
           <div class="col-12">
             <div class="main-messages__user-profileByName col-12">
               <div class="main-messages__user-profileById col-9">
+                <p (click)="toggleShowMessageBox()">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    viewBox="0 0 448 512"
+                  >
+                    <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                    />
+                  </svg>
+                </p>
                 <div class="main-messages__avatar-profile">
                   <img
                     [src]="
@@ -272,6 +284,23 @@
                     type="text"
                     placeholder="type a message"
                   />
+                  <a
+                    (click)="
+                      sendMessage(
+                        currentMessageConversation._id,
+
+                        'mohsin',
+                        currentMessageConversation.members[receiverID]._id
+                      )
+                    "
+                    id="send-chat"
+                  >
+                    <img
+                      class="main-messages__send-chat"
+                      src="assets/messages.icon/send-alt-1-svgrepo-com.svg"
+                      alt=""
+                    />
+                  </a>
                 </div>
                 <div class="messages-featured">
                   <div>
@@ -306,6 +335,135 @@
             </div>
             <div class="col-12" *ngIf="!showHide">media</div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!showMessageBox" class="col-4 col-md-5 col-sm-12 col-12">
+      <div class="container left-side">
+        <div class="row">
+          <div class="main-messages__message col-12">
+            <span>Messages</span>
+          </div>
+          <div class="col-12">
+            <div class="main-messages__searchbar">
+              <img src="assets/hearder-icon/icons8-search.svg" alt="" />
+              <input class="main-messages__input-field" type="search" />
+            </div>
+          </div>
+          <div class="main-messages__input-btn col-12">
+            <button id="all">All</button>
+            <button>Unread <span>3</span></button>
+            <button>Online <span>2</span></button>
+          </div>
+
+          <!-- <div class="main-messages__userID-mobile-view col-12">
+            <div class="accout-active col-12" (click)="selectDiv(4)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 4</div>
+                  <div class="time">10:34</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  you are just one click away...
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(1)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 1</div>
+                  <div class="time">10:33</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  Hey, i would love you t...<span>1</span>
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(2)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 2</div>
+                  <div class="time">10:30</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  become fan is free and...<span>1</span>
+                </div>
+              </div>
+            </div>
+            <div class="accout-active col-12" (click)="selectDiv(3)">
+              <div class="main-messages__avatar-profile col-3">
+                <img src="assets/home-icon/avatarImg.png" alt="" />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">user 3</div>
+                  <div class="time">10:33</div>
+                </div>
+                <div class="main-messages__users-chat">
+                  hey bb thx for the follo... <span>1</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div
+            *ngFor="let conversation of conversations"
+            class="main-messages__userID-mobile-view col-12"
+          >
+            <div
+              class="accout-active col-12"
+              (click)="fetchMessagesForParticularConversation(conversation._id)"
+            >
+              <div class="main-messages__avatar-profile col-3">
+                <img
+                  [src]="
+                    getMediaUrl(
+                      conversation.members[
+                        getOtherMemberIndexInConversations(conversation)
+                      ].profile
+                    )
+                  "
+                  alt=""
+                />
+              </div>
+              <div class="col-9">
+                <div class="main-messages__user-time">
+                  <div class="main-messages__users">
+                    {{
+                      conversation.members[
+                        getOtherMemberIndexInConversations(conversation)
+                      ].name
+                    }}
+                    <p
+                      *ngIf="
+                        conversation.members[
+                          getOtherMemberIndexInConversations(conversation)
+                        ].active === true
+                      "
+                    >
+                      online
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="main-messages__result col-12">
+                        No results
+                    </div>
+                    <div class="main-messages__discover-btn col-12">
+                        <button class=" ">Discover creator</button>
+                    </div> -->
         </div>
       </div>
     </div>

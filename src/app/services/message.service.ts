@@ -34,6 +34,7 @@ export class MessageService {
     limit: number,
     page: number
   ): Observable<Message[]> {
+    console.log(conversationId);
     return this.http
       .get<{ messages: Message[] }>(
         `${env.baseURL}/message/get/${conversationId}?limit=${limit}&page=${page}`

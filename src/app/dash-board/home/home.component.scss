@@ -487,4 +487,39 @@
       flex-direction: column-reverse;
     }
   }
+  .create-post-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .action-button {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    img {
+      width: 25px;
+    }
+    span {
+      display: none;
+      margin-left: 0.3rem;
+    }
+  }
+  .actionPostutton {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: center;
+    img {
+      width: 20px;
+    }
+    span {
+      margin-left: 0.3rem;
+    }
+  }
 }
