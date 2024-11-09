@@ -37,9 +37,6 @@ export class LivestreamComponent implements OnInit, OnDestroy {
     this.authService.user$.subscribe((user) => {
       this.userData = user;
       this.client = AgoraRTC.createClient({ mode: 'live', codec: 'h264' });
-      if (this.userData.role === 'creator') {
-        this.client.setClientRole('host');
-      }
     });
   }
   toggleAudio() {
@@ -64,6 +61,9 @@ export class LivestreamComponent implements OnInit, OnDestroy {
     this.streamService.getStreams().subscribe({
       next: (response: any) => {
         this.activeStreams = response.formattedStreams;
+        this.activeStreams = this.activeStreams.filter((stream) => {
+          stream.creator !== this.userData._id;
+        });
         console.log(this.activeStreams);
       },
       error: (error) => {
@@ -133,7 +133,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userData.role === 'creator') {
+    if (this.client.role === 'host') {
       // Stop and release the local tracks
       if (this.localAudioTrack) {
         this.localAudioTrack.close();
@@ -151,6 +151,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   }
   async joinStream(stream: any) {
     this.CHANNEL = stream.channel;
+    this.client.setClientRole('audience');
     await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
     console.log('User joined channel: ', this.CHANNEL);
     this.client.on('user-published', async (user, mediaType) => {
@@ -160,7 +161,7 @@ export class LivestreamComponent implements OnInit, OnDestroy {
 
       if (mediaType === 'video') {
         const remoteVideoTrack = user.videoTrack;
-        remoteVideoTrack.play('remote-video');
+        remoteVideoTrack.play('local-video');
       }
 
       if (mediaType === 'audio') {
@@ -171,13 +172,17 @@ export class LivestreamComponent implements OnInit, OnDestroy {
   }
 
   async startStream() {
+    if (this.client.connectionState === 'CONNECTED') {
+      this.client.leave();
+    }
+    this.client.setClientRole('host');
     this.CHANNEL = this.userData._id;
     await this.client.join(this.APP_ID, this.CHANNEL, this.TOKEN, null);
 
     [this.localAudioTrack, this.localVideoTrack] =
       await AgoraRTC.createMicrophoneAndCameraTracks();
 
-    await this.client.publish([this.localAudioTrack, this.localVideoTrack]);
+    await this.client.publish(this.localVideoTrack);
 
     this.localVideoTrack.play('local-video');
 

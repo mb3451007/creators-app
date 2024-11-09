@@ -3,7 +3,7 @@
     <div class="main-footer__footerarea col-12">
       <div class="main-footer__images">
         <img
-          [routerLink]="'home'"
+          [routerLink]="'newsfeed'"
           [routerLinkActive]="'active'"
           src="assets/side-bar-icon/icons8-home.svg"
           alt=""
@@ -61,6 +61,14 @@
               />
               <span>Profile</span>
             </li>
+            <li
+              [routerLink]="'home'"
+              [routerLinkActive]="'active'"
+              (click)="closeSidebar()"
+            >
+              <img src="assets/side-bar-icon/icons8-home.svg" alt="" />
+              <span>home</span>
+            </li>
             <li>
               <img
                 src="assets/side-toggle-bar-icon/currency-dollar-circle-svgrepo-com.svg"
@@ -76,7 +84,11 @@
               <span>Promotions</span>
             </li>
 
-            <li>
+            <li
+              [routerLink]="'following'"
+              [routerLinkActive]="'active'"
+              (click)="closeSidebar()"
+            >
               <img
                 src="assets/side-toggle-bar-icon/users-people-team-svgrepo-com.svg"
                 alt=""

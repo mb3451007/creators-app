@@ -1,106 +1,138 @@
 <div class="container">
-    <div class="row">
-        <div class="col-4 col-md-5 col-sm-12 col-12">
-            <div class="container" style="box-shadow: 0px 2px 12px -8px; height: 100vh; ">
-                <div class="row">
-                    <div class="main-setting__message col-12">
-                        <span>Settings</span>
-                    </div>
-                    <div class="accout-active col-12" [routerLink]="['/dashboard/setting/account']" [routerLinkActive]="'active'" (click)="selectDiv(1)">
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg" alt="">
-                            </div>
-                            <div>Account</div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="accout-active col-12" (click)="selectDiv(2)">
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-toggle-bar-icon/currency-dollar-circle-svgrepo-com.svg" alt="">
-                            </div>
-                            <div>Become a creator</div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="accout-active col-12" (click)="selectDiv(3)">
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg" alt="">
-
-                            </div>
-                            <div>Payments and Subscriptions </div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="accout-active col-12" (click)="selectDiv(4)">
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-toggle-bar-icon/price-tag-promotion-price-cost-svgrepo-com.svg"
-                                    alt="">
-
-
-                            </div>
-                            <div>Notifications </div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="accout-active col-12" (click)="selectDiv(5)">
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-toggle-bar-icon/users-people-team-svgrepo-com.svg" alt="">
-
-                            </div>
-                            <div>Privacy and Safety</div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="accout-active col-12" (click)="selectDiv(6)"> 
-                        <div class="account col-10">
-                            <div>
-                                <img src="assets/side-toggle-bar-icon/question-mark-circled-svgrepo-com.svg" alt="">
-
-                            </div>
-                            <div>Help and support</div>
-                        </div>
-                        <div class="col-2">
-                            <img src="assets/side-bar-icon/right-arrow-svgrepo-com.svg" alt="">
-                        </div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-4 col-md-5 col-sm-12 col-12">
+      <div
+        class="container"
+        style="box-shadow: 0px 2px 12px -8px; height: 100vh"
+      >
+        <div class="row">
+          <div class="main-setting__message col-12">
+            <span>Settings</span>
+          </div>
+          <div
+            class="accout-active col-12"
+            [routerLink]="['/dashboard/setting/account']"
+            [routerLinkActive]="'active'"
+            (click)="selectDiv(1)"
+          >
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-bar-icon/profile-people-account-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Account</div>
             </div>
-        </div>
-        <div class="col-8 col-md-7 col-sm-12 col-12">
-            
-            <div class="" style="box-shadow:0px 2px 12px -8px; height: 100vh;">
-               
-                <app-account *ngIf="selectedDiv === 1" ></app-account>
-               <app-creator *ngIf="selectedDiv === 2"></app-creator>
-               <app-payment *ngIf="selectedDiv === 3"></app-payment>
-               <app-notification *ngIf="selectedDiv === 4"></app-notification>
-               <app-privacy *ngIf="selectedDiv === 5"></app-privacy>
-               <app-support *ngIf="selectedDiv === 6"></app-support>
-               
-               
-               
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
             </div>
+          </div>
+
+          <div class="accout-active col-12" (click)="selectDiv(2)">
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-toggle-bar-icon/currency-dollar-circle-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Become a creator</div>
+            </div>
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="accout-active col-12" (click)="selectDiv(3)">
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-toggle-bar-icon/wallet-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Payments and Subscriptions</div>
+            </div>
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="accout-active col-12" (click)="selectDiv(4)">
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-toggle-bar-icon/price-tag-promotion-price-cost-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Notifications</div>
+            </div>
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="accout-active col-12" (click)="selectDiv(5)">
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-toggle-bar-icon/users-people-team-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Privacy and Safety</div>
+            </div>
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="accout-active col-12" (click)="selectDiv(6)">
+            <div class="account col-10">
+              <div>
+                <img
+                  src="assets/side-toggle-bar-icon/question-mark-circled-svgrepo-com.svg"
+                  alt=""
+                />
+              </div>
+              <div>Help and support</div>
+            </div>
+            <div class="col-2">
+              <img
+                src="assets/side-bar-icon/right-arrow-svgrepo-com.svg"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="col-8 col-md-7 col-sm-12 col-12">
+      <div class="" style="box-shadow: 0px 2px 12px -8px; height: 100vh">
+        <app-account *ngIf="selectedDiv === 1"></app-account>
+        <app-creator *ngIf="selectedDiv === 2"></app-creator>
+        <app-payment *ngIf="selectedDiv === 3"></app-payment>
+        <app-notification *ngIf="selectedDiv === 4"></app-notification>
+        <app-privacy *ngIf="selectedDiv === 5"></app-privacy>
+        <app-support *ngIf="selectedDiv === 6"></app-support>
+      </div>
+    </div>
+  </div>
 </div>
-
