@@ -84,3 +84,41 @@
         }
     }
 }
+.mobileViewContainer{
+  display: none;
+}
+.mobileViewSelectedContent{
+  position: relative;
+
+  button{
+    position: absolute;
+    top: 0;
+    right: 2%;
+    padding: 0.5rem 0rem;
+    background: white;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+}
+@media screen and (width>= 768px) {
+  .settingContentAreamobile{
+    display: none;
+  }
+  
+}
+
+@media screen and (width <= 768px) {
+    .webViewContainer{
+      display: none;
+    }
+  .settingContentArea{
+      display: none;
+    }
+    .mobileViewContainer{
+      display: unset;
+    }
+
+   
+}
