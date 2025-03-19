@@ -69,6 +69,11 @@
               style="display: none"
               accept="image/*,video/*"
             />
+            <select [(ngModel)]="tier" name="tier">
+              <option value="free" selected>Free</option>
+              <option value="paid">Paid</option>
+            </select>
+
             <button
               class="actionPostutton"
               [ngClass]="{ 'btn-secondary': selectedFiles.length }"
@@ -267,7 +272,12 @@
       </div>
     </div>
 
-    <div class="main-home__rightSide col-lg-4 col-md-4 col-12">
+    <!-- testing payments -->
+
+    <div
+      *ngIf="currentUser.role === 'subscriber'"
+      class="main-home__rightSide col-lg-4 col-md-4 col-12"
+    >
       <div class="row" *ngIf="recommendadProfiles.length > 0">
         <div class="col-12">
           <div class="main-home__suggestCreator col-12">Suggested Creator</div>

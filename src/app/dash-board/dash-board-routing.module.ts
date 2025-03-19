@@ -12,6 +12,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { PostComponent } from './post/post.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PackageComponent } from './package/package.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'newsfeed',
+        redirectTo: 'home',
         pathMatch: 'full',
       },
       { path: 'newsfeed', component: NewsFeedComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
           ),
       },
       { path: 'discover', component: DiscoverComponent },
+      { path: 'package', component: PackageComponent },
       { path: 'suggested', component: SuggestedCreatorComponent },
       { path: 'following', component: FollowingComponent },
       { path: 'notification', component: NotificationComponent },

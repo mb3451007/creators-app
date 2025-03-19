@@ -1,0 +1,109 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Package Form</h2>
+  <form
+    [formGroup]="packageForm"
+    (ngSubmit)="onSubmit()"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="packageName" class="form-label">Package Name</label>
+      <input
+        id="packageName"
+        formControlName="packageName"
+        type="text"
+        class="form-control"
+        placeholder="Enter Package Name"
+        [ngClass]="{
+          'is-invalid':
+            packageForm.get('packageName')?.invalid &&
+            packageForm.get('packageName')?.touched
+        }"
+      />
+      <div class="invalid-feedback">Package Name is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        placeholder="Enter Description (max 250 chars)"
+        rows="4"
+        [ngClass]="{
+          'is-invalid':
+            packageForm.get('description')?.invalid &&
+            packageForm.get('description')?.touched
+        }"
+      ></textarea>
+      <div class="invalid-feedback">
+        <span *ngIf="packageForm.get('description')?.errors?.['required']"
+          >Description is required</span
+        >
+        <span *ngIf="packageForm.get('description')?.errors?.['maxlength']"
+          >Max length is 250 characters</span
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="priceAmount" class="form-label">Price Amount</label>
+      <input
+        id="priceAmount"
+        formControlName="priceAmount"
+        type="number"
+        class="form-control"
+        placeholder="Enter Price"
+        [ngClass]="{
+          'is-invalid':
+            packageForm.get('priceAmount')?.invalid &&
+            packageForm.get('priceAmount')?.touched
+        }"
+      />
+      <div class="invalid-feedback">Price must be greater than 0</div>
+    </div>
+
+    <button
+      type="submit"
+      (click)="onSubmit()"
+      class="btn btn-primary"
+      [disabled]="packageForm.invalid || isLoading"
+    >
+      Submit
+    </button>
+  </form>
+
+  <h2 class="mb-4">Package Details</h2>
+  <div class="card" *ngIf="package">
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <h5 class="card-title">Package Name: {{ package?.packageName }}</h5>
+        <button
+          class="btn btn-danger"
+          [disabled]="isLoading"
+          (click)="deletePackage(package?._id)"
+        >
+          Delete Package
+        </button>
+      </div>
+      <p class="card-text">
+        <strong>Product ID:</strong> {{ package?.productId }}<br />
+        <strong>Price ID:</strong> {{ package?.priceId }}<br />
+        <strong>Price Amount:</strong> {{ package?.priceAmount }}
+        {{ package?.currency }}<br />
+        <strong>User ID:</strong> {{ package?.userId }}<br />
+        <strong>Package ID:</strong> {{ package?._id }}<br />
+        <strong>Created At:</strong> {{ package?.createdAt | date : "short"
+        }}<br />
+      </p>
+    </div>
+  </div>
+  <div class="card" *ngIf="!package">
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between w-100">
+        <h5 class="card-title">No Package Found</h5>
+      </div>
+    </div>
+  </div>
+</div>

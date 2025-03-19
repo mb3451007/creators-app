@@ -5,6 +5,8 @@ import { PostService } from 'src/app/services/post.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { SocketService } from 'src/app/services/socket.service';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
   totalPages: number = 0;
   showDelete: boolean = false;
   postDeletId: string = '';
+  tier: string = 'free';
 
   commentForm = new FormGroup({
     comment: new FormControl('', Validators.required),
@@ -48,7 +51,8 @@ export class HomeComponent implements OnInit {
     private postService: PostService,
     private authservice: AuthService,
     private conversationService: ConversationService,
-    private socket: SocketService
+    private socket: SocketService,
+    private http: HttpClient
   ) {}
 
   fetchPosts() {
@@ -111,6 +115,7 @@ export class HomeComponent implements OnInit {
 
     let formData = new FormData();
     formData.append('description', this.postDescription);
+    formData.append('tier', this.tier);
     for (let file of this.selectedFiles) {
       formData.append('files', file.file);
     }
@@ -123,7 +128,8 @@ export class HomeComponent implements OnInit {
         this.fetchPosts();
         this.postDescription = '';
         this.selectedFiles = [];
-        this.isLoading = false; // Hide the loader after success
+        this.isLoading = false;
+        this.tier = 'free';
       },
       error: (error) => {
         console.error('Error uploading post', error);
@@ -308,5 +314,23 @@ export class HomeComponent implements OnInit {
 
   getMediaUrl(media) {
     return this.postService.getMediaUrl(media);
+  }
+
+  async buyNow() {
+    const stripe = await loadStripe(
+      'pk_test_51N2zfiBHAK3VyaqUHLxCAue1ZffFof5jE4X4lRfxvBqffzikRlcQTxj3Lrb3zbVgkmHSob3i2hidx0aQEP153HTM00rJFnDGJo'
+    ); // Replace with your Stripe publishable key.
+
+    this.http
+      .post('http://localhost:3000/stripe/checkout', {
+        priceId: 'price_1Qm5HJBHAK3VyaqUVYEijMtc', // Replace with your price ID.
+      })
+      .subscribe(async (response: any) => {
+        if (response.url) {
+          window.location.href = response.url; // Redirect to Stripe Checkout.
+        } else {
+          alert('Failed to create checkout session');
+        }
+      });
   }
 }

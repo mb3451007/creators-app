@@ -36,6 +36,12 @@
                 </div>
               </div>
               <div
+                class="text-center cursor-pointer text-white"
+                (click)="buyNow()"
+              >
+                Buy Premium
+              </div>
+              <div
                 *ngIf="userData._id !== currentUser._id"
                 class="main-discover__user-profile-menu col-2"
               >
@@ -50,6 +56,12 @@
             </div>
           </div>
         </div>
+        <!--New Discord Seach toggle-->
+        <!-- <div class="main-discover__srch-dicsover col-12">
+          <div class="discover active">Free</div>
+          <div class="division">|</div>
+          <div class="srch">Paid</div>
+        </div> -->
       </div>
       <div class="main-home__leftSide col-12">
         <div class="row">

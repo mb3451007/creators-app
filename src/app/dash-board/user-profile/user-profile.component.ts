@@ -1,7 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { loadStripe } from '@stripe/stripe-js';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversationService } from 'src/app/services/conversation.service';
@@ -52,7 +54,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private postService: PostService,
     private conversationService: ConversationService,
     private socket: SocketService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -302,5 +305,23 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         console.log(error.error.message);
       },
     });
+  }
+
+  async buyNow() {
+    const stripe = await loadStripe(
+      'pk_test_51N2zfiBHAK3VyaqUHLxCAue1ZffFof5jE4X4lRfxvBqffzikRlcQTxj3Lrb3zbVgkmHSob3i2hidx0aQEP153HTM00rJFnDGJo'
+    ); // Replace with your Stripe publishable key.
+
+    this.http
+      .post('http://localhost:3000/stripe/checkout', {
+        priceId: this.userData.priceID,  
+      })
+      .subscribe(async (response: any) => {
+        if (response.url) {
+          window.location.href = response.url; // Redirect to Stripe Checkout.
+        } else {
+          alert('Failed to create checkout session');
+        }
+      });
   }
 }
