@@ -138,4 +138,12 @@ export class AuthService {
   searchUsers(query: string): Observable<any[]> {
     return this.http.get<any[]>(`${env.baseURL}/user/search?query=${query}`);
   }
+
+  requestForCreator(id: string, formData: FormData ): Observable<any> {
+    return this.http.patch<any[]>(`${env.baseURL}/user/requestForCreator/${id}`, formData);
+  }
+
+  creatorVerificationApproved(verificationToken: string): Observable<any> {
+    return this.http.get<any[]>(`${env.baseURL}/user/creatorVerificationApproved/${verificationToken}/verified`);
+  }
 }

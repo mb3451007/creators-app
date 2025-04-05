@@ -7,6 +7,7 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FacebookRedirectComponent } from './facebook-redirect/facebook-redirect.component';
+import {CreatorVerificationComponent} from "./creator-verification/creator-verification.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,8 @@ const routes: Routes = [
   //   path: '',
   //   loadChildren: () => import('./dash-board/dash-board.module').then((m) => m.DashBoardModule)
   // },
+
+  {path: 'verify-creator', component: CreatorVerificationComponent },
 ];
 
 @NgModule({

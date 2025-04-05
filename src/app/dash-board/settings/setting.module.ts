@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { SettingRoutingModule } from './setting-routing.module';
 import { AccountComponent } from './account/account.component';
 import { RouterModule } from '@angular/router';
@@ -12,7 +12,7 @@ import { SupportComponent } from './support/support.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -28,11 +28,13 @@ import { FormsModule } from '@angular/forms';
       CommonModule,
       SettingRoutingModule,
       RouterModule,
-      MatFormFieldModule, 
-      MatInputModule, 
+      MatFormFieldModule,
+      MatInputModule,
       MatIconModule,
       FormsModule,
+      NgOptimizedImage,
+      ReactiveFormsModule
     ]
-    
+
   })
   export class SettingModuleModule { }
