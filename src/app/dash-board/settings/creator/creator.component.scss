@@ -12,8 +12,9 @@
     //: Roboto, Helvetica, Arial, sans-serif;
     font-weight: bold;
     padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
   &__account-description{
     color:#9e9e9e;
@@ -34,7 +35,7 @@
     font-size: 14px;
     font-weight: bold;
     border-radius: 0px;
-    
+
     padding: 1rem 0rem 1rem 1.5rem;
 
     img {
@@ -90,4 +91,85 @@
             margin-right: 7px;
         }
     }
+}
+
+p {
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  line-height: 15px;
+  font-weight: 500;
+}
+
+.creator-status {
+  border-radius: 30px;
+  overflow: hidden;
+  border: none;
+  padding: 12px 30px;
+  color: rgb(255, 255, 255);
+}
+
+.creator-status.pending {
+  background: #FFF3CD;
+  color: #856404;
+}
+
+.creator-status.rejected {
+  background: #DC3545;
+}
+
+.creator-status.verified {
+  background: #28A745;
+}
+
+.form-container {
+  padding: 0.5rem 1.5rem 2rem 1.5rem;
+
+  .attachments-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .attachment-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        font-family: Roboto, sans-serif;
+        line-height: 15px;
+      }
+
+      .attachment-details-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+      }
+
+      .file-size {
+        font-size: 10px;
+      }
+    }
+  }
+
+  button {
+    border-radius: 30px;
+    overflow: hidden;
+    border: none;
+    padding: 12px 45px;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(95.92deg, rgb(244, 138, 108) 0%, rgb(253, 29, 93) 100%);
+    font-size: 18px;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+  }
 }

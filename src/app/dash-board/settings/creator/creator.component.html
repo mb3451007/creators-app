@@ -1,12 +1,62 @@
 <div class="row">
-    <div class="col-12">
-     
-                <div class="main-account__message col-12">
-                    <span>Become creator</span>
-                </div>
-                
+  <div class="col-12">
+    <div class="main-account__message col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <ng-container *ngIf="user.creator && user.creatorVerificationStatus === 'VERIFIED'">
+          <span>Creator</span>
+        </ng-container>
 
-         
+        <ng-container *ngIf="!user.creator || (user.creator && user.creatorVerificationStatus !== 'VERIFIED')">
+          <div>
+            <span>Become creator</span>
+            <p class="mt-3 mb-0" *ngIf="user.creatorVerificationStatus === 'NOT_VERIFIED'">
+              Kindly upload the following documents (etc) to request for creator.
+            </p>
+          </div>
+        </ng-container>
+
+        <div class="creator-status" [ngClass]="user.creatorVerificationStatus === 'PENDING' ? 'pending' :  user.creatorVerificationStatus === 'REJECTED' ? 'rejected' : 'verified'"  *ngIf="user.creatorVerificationStatus === 'PENDING' || user.creatorVerificationStatus === 'VERIFIED' || user.creatorVerificationStatus === 'REJECTED'">
+          <span>{{user.creatorVerificationStatus}}</span>
+        </div>
+      </div>
     </div>
-    
+  </div>
+</div>
+
+<div class="form-container">
+  <form [formGroup]="form">
+    <div class="attachments-container">
+      <ng-container formArrayName="files">
+        <ng-container *ngFor="let control of getFiles().controls; index as index">
+          <h2 class="m-1">Attachment {{index + 1}}</h2>
+          <input type="file" #fileInput (change)="onFileChange($event, index)" class="d-none">
+          <div class="attachment-container" (click)="fileInput.click()">
+            <ng-container [formGroupName] = index>
+              <ng-container *ngIf="!control?.value?.name && (user && (user?.creatorVerificationStatus !== 'PENDING' || user?.creatorVerificationStatus !== 'REJECTED'))">
+                <div class="d-flex flex-column justify-content-center align-items-center gap-1">
+                  <img ngSrc="assets/settings/creator/icons8-upload-48.png"  alt="upload-icon" height="24" width="24">
+                  <span>Upload Attachment</span>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="control?.value?.name">
+                <div class="attachment-details-container">
+                  <div class="d-flex flex-column gap-1">
+                    <span class="file-name">{{control?.value?.name}}</span>
+                    <span class="file-size" >{{(control?.value?.size) / (1024 *1024) | number:'1.2-2'}} MB</span>
+                  </div>
+
+                  <img ngSrc="assets/settings/creator/icons8-delete.svg" alt="delete-icon" height="18" width="18" *ngIf="!user.creator || (user.creator && user.creatorVerificationStatus === 'REJECTED')" (click)="$event.stopPropagation(); deleteAttachment(index)">
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <div class="d-flex justify-content-end" *ngIf="!user.creator || (user.creator && user.creatorVerificationStatus === 'REJECTED')">
+      <button (click)="saveFiles()" class="mt-4" [disabled]="form.invalid">{{ !user.creator ? 'Submit' : 'Request Again' }}</button>
+    </div>
+  </form>
 </div>

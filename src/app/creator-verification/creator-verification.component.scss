@@ -1,0 +1,32 @@
+@import "/src/app/core/common-style.scss";
+
+.main-login {
+  &__login-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4rem;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      width: 21rem;
+      border: 1px solid lightgray;
+      border-radius: 6px;
+      padding: 0.3rem 0.5rem;
+      margin: 0 0 12px;
+    }
+    input::placeholder {
+      color: $primary-color;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      width: 21rem;
+      font-weight: 600;
+    }
+  }
+}

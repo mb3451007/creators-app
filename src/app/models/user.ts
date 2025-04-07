@@ -8,4 +8,7 @@ export class User {
   gender: string = '';
   role: string = '';
   token: string = '';
+  creator?: string = '';
+  attachmentsForCreator?: any[] = [];
+  creatorVerificationStatus?: string = '';
 }

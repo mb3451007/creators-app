@@ -1,0 +1,25 @@
+<div class="container position-relative">
+  <div class="row">
+    <div class="main-login__login-container col-12">
+      <h2>Verify Creator</h2>
+
+      <p>Enter the token sent to you in the verification email</p>
+
+      <form [formGroup]="form">
+        <input
+          type="text"
+          placeholder="Verification Token"
+          formControlName="verificationToken"
+        />
+      </form>
+
+      <button [disabled]="form.invalid" (click)="creatorVerificationApproved()" >Approve</button>
+    </div>
+  </div>
+</div>
+
+<app-alert-component
+  [alertMessage]="alertMessage"
+  [alertType]="alertType"
+  [showAlert]="showAlert"
+></app-alert-component>

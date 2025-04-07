@@ -18,6 +18,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { FacebookRedirectComponent } from './facebook-redirect/facebook-redirect.component';
 import { AuthinterceptorInterceptor } from './interceptors/authinterceptor.interceptor';
 import { LoaderComponent } from './loader/loader.component';
+import {CreatorVerificationComponent} from "./creator-verification/creator-verification.component";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoaderComponent } from './loader/loader.component';
     ResetPasswordComponent,
     FacebookRedirectComponent,
     LoaderComponent,
+    CreatorVerificationComponent
   ],
   imports: [
     CommonModule,
