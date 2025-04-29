@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { loadStripe } from '@stripe/stripe-js';
 import { debounceTime, Subscription, switchMap } from 'rxjs';
+import { env } from 'src/app/environments/env.development';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { PostService } from 'src/app/services/post.service';
@@ -45,6 +46,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   isLiked: boolean = false;
   commentsMap: { [key: string]: any[] } = {};
   userId: string;
+  //alert
+  showAlert: boolean;
+  alertMessage: string;
+  alertType: string;
   private subscription: Subscription = new Subscription();
   commentForm = new FormGroup({
     comment: new FormControl('', Validators.required),
@@ -308,20 +313,21 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   async buyNow() {
-    const stripe = await loadStripe(
-      'pk_test_51N2zfiBHAK3VyaqUHLxCAue1ZffFof5jE4X4lRfxvBqffzikRlcQTxj3Lrb3zbVgkmHSob3i2hidx0aQEP153HTM00rJFnDGJo'
-    ); // Replace with your Stripe publishable key.
+    const stripe = await loadStripe(env.stripeKey);
 
     this.http
-      .post('http://localhost:3000/stripe/checkout', {
-        priceId: this.userData.priceID,  
+      .post(`${env.baseURL}/stripe/checkout`, {
+        priceId: this.userData.priceID,
       })
-      .subscribe(async (response: any) => {
-        if (response.url) {
-          window.location.href = response.url; // Redirect to Stripe Checkout.
-        } else {
-          alert('Failed to create checkout session');
-        }
+      .subscribe({
+        next: (response: any) => {
+          window.location.href = response.url;
+        },
+        error: (error: any) => {
+          if (error.status === 409) {
+            alert('You are already subscribed to this creator');
+          }
+        },
       });
   }
 }

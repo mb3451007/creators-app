@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { env } from 'src/app/environments/env.development';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-package',
@@ -18,10 +19,10 @@ export class PackageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {
     // Get current user data from the AuthService
-    this.currentUser = this.authService.getUserData;
 
     // Initialize form with validators
     this.packageForm = this.fb.group({
@@ -32,7 +33,19 @@ export class PackageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPackage();
+    this.getUser();
+    this.checkStatus();
+  }
+
+  checkStatus() {
+    this.route.queryParams.subscribe((params) => {
+      const status = params['status'];
+      if (status === 'success') {
+        alert('Stripe Account Connected Successfully!');
+      } else if (status === 'failure') {
+        alert('An Error Occured Please Try Again!');
+      }
+    });
   }
   // Handle form submission
   onSubmit() {
@@ -82,6 +95,41 @@ export class PackageComponent implements OnInit {
         (error) => {
           console.error('Error creating package:', error);
           this.isLoading = false;
+        }
+      );
+  }
+
+  attachStripe() {
+    this.isLoading = true;
+
+    this.http
+      .post(`${env.baseURL}/stripe/onboard`, {
+        userId: this.currentUser._id,
+      })
+      .subscribe(
+        (response: any) => {
+          window.location.href = response.onboardingUrl;
+          this.isLoading = false;
+        },
+        (error) => {
+          console.log(error);
+          this.isLoading = false;
+        }
+      );
+  }
+
+  getUser() {
+    this.isLoading = true;
+    const tempUser = this.authService.getUserData;
+    this.http
+      .get(`${env.baseURL}/user/getSingleUser/${tempUser._id}`)
+      .subscribe(
+        (response: any) => {
+          this.currentUser = response;
+          this.getPackage();
+        },
+        (error) => {
+          console.log(error);
         }
       );
   }

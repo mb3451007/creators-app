@@ -27,6 +27,8 @@ import { PostComponent } from './post/post.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PackageComponent } from './package/package.component';
+import { StatusComponent } from './status/status.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { PackageComponent } from './package/package.component';
     NewsFeedComponent,
     UserProfileComponent,
     PackageComponent,
+    StatusComponent,
+    SubscriptionsComponent,
   ],
   imports: [
     CommonModule,

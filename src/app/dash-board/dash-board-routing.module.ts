@@ -13,6 +13,8 @@ import { PostComponent } from './post/post.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PackageComponent } from './package/package.component';
+import { StatusComponent } from './status/status.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 // import { DashBoardComponent } from './dash-board.component';
 
 const routes: Routes = [
@@ -46,6 +48,8 @@ const routes: Routes = [
       },
       { path: 'discover', component: DiscoverComponent },
       { path: 'package', component: PackageComponent },
+      { path: 'status', component: StatusComponent },
+      { path: 'subscription', component: SubscriptionsComponent },
       { path: 'suggested', component: SuggestedCreatorComponent },
       { path: 'following', component: FollowingComponent },
       { path: 'notification', component: NotificationComponent },

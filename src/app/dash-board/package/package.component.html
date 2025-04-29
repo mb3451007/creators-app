@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" *ngIf="currentUser.stripeAccountId !== null">
   <h2 class="mb-4">Package Form</h2>
   <form
     [formGroup]="packageForm"
@@ -106,4 +106,10 @@
       </div>
     </div>
   </div>
+</div>
+<div class="container mt-4" *ngIf="currentUser.stripeAccountId === null">
+  <h2 class="mb-4">No Stripe Account Attached!</h2>
+  <button type="button" (click)="attachStripe()" class="btn btn-primary">
+    Attach Stripe
+  </button>
 </div>
