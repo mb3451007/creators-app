@@ -1,6 +1,6 @@
 export const env = {
   production: false,
-  // baseURL: 'http://localhost:3000',
+
   stripeKey:
     'pk_test_51QnH6BPiAjowyLOGOVBX80WL9OmLX5COcAVKCj7bdkVjLg93nHv3gq9a1wvW3pwiPXPKpmQEdXu5B6ZgKkYm693Z00Z0qoTWlR',
 
