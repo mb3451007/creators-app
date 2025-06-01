@@ -275,9 +275,10 @@
     padding-bottom: 2rem;
   }
   &__rightProfile {
-    background-image: url("/assets/home-icon/islamabad.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
+    // background-image: url("/assets/home-icon/islamabad.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
     display: flex;
     min-height: 100px;
     padding: 2rem 0rem 0.5rem 1rem;

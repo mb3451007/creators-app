@@ -3,26 +3,26 @@
   cursor: pointer;
 }
 
-h1 {
-  font-family: $secondary-font;
-}
-h2 {
-  font-family: $secondary-font;
-}
-h3 {
-  font-family: $secondary-font;
-}
-h4 {
-  font-family: $secondary-font;
-}
-p {
-  font-family: $secondary-font;
-}
-span {
-  font-family: $secondary-font;
-}
+// h1 {
+//   font-family: $secondary-font;
+// }
+// h2 {
+//   font-family: $secondary-font;
+// }
+// h3 {
+//   font-family: $secondary-font;
+// }
+// h4 {
+//   font-family: $secondary-font;
+// }
+// p {
+//   font-family: $secondary-font;
+// }
+// span {
+//   font-family: $secondary-font;
+// }
 button {
-  font-family: $secondary-font;
+  // font-family: $secondary-font;
   cursor: pointer;
   border: none;
   outline: none;
@@ -31,7 +31,7 @@ button {
   border-color: $border-color;
 }
 button:hover {
-  font-family: $secondary-font;
+  // font-family: $secondary-font;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -44,5 +44,6 @@ body {
 }
 body {
   margin: 0;
-  font-family: "Roboto" !important;
+  // font-family: "Roboto" !important;
+  font-family: 'Urbanist', sans-serif !important;
 }
