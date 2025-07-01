@@ -41,14 +41,15 @@ export class CreatorComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       files: this.formBuilder.array([
         new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required]),
-        new FormControl(null, [Validators.required])
+        // new FormControl(null, [Validators.required]),
+        // new FormControl(null, [Validators.required]),
+        // new FormControl(null, [Validators.required])
       ])
     });
   }
 
   getFiles() {
+    console.log('files', this.form.get('files'));
     return this.form.get('files') as FormArray;
   }
 

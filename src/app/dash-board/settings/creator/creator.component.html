@@ -28,14 +28,16 @@
     <div class="attachments-container">
       <ng-container formArrayName="files">
         <ng-container *ngFor="let control of getFiles().controls; index as index">
-          <h2 class="m-1">Attachment {{index + 1}}</h2>
+          <h2 class="m-1">Upload Your Driver's License, Passport, or Any Other Form of Identification</h2>
           <input type="file" #fileInput (change)="onFileChange($event, index)" class="d-none">
           <div class="attachment-container" (click)="fileInput.click()">
             <ng-container [formGroupName] = index>
               <ng-container *ngIf="!control?.value?.name && (user && (user?.creatorVerificationStatus !== 'PENDING' || user?.creatorVerificationStatus !== 'REJECTED'))">
                 <div class="d-flex flex-column justify-content-center align-items-center gap-1">
                   <img ngSrc="assets/settings/creator/icons8-upload-48.png"  alt="upload-icon" height="24" width="24">
-                  <span>Upload Attachment</span>
+                  <span>
+                    Upload Attachment
+                  </span>
                 </div>
               </ng-container>
 
