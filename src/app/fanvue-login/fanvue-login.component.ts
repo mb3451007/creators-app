@@ -104,7 +104,7 @@ export class FanvueLoginComponent implements OnInit {
     this.passwordVisibility =
       this.passwordVisibility === 'password' ? 'text' : 'password';
   }
-
+// 
   loginWithFacebook() {
     window.location.href = `${env.baseURL}/auth/facebook`;
   }
