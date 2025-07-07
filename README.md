@@ -29,7 +29,7 @@ OBO is a scalable social media platform built with Angular, featuring real-time 
 git clone https://github.com/stackpearls/creators-app.git
 
 # Navigate into the project directory
-cd creators-backend
+cd creators-app
 
 # Install dependencies
 npm install
